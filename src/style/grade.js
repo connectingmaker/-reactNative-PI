@@ -1,65 +1,68 @@
 /**
  * Created by jccho on 2017. 12. 14..
  */
-
 import { StyleSheet } from 'react-native';
 
-export const MainFormStyle = StyleSheet.create({
+export const gradeFormStyle = StyleSheet.create({
     headerLayout: {
+        justifyContent: 'center', alignItems: 'center', backgroundColor: "#222222"
+    }
+    ,headerLayout2: {
+        justifyContent: 'center', alignItems: 'center', backgroundColor: "#DA4211"
+
+    }
+    ,contentheaderLayout: {
         justifyContent: 'center', alignItems: 'center', backgroundColor: "#f23611"
 
     }
-    ,headerContent:{
+    ,contentheaderContent:{
         fontSize: 15 , color:"#fff",fontWeight:'bold'
     }
-    ,backgroundImage: {
-            flex: 1,
-            position: 'absolute',
-            resizeMode: 'cover',
-            width: 100,
-            height: 100,
-            backgroundColor: 'transparent',
-            justifyContent: 'center',
-            alignItems: 'center'
-        }
+    ,bodyLayout : {
+        width: "100%"
+    }
     ,contentsLayout: {
         width: "100%"
+        ,marginTop:10
         ,paddingTop:10
         ,paddingBottom:10
         ,paddingLeft:20
         ,paddingRight:20
-        ,backgroundColor:"#f6f6f6"
-
-    }
-    ,contentsHeaderLayout: {
-        width: "100%"
-        ,height:200
-        ,paddingTop:5
-        ,paddingBottom:5
         ,backgroundColor:"#fff"
         ,shadowColor: "rgba(0,0,0,23)"
         ,shadowOffset: { width: 0, height: 1 }
         ,shadowOpacity: 0.3
     }
-    ,contentsButtonLayout: {
+    ,contentsLayout2: {
         width: "100%"
-        ,height:50
+        ,marginTop:10
         ,paddingTop:10
         ,paddingBottom:10
-        ,backgroundColor:"#fff"
+        ,paddingLeft:20
+        ,paddingRight:20
+        ,backgroundColor:"#f23611"
         ,shadowColor: "rgba(0,0,0,23)"
         ,shadowOffset: { width: 0, height: 1 }
         ,shadowOpacity: 0.3
     }
+
     ,contentsSize: {
         fontSize:13
         ,lineHeight:25
     }
     ,boldFont: {
-        color:"#f23611"
+        color:"#DA4211"
         ,fontWeight: 'bold'
-
     }
+    ,input: {
+        fontSize:12
+        ,paddingTop:13
+        ,paddingLeft:11
+        ,paddingBottom:12
+        ,height:38
+        ,backgroundColor: "#ffffff"
+    }
+
     ,lingBg: {
         backgroundColor:"rgba(127,127,127,0.3)"
         ,height:1
@@ -67,13 +70,6 @@ export const MainFormStyle = StyleSheet.create({
         ,marginBottom:10
 
     }
-    ,buttonStyle: {
-        fontSize:15
-        ,borderWidth:1
-        ,borderColor:"#979797"
-        ,backgroundColor:"#09C"
 
-    }
 
 })
-
