@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform,ScrollView } from 'react-native';
 import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button } from 'native-base';
 
 import {pivalueFormStyle} from '../style/pivalue';
@@ -39,9 +39,10 @@ export default class pivalue extends Component {
                     <View>
                        <Text style={pivalueFormStyle.title}>π= 3.</Text>
                     </View>
-                    <View style={pivalueFormStyle.contentsLayout}>
+
+                    <ScrollView style={pivalueFormStyle.contentsLayout}>
                         <Text style={{color:"#fff"}}>{pi.pi_config}</Text>
-                    </View>
+                    </ScrollView>
 
 
 
