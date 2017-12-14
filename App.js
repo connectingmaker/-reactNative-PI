@@ -25,18 +25,17 @@ export default class App extends Component<{}> {
         <Router>
           <Modal>
             <Scene key="root">
-
               <Scene key="Main" component={Main} initial={true} hideNavBar={true} />
-
+              <Scene key="Keyboard" component={Keyboard} title="키패드 설정" hideNavBar={true} wrapRouter={true}/>
+              <Scene key="Grade" component={Grade} title="등급" hideNavBar={true}  wrapRouter={true}/>
+              <Scene key="Pivalue" component={Pivalue} title="파이값" hideNavBar={true} wrapRouter={true}/>
+              <Scene key="Pirecord" component={Pirecord} title="연습" hideNavBar={true} wrapRouter={true}/>
+              <Scene key="Pichallenge" component={Pichallenge} title="도전" hideNavBar={true} wrapRouter={true}/>
+              <Scene key="Pisection" component={Pisection} title="구간연습" hideNavBar={true} wrapRouter={true}/>
+              <Scene key="Idsetting" component={Idsetting} title="아이디" hideNavBar={true} wrapRouter={true}/>
+              <Scene key="Readerboard" component={Readerboard} title="리더보드" hideNavBar={true} wrapRouter={true}/>
             </Scene>
-            <Scene key="Keyboard" component={Keyboard} title="키패드 설정" hideNavBar={true} direction="vertical"  schema="modal" wrapRouter={true}/>
-            <Scene key="Grade" component={Grade} title="등급" hideNavBar={true} direction="vertical"  schema="modal" wrapRouter={true}/>
-            <Scene key="Pivalue" component={Pivalue} title="파이값" hideNavBar={true} direction="vertical"  schema="modal" wrapRouter={true}/>
-            <Scene key="Pirecord" component={Pirecord} title="연습" hideNavBar={true} direction="vertical"  schema="modal" wrapRouter={true}/>
-            <Scene key="Pichallenge" component={Pichallenge} title="도전" hideNavBar={true} direction="vertical"  schema="modal" wrapRouter={true}/>
-            <Scene key="Pisection" component={Pisection} title="구간연습" hideNavBar={true} direction="vertical"  schema="modal" wrapRouter={true}/>
-            <Scene key="Idsetting" component={Idsetting} title="아이디" hideNavBar={true} direction="vertical"  schema="modal" wrapRouter={true}/>
-            <Scene key="Readerboard" component={Readerboard} title="리더보드" hideNavBar={true} direction="vertical"  schema="modal" wrapRouter={true}/>
+
           </Modal>
         </Router>
     );
