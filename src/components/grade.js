@@ -6,6 +6,7 @@ import { Actions } from 'react-native-router-flux';
 import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform } from 'react-native';
 import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button } from 'native-base';
 
+import {gradeFormStyle} from '../style/grade';
 
 import renderIf from 'render-if'
 
@@ -15,18 +16,12 @@ export default class grade extends Component {
 
 
     render() {
-
-
         return (
-
             <Container>
-
-
-
                 <Header style={gradeFormStyle.headerLayout}>
                     <TouchableOpacity onPress={Actions.pop} style={{flex:.2, alignItems: 'flex-start'}}>
                         <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={{fontSize:12,color:'#fff'}}>나가기</Text>
+                            <Text style={{fontSize:12,color:'#fff'}}> back </Text>
                         </View>
                     </TouchableOpacity>
                     <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
@@ -38,18 +33,128 @@ export default class grade extends Component {
 
                 <Content style={{padding:10}}>
                     <View style={gradeFormStyle.contentsLayout2}>
-                        <View style={{paddingTop:5, paddingBottom:5}}>
-                            <Text style={gradeFormStyle.title}></Text>
+                        <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
+                            <View style={{flex:.5, alignItems:'flex-start'}}>
+                                <Text style={gradeFormStyle.contentheaderContent}> Halley's Comet</Text>
+                            </View>
+                            <View style={{flex:.5, alignItems:'flex-end'}}>
+                                <Text style={gradeFormStyle.contentheaderContent}> 최고기록 : 0 </Text>
+                            </View>
+                        </View>
+                    </View>
+
+                    <View style={gradeFormStyle.contentsLayout}>
+                        <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
+                            <View style={{flex:.5, alignItems:'center'}}>
+                                <Text style={gradeFormStyle.title}> 등급 </Text>
+                            </View>
+                            <View style={{flex:.5, alignItems:'center'}}>
+                                <Text style={gradeFormStyle.title}> 소수점 자리 </Text>
+                            </View>
                         </View>
                         <View style={gradeFormStyle.lingBg}></View>
-                        <View style={{paddingTop:5, paddingBottom:5}}>
-                            <Text style={gradeFormStyle.contentsSize}></Text>
+                        <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
+                            <View style={{flex:.5, alignItems:'center'}}>
+                                <Text style={gradeFormStyle.title}> Halley’s Comet </Text>
+                            </View>
+                            <View style={{flex:.5, alignItems:'center'}}>
+                                <Text style={gradeFormStyle.title}> 0 ~ 49 </Text>
+                            </View>
+                        </View>
+                        <View style={gradeFormStyle.lingBg}></View>
+                        <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
+                            <View style={{flex:.5, alignItems:'center'}}>
+                                <Text style={gradeFormStyle.title}> Moon </Text>
+                            </View>
+                            <View style={{flex:.5, alignItems:'center'}}>
+                                <Text style={gradeFormStyle.title}> 50 ~ 99 </Text>
+                            </View>
+                        </View>
+                        <View style={gradeFormStyle.lingBg}></View>
+                        <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
+                            <View style={{flex:.5, alignItems:'center'}}>
+                                <Text style={gradeFormStyle.title}> Mercury </Text>
+                            </View>
+                            <View style={{flex:.5, alignItems:'center'}}>
+                                <Text style={gradeFormStyle.title}> 100 ~ 299 </Text>
+                            </View>
+                        </View>
+                        <View style={gradeFormStyle.lingBg}></View>
+                        <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
+                            <View style={{flex:.5, alignItems:'center'}}>
+                                <Text style={gradeFormStyle.title}> Mars </Text>
+                            </View>
+                            <View style={{flex:.5, alignItems:'center'}}>
+                                <Text style={gradeFormStyle.title}> 300 ~ 499 </Text>
+                            </View>
+                        </View>
+                        <View style={gradeFormStyle.lingBg}></View>
+                        <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
+                            <View style={{flex:.5, alignItems:'center'}}>
+                                <Text style={gradeFormStyle.title}> Venus </Text>
+                            </View>
+                            <View style={{flex:.5, alignItems:'center'}}>
+                                <Text style={gradeFormStyle.title}> 500 ~ 999 </Text>
+                            </View>
+                        </View>
+                        <View style={gradeFormStyle.lingBg}></View>
+                        <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
+                            <View style={{flex:.5, alignItems:'center'}}>
+                                <Text style={gradeFormStyle.title}> Earth </Text>
+                            </View>
+                            <View style={{flex:.5, alignItems:'center'}}>
+                                <Text style={gradeFormStyle.title}> 1000 ~ 1999 </Text>
+                            </View>
+                        </View>
+
+                        <View style={gradeFormStyle.lingBg}></View>
+                        <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
+                            <View style={{flex:.5, alignItems:'center'}}>
+                                <Text style={gradeFormStyle.title}> Neptune </Text>
+                            </View>
+                            <View style={{flex:.5, alignItems:'center'}}>
+                                <Text style={gradeFormStyle.title}> 2000 ~ 2999 </Text>
+                            </View>
+                        </View>
+                        <View style={gradeFormStyle.lingBg}></View>
+                        <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
+                            <View style={{flex:.5, alignItems:'center'}}>
+                                <Text style={gradeFormStyle.title}> Uranus </Text>
+                            </View>
+                            <View style={{flex:.5, alignItems:'center'}}>
+                                <Text style={gradeFormStyle.title}> 3000 ~ 4999 </Text>
+                            </View>
+                        </View>
+                        <View style={gradeFormStyle.lingBg}></View>
+                        <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
+                            <View style={{flex:.5, alignItems:'center'}}>
+                                <Text style={gradeFormStyle.title}> Saturn </Text>
+                            </View>
+                            <View style={{flex:.5, alignItems:'center'}}>
+                                <Text style={gradeFormStyle.title}> 5000 ~ 6999 </Text>
+                            </View>
+                        </View>
+                        <View style={gradeFormStyle.lingBg}></View>
+                        <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
+                            <View style={{flex:.5, alignItems:'center'}}>
+                                <Text style={gradeFormStyle.title}> Jupiter </Text>
+                            </View>
+                            <View style={{flex:.5, alignItems:'center'}}>
+                                <Text style={gradeFormStyle.title}> 7000 ~ 9999 </Text>
+                            </View>
+                        </View>
+                        <View style={gradeFormStyle.lingBg}></View>
+                        <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
+                            <View style={{flex:.5, alignItems:'center'}}>
+                                <Text style={gradeFormStyle.title}> Sun </Text>
+                            </View>
+                            <View style={{flex:.5, alignItems:'center'}}>
+                                <Text style={gradeFormStyle.title}> 10000 ~  </Text>
+                            </View>
                         </View>
                     </View>
 
                 </Content>
-
-
             </Container>
         );
     }
@@ -57,65 +162,3 @@ export default class grade extends Component {
 
 
 
-const gradeFormStyle = StyleSheet.create({
-    headerLayout: {
-        justifyContent: 'center', alignItems: 'center', backgroundColor: "#222222"
-    }
-    ,headerLayout2: {
-        justifyContent: 'center', alignItems: 'center', backgroundColor: "#DA4211"
-
-    }
-    ,bodyLayout : {
-        width: "100%"
-    }
-    ,contentsLayout: {
-        width: "100%"
-        ,paddingTop:10
-        ,paddingBottom:10
-        ,paddingLeft:20
-        ,paddingRight:20
-        ,backgroundColor:"#fff"
-        ,shadowColor: "rgba(0,0,0,23)"
-        ,shadowOffset: { width: 0, height: 1 }
-        ,shadowOpacity: 0.3
-    }
-    ,contentsLayout2: {
-        width: "100%"
-        ,marginTop:10
-        ,paddingTop:10
-        ,paddingBottom:10
-        ,paddingLeft:20
-        ,paddingRight:20
-        ,backgroundColor:"#fff"
-        ,shadowColor: "rgba(0,0,0,23)"
-        ,shadowOffset: { width: 0, height: 1 }
-        ,shadowOpacity: 0.3
-    }
-
-    ,contentsSize: {
-        fontSize:13
-        ,lineHeight:25
-    }
-    ,boldFont: {
-        color:"#DA4211"
-        ,fontWeight: 'bold'
-    }
-    ,input: {
-        fontSize:12
-        ,paddingTop:13
-        ,paddingLeft:11
-        ,paddingBottom:12
-        ,height:38
-        ,backgroundColor: "#ffffff"
-    }
-
-    ,lingBg: {
-        backgroundColor:"rgba(127,127,127,0.3)"
-        ,height:1
-        ,marginTop:10
-        ,marginBottom:10
-
-    }
-
-
-})
