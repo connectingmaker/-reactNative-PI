@@ -11,6 +11,8 @@ import { StyleSheet, Platform, AsyncStorage, View, Text } from 'react-native';
 
 import Main from './src/components/main';
 
+import Grade from './src/components/grade';
+
 export default class App extends Component<{}> {
   render() {
     return (
@@ -21,6 +23,8 @@ export default class App extends Component<{}> {
               <Scene key="Main" component={Main} initial={true} hideNavBar={true} />
 
             </Scene>
+
+            <Scene key="Grade" component={Grade} title="등급" hideNavBar={true} direction="vertical"  schema="modal" wrapRouter={true}/>
           </Modal>
         </Router>
     );
