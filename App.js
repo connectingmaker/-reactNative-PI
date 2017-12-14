@@ -10,8 +10,14 @@ import { StyleSheet, Platform, AsyncStorage, View, Text } from 'react-native';
 
 
 import Main from './src/components/main';
-
+import Keyboard from './src/components/keyboard';
 import Grade from './src/components/grade';
+import Pivalue from './src/components/pivalue';
+import Pirecord from './src/components/pirecord';
+import Pichallenge from './src/components/pichallenge';
+import Pisection from './src/components/pisection';
+import Idsetting from './src/components/idsetting';
+import Readerboard from './src/components/readerboard';
 
 export default class App extends Component<{}> {
   render() {
@@ -23,8 +29,14 @@ export default class App extends Component<{}> {
               <Scene key="Main" component={Main} initial={true} hideNavBar={true} />
 
             </Scene>
-
+            <Scene key="Keyboard" component={Keyboard} title="키패드 설정" hideNavBar={true} direction="vertical"  schema="modal" wrapRouter={true}/>
             <Scene key="Grade" component={Grade} title="등급" hideNavBar={true} direction="vertical"  schema="modal" wrapRouter={true}/>
+            <Scene key="Pivalue" component={Pivalue} title="파이값" hideNavBar={true} direction="vertical"  schema="modal" wrapRouter={true}/>
+            <Scene key="Pirecord" component={Pirecord} title="연습" hideNavBar={true} direction="vertical"  schema="modal" wrapRouter={true}/>
+            <Scene key="Pichallenge" component={Pichallenge} title="도전" hideNavBar={true} direction="vertical"  schema="modal" wrapRouter={true}/>
+            <Scene key="Pisection" component={Pisection} title="구간연습" hideNavBar={true} direction="vertical"  schema="modal" wrapRouter={true}/>
+            <Scene key="Idsetting" component={Idsetting} title="아이디" hideNavBar={true} direction="vertical"  schema="modal" wrapRouter={true}/>
+            <Scene key="Readerboard" component={Readerboard} title="리더보드" hideNavBar={true} direction="vertical"  schema="modal" wrapRouter={true}/>
           </Modal>
         </Router>
     );
@@ -32,21 +44,3 @@ export default class App extends Component<{}> {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
