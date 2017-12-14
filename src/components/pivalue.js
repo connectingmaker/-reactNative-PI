@@ -17,7 +17,22 @@ import renderIf from 'render-if'
 
 export default class pivalue extends Component {
 
+    constructor(){
+        super();
+        this.state ={
+        }
+    }
 
+
+    minus()
+    {
+
+    }
+
+    plus()
+    {
+
+    }
 
     render() {
         return (
@@ -41,10 +56,65 @@ export default class pivalue extends Component {
                     </View>
 
                     <ScrollView style={pivalueFormStyle.contentsLayout}>
-                        <Text style={{color:"#fff"}}>{pi.pi_config}</Text>
+                        <Text style={pivalueFormStyle.fontStyle}>{pi.pi_config}</Text>
                     </ScrollView>
 
+                    <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
+                        <View style={{flex:0.6}}>
+                            <Text style={pivalueFormStyle.fontStyleTitle}>자리수 끊기 : 1 </Text>
+                        </View>
+                        <View style={{flex:0.4}}>
+                            <View style={{flex:1, flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
+                                <View style={{flex:0.45}}>
 
+                                    <Button bordered full style={{borderColor:"#979797"}} onPress={()=>this.minus()}>
+                                        <Text> - </Text>
+                                    </Button>
+                                </View>
+
+                                <View style={{flex:0.1}}>
+
+                                </View>
+
+                                <View style={{flex:0.45}}>
+                                    <Button bordered full style={{borderColor:"#979797"}} onPress={()=>this.plus()}>
+                                        <Text> + </Text>
+                                    </Button>
+                                </View>
+                            </View>
+                        </View>
+
+                    </View>
+
+                    <View style={{flex:1,flexDirection: 'row', paddingTop:10, paddingBottom:5,alignItems:'center',justifyContent:'center'}}>
+                        <View style={{flex:0.3}}>
+                            <Button bordered full style={{borderColor:"#979797",borderWidth:10,height:70,borderRadius:10}}>
+                                <View style={{flex:1,alignItems:'center'}}>
+                                    <Text style={{color:'#405ce7',fontSize:15,fontWeight:'bold',paddingTop:5,paddingBottom:10}}>1,000</Text>
+                                    <Text>자리까지</Text>
+                                </View>
+
+                            </Button>
+                        </View>
+                        <View style={{flex:0.3,paddingLeft:10}}>
+                            <Button bordered full style={{borderColor:"#979797",borderWidth:10,height:70,borderRadius:10}}>
+                                <View style={{flex:1,alignItems:'center'}}>
+                                    <Text style={{color:'#ff0018',fontSize:15,fontWeight:'bold',paddingTop:5,paddingBottom:10}}>5,000</Text>
+                                    <Text>자리까지</Text>
+                                </View>
+
+                            </Button>
+                        </View>
+                        <View style={{flex:0.3,paddingLeft:10}}>
+                            <Button bordered full style={{borderColor:"#979797",borderWidth:10,height:70,borderRadius:10}}>
+                                <View style={{flex:1,alignItems:'center'}}>
+                                    <Text style={{color:'#377a0e',fontSize:15,fontWeight:'bold',paddingTop:5,paddingBottom:10}}>10,000</Text>
+                                    <Text>자리까지</Text>
+                                </View>
+
+                            </Button>
+                        </View>
+                    </View>
 
                 </Content>
             </Container>
