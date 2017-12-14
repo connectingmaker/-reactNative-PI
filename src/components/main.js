@@ -74,19 +74,7 @@ export default class Main extends Component {
                             </View>
                         </View>
 
-                        <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
-                            <View style={{flex:0.48}}>
-                                <View style={MainFormStyle.contentsButtonLayout}>
-                                    <Button onPress={Actions.Pirecord} title="연습" color="#3e3e3e"></Button>
-                                </View>
-                            </View>
-                            <View style={{flex:0.04}}></View>
-                            <View style={{flex:0.48}}>
-                                <View style={MainFormStyle.contentsButtonLayout}>
-                                    <Button onPress={Actions.Pichallenge} title="도전" color="#3e3e3e"></Button>
-                                </View>
-                            </View>
-                        </View>
+                        
                         <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
                             <View style={{flex:0.48}}>
                                 <View style={MainFormStyle.contentsButtonLayout}>
