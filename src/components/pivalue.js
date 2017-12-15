@@ -96,6 +96,7 @@ export default class pivalue extends Component {
 
                             </Button>
                         </View>
+
                         <View style={{flex:0.3,paddingLeft:10}}>
                             <Button bordered full style={{borderColor:"#979797",borderWidth:10,height:70,borderRadius:10}}>
                                 <View style={{flex:1,alignItems:'center'}}>
@@ -105,6 +106,7 @@ export default class pivalue extends Component {
 
                             </Button>
                         </View>
+                        
                         <View style={{flex:0.3,paddingLeft:10}}>
                             <Button bordered full style={{borderColor:"#979797",borderWidth:10,height:70,borderRadius:10}}>
                                 <View style={{flex:1,alignItems:'center'}}>
