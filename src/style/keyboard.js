@@ -5,7 +5,10 @@ import { StyleSheet } from 'react-native';
 
 export const keyboardStyle = StyleSheet.create({
     bodyContents: {
-        width:"70%"
+        width:"100%"
+        ,justifyContent: 'center'
+        ,alignItems:'center'
+
     }
     ,useBtn: {
         backgroundColor:"#ffffff"
@@ -15,14 +18,17 @@ export const keyboardStyle = StyleSheet.create({
         ,width:"100%"
         ,paddingLeft: 20
     }
+    ,keyboardLayout: {
+        justifyContent: 'center', width:"50%", paddingTop:15
+    }
     ,keyboardLayoutFlex: {
         width:"100%"
-
+        ,paddingBottom:5
     }
 
-    // ,keyboardView: {
-    //     flexDirection: 'row', flex:1
-    // }
+    ,keyboardView: {
+        flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:0
+    }
     ,keyboardButtonLayout: {
 
         width:"100%"

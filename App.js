@@ -25,8 +25,8 @@ export default class App extends Component<{}> {
         <Router>
           <Modal>
             <Scene key="root">
-              <Scene key="Main" component={Main} initial={true} hideNavBar={true} />
-              <Scene key="Keyboard" component={Keyboard} title="키패드 설정" hideNavBar={true} wrapRouter={true}/>
+              <Scene key="Main" component={Main} hideNavBar={true} />
+              <Scene key="Keyboard" component={Keyboard} initial={true} title="키패드 설정" hideNavBar={true} wrapRouter={true}/>
               <Scene key="Grade" component={Grade} title="등급" hideNavBar={true}  wrapRouter={true}/>
               <Scene key="Pivalue" component={Pivalue} title="파이값" hideNavBar={true} wrapRouter={true}/>
               <Scene key="Pirecord" component={Pirecord} title="연습" hideNavBar={true} wrapRouter={true}/>

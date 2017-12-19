@@ -43,76 +43,241 @@ export default class keyboard extends Component {
                     </View>
                 </Header>
 
-                <Content style={keyboardStyle.bodyContents}>
+                <Content>
+                    <View style={keyboardStyle.bodyContents}>
+                        <View style={keyboardStyle.keyboardLayout}>
+                            <View style={keyboardStyle.keyboardLayoutFlex}>
+                                <Button style={keyboardStyle.useBtn}>
 
-                    <View style={keyboardStyle.keyboardLayoutFlex}>
-                        <Button style={keyboardStyle.useBtn}>
-
-                            <Text>컴퓨터 키패드 설정</Text>
-                        </Button>
-
-                    </View>
-
-                    <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
-                        <View style={{ flex:0.32}}>
-                            <View style={keyboardStyle.keyboardButtonLayout}>
-
-                                <Button style={keyboardStyle.keyboardButton}>
-                                    <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
+                                    <Text>컴퓨터 키패드 설정</Text>
                                 </Button>
+
+                            </View>
+
+                            <View style={keyboardStyle.keyboardView}>
+                                <View style={{ flex:0.32}}>
+                                    <View style={keyboardStyle.keyboardButtonLayout}>
+
+                                        <Button style={keyboardStyle.keyboardButton}>
+                                            <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
+                                        </Button>
+                                    </View>
+                                </View>
+                                <View style={{flex:0.02}}>
+                                </View>
+                                <View style={{ flex:0.32}}>
+                                    <View style={keyboardStyle.keyboardButtonLayout}>
+                                        <Button style={keyboardStyle.keyboardButton}>
+                                            <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
+                                        </Button>
+                                    </View>
+                                </View>
+                                <View style={{flex:0.02}}>
+                                </View>
+                                <View style={{ flex:0.32}}>
+                                    <View style={keyboardStyle.keyboardButtonLayout}>
+                                        <Button style={keyboardStyle.keyboardButton}>
+                                            <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
+                                        </Button>
+                                    </View>
+                                </View>
+
+                            </View>
+                            <View style={keyboardStyle.keyboardView}>
+                                <View style={{ flex:0.32}}>
+                                    <View style={keyboardStyle.keyboardButtonLayout}>
+
+                                        <Button style={keyboardStyle.keyboardButton}>
+                                            <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
+                                        </Button>
+                                    </View>
+                                </View>
+                                <View style={{flex:0.02}}>
+                                </View>
+                                <View style={{ flex:0.32}}>
+                                    <View style={keyboardStyle.keyboardButtonLayout}>
+                                        <Button style={keyboardStyle.keyboardButton}>
+                                            <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
+                                        </Button>
+                                    </View>
+                                </View>
+                                <View style={{flex:0.02}}>
+                                </View>
+                                <View style={{ flex:0.32}}>
+                                    <View style={keyboardStyle.keyboardButtonLayout}>
+                                        <Button style={keyboardStyle.keyboardButton}>
+                                            <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
+                                        </Button>
+                                    </View>
+                                </View>
+
+                            </View>
+                            <View style={keyboardStyle.keyboardView}>
+                                <View style={{ flex:0.32}}>
+                                    <View style={keyboardStyle.keyboardButtonLayout}>
+
+                                        <Button style={keyboardStyle.keyboardButton}>
+                                            <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
+                                        </Button>
+                                    </View>
+                                </View>
+                                <View style={{flex:0.02}}>
+                                </View>
+                                <View style={{ flex:0.32}}>
+                                    <View style={keyboardStyle.keyboardButtonLayout}>
+                                        <Button style={keyboardStyle.keyboardButton}>
+                                            <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
+                                        </Button>
+                                    </View>
+                                </View>
+                                <View style={{flex:0.02}}>
+                                </View>
+                                <View style={{ flex:0.32}}>
+                                    <View style={keyboardStyle.keyboardButtonLayout}>
+                                        <Button style={keyboardStyle.keyboardButton}>
+                                            <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
+                                        </Button>
+                                    </View>
+                                </View>
+
+                            </View>
+
+                            <View style={keyboardStyle.keyboardView}>
+                                <View style={{ flex:0.32}}>
+
+                                </View>
+                                <View style={{flex:0.02}}>
+                                </View>
+                                <View style={{ flex:0.32}}>
+                                    <View style={keyboardStyle.keyboardButtonLayout}>
+                                        <Button style={keyboardStyle.keyboardButton}>
+                                            <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
+                                        </Button>
+                                    </View>
+                                </View>
+                                <View style={{flex:0.02}}>
+                                </View>
+                                <View style={{ flex:0.32}}>
+                                </View>
+
                             </View>
                         </View>
-                        <View style={{flex:0.02}}>
-                        </View>
-                        <View style={{ flex:0.32}}>
-                            <View style={keyboardStyle.keyboardButtonLayout}>
-                                <Button style={keyboardStyle.keyboardButton}>
-                                    <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
-                                </Button>
-                            </View>
-                        </View>
-                        <View style={{flex:0.02}}>
-                        </View>
-                        <View style={{ flex:0.32}}>
-                            <View style={keyboardStyle.keyboardButtonLayout}>
-                                <Button style={keyboardStyle.keyboardButton}>
-                                    <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
-                                </Button>
-                            </View>
-                        </View>
 
-                    </View>
-                    <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
-                        <View style={{ flex:0.32}}>
-                            <View style={keyboardStyle.keyboardButtonLayout}>
 
-                                <Button style={keyboardStyle.keyboardButton}>
-                                    <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
-                                </Button>
-                            </View>
-                        </View>
-                        <View style={{flex:0.02}}>
-                        </View>
-                        <View style={{ flex:0.32}}>
-                            <View style={keyboardStyle.keyboardButtonLayout}>
-                                <Button style={keyboardStyle.keyboardButton}>
-                                    <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
-                                </Button>
-                            </View>
-                        </View>
-                        <View style={{flex:0.02}}>
-                        </View>
-                        <View style={{ flex:0.32}}>
-                            <View style={keyboardStyle.keyboardButtonLayout}>
-                                <Button style={keyboardStyle.keyboardButton}>
-                                    <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
-                                </Button>
-                            </View>
-                        </View>
 
-                    </View>
-                    <View>
-                        <Text>111</Text>
+
+                        <View style={keyboardStyle.keyboardLayout}>
+                            <View style={keyboardStyle.keyboardLayoutFlex}>
+                                <Button style={keyboardStyle.useBtn}>
+
+                                    <Text>핸드폰 키패드 설정</Text>
+                                </Button>
+
+                            </View>
+
+                            <View style={keyboardStyle.keyboardView}>
+                                <View style={{ flex:0.32}}>
+                                    <View style={keyboardStyle.keyboardButtonLayout}>
+
+                                        <Button style={keyboardStyle.keyboardButton}>
+                                            <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
+                                        </Button>
+                                    </View>
+                                </View>
+                                <View style={{flex:0.02}}>
+                                </View>
+                                <View style={{ flex:0.32}}>
+                                    <View style={keyboardStyle.keyboardButtonLayout}>
+                                        <Button style={keyboardStyle.keyboardButton}>
+                                            <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
+                                        </Button>
+                                    </View>
+                                </View>
+                                <View style={{flex:0.02}}>
+                                </View>
+                                <View style={{ flex:0.32}}>
+                                    <View style={keyboardStyle.keyboardButtonLayout}>
+                                        <Button style={keyboardStyle.keyboardButton}>
+                                            <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
+                                        </Button>
+                                    </View>
+                                </View>
+
+                            </View>
+                            <View style={keyboardStyle.keyboardView}>
+                                <View style={{ flex:0.32}}>
+                                    <View style={keyboardStyle.keyboardButtonLayout}>
+
+                                        <Button style={keyboardStyle.keyboardButton}>
+                                            <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
+                                        </Button>
+                                    </View>
+                                </View>
+                                <View style={{flex:0.02}}>
+                                </View>
+                                <View style={{ flex:0.32}}>
+                                    <View style={keyboardStyle.keyboardButtonLayout}>
+                                        <Button style={keyboardStyle.keyboardButton}>
+                                            <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
+                                        </Button>
+                                    </View>
+                                </View>
+                                <View style={{flex:0.02}}>
+                                </View>
+                                <View style={{ flex:0.32}}>
+                                    <View style={keyboardStyle.keyboardButtonLayout}>
+                                        <Button style={keyboardStyle.keyboardButton}>
+                                            <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
+                                        </Button>
+                                    </View>
+                                </View>
+
+                            </View>
+                            <View style={keyboardStyle.keyboardView}>
+                                <View style={{ flex:0.32}}>
+                                    <View style={keyboardStyle.keyboardButtonLayout}>
+
+                                        <Button style={keyboardStyle.keyboardButton}>
+                                            <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
+                                        </Button>
+                                    </View>
+                                </View>
+                                <View style={{flex:0.02}}>
+                                </View>
+                                <View style={{ flex:0.32}}>
+                                    <View style={keyboardStyle.keyboardButtonLayout}>
+                                        <Button style={keyboardStyle.keyboardButton}>
+                                            <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
+                                        </Button>
+                                    </View>
+                                </View>
+                                <View style={{flex:0.02}}>
+                                </View>
+                                <View style={{ flex:0.32}}>
+                                    <View style={keyboardStyle.keyboardButtonLayout}>
+                                        <Button style={keyboardStyle.keyboardButton}>
+                                            <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
+                                        </Button>
+                                    </View>
+                                </View>
+
+                            </View>
+
+                            <View style={keyboardStyle.keyboardView}>
+                                <View style={{ flex:0.66}}>
+                                    <View style={keyboardStyle.keyboardButtonLayout}>
+                                        <Button style={keyboardStyle.keyboardButton}>
+                                            <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
+                                        </Button>
+                                    </View>
+                                </View>
+                                <View style={{flex:0.02}}>
+                                </View>
+                                <View style={{ flex:0.32}}>
+                                </View>
+
+                            </View>
+                        </View>
                     </View>
 
 
