@@ -17,15 +17,15 @@ export const keyboardStyle = StyleSheet.create({
     }
     ,keyboardLayoutFlex: {
         width:"100%"
-        ,flexDirection:'column'
+
     }
 
-    ,keyboardView: {
-        flexDirection: 'row', flex:1
-    }
+    // ,keyboardView: {
+    //     flexDirection: 'row', flex:1
+    // }
     ,keyboardButtonLayout: {
-        flex:0.32
-        , width:"100%"
+
+        width:"100%"
     }
     ,keyboardButton: {
         backgroundColor:"#404040"

@@ -43,7 +43,7 @@ export default class keyboard extends Component {
                     </View>
                 </Header>
 
-                <Body style={keyboardStyle.bodyContents}>
+                <Content style={keyboardStyle.bodyContents}>
 
                     <View style={keyboardStyle.keyboardLayoutFlex}>
                         <Button style={keyboardStyle.useBtn}>
@@ -53,50 +53,62 @@ export default class keyboard extends Component {
 
                     </View>
 
-                    <View style={keyboardStyle.keyboardView}>
-                        <View style={keyboardStyle.keyboardButtonLayout}>
-                            <Button style={keyboardStyle.keyboardButton}>
-                                <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
-                            </Button>
-                        </View>
-                        <View style={{flex:0.02}}>
-                        </View>
-                        <View style={keyboardStyle.keyboardButtonLayout}>
-                            <Button style={keyboardStyle.keyboardButton}>
-                                <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
-                            </Button>
-                        </View>
-                        <View style={{flex:0.02}}>
-                        </View>
-                        <View style={keyboardStyle.keyboardButtonLayout}>
-                            <Button style={keyboardStyle.keyboardButton}>
-                                <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
-                            </Button>
-                        </View>
+                    <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
+                        <View style={{ flex:0.32}}>
+                            <View style={keyboardStyle.keyboardButtonLayout}>
 
+                                <Button style={keyboardStyle.keyboardButton}>
+                                    <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
+                                </Button>
+                            </View>
+                        </View>
+                        <View style={{flex:0.02}}>
+                        </View>
+                        <View style={{ flex:0.32}}>
+                            <View style={keyboardStyle.keyboardButtonLayout}>
+                                <Button style={keyboardStyle.keyboardButton}>
+                                    <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
+                                </Button>
+                            </View>
+                        </View>
+                        <View style={{flex:0.02}}>
+                        </View>
+                        <View style={{ flex:0.32}}>
+                            <View style={keyboardStyle.keyboardButtonLayout}>
+                                <Button style={keyboardStyle.keyboardButton}>
+                                    <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
+                                </Button>
+                            </View>
+                        </View>
 
                     </View>
-                    <View style={keyboardStyle.keyboardView}>
-                        <View style={keyboardStyle.keyboardButtonLayout}>
-                            <Button style={keyboardStyle.keyboardButton}>
-                                <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
-                            </Button>
-                        </View>
-                        <View style={{flex:0.02}}>
-                        </View>
-                        <View style={keyboardStyle.keyboardButtonLayout}>
-                            <Button style={keyboardStyle.keyboardButton}>
-                                <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
-                            </Button>
-                        </View>
-                        <View style={{flex:0.02}}>
-                        </View>
-                        <View style={keyboardStyle.keyboardButtonLayout}>
-                            <Button style={keyboardStyle.keyboardButton}>
-                                <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
-                            </Button>
-                        </View>
+                    <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
+                        <View style={{ flex:0.32}}>
+                            <View style={keyboardStyle.keyboardButtonLayout}>
 
+                                <Button style={keyboardStyle.keyboardButton}>
+                                    <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
+                                </Button>
+                            </View>
+                        </View>
+                        <View style={{flex:0.02}}>
+                        </View>
+                        <View style={{ flex:0.32}}>
+                            <View style={keyboardStyle.keyboardButtonLayout}>
+                                <Button style={keyboardStyle.keyboardButton}>
+                                    <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
+                                </Button>
+                            </View>
+                        </View>
+                        <View style={{flex:0.02}}>
+                        </View>
+                        <View style={{ flex:0.32}}>
+                            <View style={keyboardStyle.keyboardButtonLayout}>
+                                <Button style={keyboardStyle.keyboardButton}>
+                                    <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
+                                </Button>
+                            </View>
+                        </View>
 
                     </View>
                     <View>
@@ -106,7 +118,7 @@ export default class keyboard extends Component {
 
 
 
-                </Body>
+                </Content>
 
                 <Footer>
                     <View>
