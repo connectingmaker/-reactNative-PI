@@ -7,6 +7,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform
 import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button } from 'native-base';
 
 import {gradeFormStyle} from '../style/grade';
+import {commonStyle} from "../style/common";
 
 import renderIf from 'render-if'
 
@@ -21,7 +22,7 @@ export default class grade extends Component {
                 <Header style={gradeFormStyle.headerLayout}>
                     <TouchableOpacity onPress={Actions.pop} style={{flex:.2, alignItems: 'flex-start'}}>
                         <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={{fontSize:12,color:'#fff'}}> back </Text>
+                            <Text style={{fontSize:12,color:'#fff'}}> BACK </Text>
                         </View>
                     </TouchableOpacity>
                     <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
@@ -32,14 +33,12 @@ export default class grade extends Component {
                 </Header>
 
                 <Content style={{padding:10}}>
-                    <View style={gradeFormStyle.contentsLayout2}>
-                        <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
-                            <View style={{flex:.5, alignItems:'flex-start'}}>
-                                <Text style={gradeFormStyle.contentheaderContent}> Halley's Comet</Text>
-                            </View>
-                            <View style={{flex:.5, alignItems:'flex-end'}}>
-                                <Text style={gradeFormStyle.contentheaderContent}> 최고기록 : 0 </Text>
-                            </View>
+                    <View style={commonStyle.headerTitleLayout}>
+                        <View style={commonStyle.headerTitleLeft}>
+                            <Text style={commonStyle.headerTitleTxt}> Halley's Comet</Text>
+                        </View>
+                        <View style={commonStyle.headerTitleRight}>
+                            <Text style={commonStyle.headerTitleTxt}> 최고기록 : 0 </Text>
                         </View>
                     </View>
 
