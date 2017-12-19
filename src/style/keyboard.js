@@ -8,6 +8,9 @@ export const keyboardStyle = StyleSheet.create({
         width:"100%"
         ,justifyContent: 'center'
         ,alignItems:'center'
+        ,flexDirection: 'row'
+        ,paddingLeft:10
+        ,paddingRight:10
 
     }
     ,useBtn: {
@@ -18,8 +21,11 @@ export const keyboardStyle = StyleSheet.create({
         ,width:"100%"
         ,paddingLeft: 20
     }
+    ,contentslayout: {
+        flex:1,flexDirection: 'row'
+    }
     ,keyboardLayout: {
-        justifyContent: 'center', width:"50%", paddingTop:15
+        justifyContent: 'center', width:"50%", paddingTop:10, flex:0.49
     }
     ,keyboardLayoutFlex: {
         width:"100%"

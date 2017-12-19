@@ -22,5 +22,9 @@ export const commonStyle = StyleSheet.create({
         justifyContent: 'center', alignItems: 'center', backgroundColor: "#000000"
     }
 
+    ,footerColor: {
+        color:"#fff"
+    }
+
 
 })

@@ -164,7 +164,8 @@ export default class keyboard extends Component {
                         </View>
 
 
-
+                        <View style={{flex:0.02}}>
+                        </View>
 
                         <View style={keyboardStyle.keyboardLayout}>
                             <View style={keyboardStyle.keyboardLayoutFlex}>
@@ -285,9 +286,9 @@ export default class keyboard extends Component {
 
                 </Content>
 
-                <Footer>
+                <Footer style={commonStyle.footerLayout}>
                     <View>
-
+                        <Text style={commonStyle.footerColor}>SAVE</Text>
                     </View>
                 </Footer>
             </Container>
