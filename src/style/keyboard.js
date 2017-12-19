@@ -4,5 +4,35 @@
 import { StyleSheet } from 'react-native';
 
 export const keyboardStyle = StyleSheet.create({
+    bodyContents: {
+        width:"70%"
+    }
+    ,useBtn: {
+        backgroundColor:"#ffffff"
+        ,shadowColor: "rgba(0,0,0,23)"
+        ,shadowOffset: { width: 0, height: 1 }
+        ,shadowOpacity: 0.3
+        ,width:"100%"
+        ,paddingLeft: 20
+    }
+    ,keyboardLayoutFlex: {
+        width:"100%"
+        ,flexDirection:'column'
+    }
 
+    ,keyboardView: {
+        flexDirection: 'row', flex:1
+    }
+    ,keyboardButtonLayout: {
+        flex:0.32
+        , width:"100%"
+    }
+    ,keyboardButton: {
+        backgroundColor:"#404040"
+        ,width:"100%"
+        ,justifyContent: 'center'
+    }
+    ,keyboardButtonTxt: {
+        color:"#fff"
+    }
 })
