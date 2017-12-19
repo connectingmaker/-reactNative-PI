@@ -136,8 +136,6 @@ export default class pivalue extends Component {
 
                     <ScrollView style={pivalueFormStyle.contentsLayout}>
 
-                        <HTML html={pi.pi_one} />
-
 
                     </ScrollView>
 

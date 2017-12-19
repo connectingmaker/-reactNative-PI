@@ -26,5 +26,28 @@ export const commonStyle = StyleSheet.create({
         color:"#fff"
     }
 
+    ,headerTitleLayout: {
+        justifyContent: 'center', alignItems: 'center', backgroundColor: "#f23611", flexDirection:'row'
+    }
+    ,headerTitleLeft: {
+        flex:0.5
+        ,alignItems:'flex-start'
+        ,paddingTop:10
+        ,paddingBottom:10
+        ,paddingLeft:10
+    }
+
+    ,headerTitleRight: {
+        flex:0.5
+        ,alignItems:'flex-end'
+        ,paddingTop:10
+        ,paddingBottom:10
+        ,paddingRight:10
+    }
+    ,headerTitleTxt: {
+        fontSize:11
+        ,color:"#fff"
+    }
+
 
 })
