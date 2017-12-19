@@ -9,8 +9,8 @@ export const keyboardStyle = StyleSheet.create({
         ,justifyContent: 'center'
         ,alignItems:'center'
         ,flexDirection: 'row'
-        ,paddingLeft:10
-        ,paddingRight:10
+        ,paddingLeft:5
+        ,paddingRight:5
 
     }
     ,useBtn: {
@@ -21,11 +21,25 @@ export const keyboardStyle = StyleSheet.create({
         ,width:"100%"
         ,paddingLeft: 20
     }
+    ,useBtnOn: {
+        backgroundColor:"#da4211"
+        ,shadowColor: "rgba(0,0,0,23)"
+        ,shadowOffset: { width: 0, height: 1 }
+        ,shadowOpacity: 0.3
+        ,width:"100%"
+        ,paddingLeft: 20
+    }
+    ,useBtnText: {
+        color:"#000"
+    }
+    ,useBtnTextOn: {
+        color:"#fff"
+    }
     ,contentslayout: {
         flex:1,flexDirection: 'row'
     }
     ,keyboardLayout: {
-        justifyContent: 'center', width:"50%", paddingTop:10, flex:0.49
+        justifyContent: 'center', width:"50%", paddingTop:10, flex:0.43
     }
     ,keyboardLayoutFlex: {
         width:"100%"
