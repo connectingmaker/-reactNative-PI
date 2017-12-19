@@ -25,6 +25,15 @@ export const pivalueFormStyle = StyleSheet.create({
     ,fontStyle:{
         color:"#fff",fontSize:18,lineHeight:22
     }
+    ,fontStyle10:{
+        color:"#f0ff00",fontSize:18,lineHeight:22
+    }
+    ,fontStyle100:{
+        color:"#ff0000",fontSize:18,lineHeight:22
+    }
+    ,fontStyle1000:{
+        color:"#0066ff",fontSize:18,lineHeight:22
+    }
     ,fontStyleTitle:{
         color:'#1e37b6',fontSize:18,fontWeight:'bold',paddingTop:20,paddingLeft:20
     }

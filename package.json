@@ -12,6 +12,8 @@
     "react": "16.0.0",
     "react-base": "^0.2.0",
     "react-native": "0.51.0",
+    "react-native-htmlview": "^0.12.1",
+    "react-native-render-html": "^3.5.2",
     "react-native-router-flux": "^4.0.0-beta.24",
     "render-if": "^0.1.1"
   },
@@ -19,7 +21,7 @@
     "babel-jest": "21.2.0",
     "babel-preset-react-native": "4.0.0",
     "jest": "21.2.1",
-    "react-test-renderer": "16.0.0"
+    "react-test-renderer": "^16.0.0"
   },
   "jest": {
     "preset": "react-native"
