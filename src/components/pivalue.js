@@ -10,6 +10,7 @@ import HTML from 'react-native-render-html';
 
 import {pivalueFormStyle} from '../style/pivalue';
 
+
 import pi from '../config/pi_config'
 import renderIf from 'render-if'
 
@@ -210,7 +211,7 @@ export default class pivalue extends Component {
                     <Header style={pivalueFormStyle.headerLayout}>
                         <TouchableOpacity onPress={Actions.pop} style={{flex:.2, alignItems: 'flex-start'}}>
                             <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
-                                <Text style={{fontSize:12,color:'#fff'}}> back </Text>
+                                <Text style={{fontSize:12,color:'#fff'}}> Back </Text>
                             </View>
                         </TouchableOpacity>
                         <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
