@@ -228,7 +228,7 @@ export default class pivalue extends Component {
 
                         <ScrollView style={pivalueFormStyle.contentsLayout}>
 
-                            <HTML html={this.state.piData} />
+                            <HTML html={this.state.piData} style={{padding:0}} />
 
 
                         </ScrollView>

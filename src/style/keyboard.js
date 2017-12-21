@@ -58,6 +58,20 @@ export const keyboardStyle = StyleSheet.create({
         ,width:"100%"
         ,justifyContent: 'center'
     }
+
+    ,keyboardButtonNot: {
+        backgroundColor:"#f23611"
+        ,width:"100%"
+        ,justifyContent: 'center'
+    }
+
+    ,keyboardButtonOk: {
+        backgroundColor:"#00a2ff"
+        ,width:"100%"
+        ,justifyContent: 'center'
+    }
+
+
     ,keyboardButtonTxt: {
         color:"#fff"
     }

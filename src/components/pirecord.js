@@ -30,6 +30,17 @@ export default class pirecord extends Component {
             keyboard:""
             ,piData:""
             ,piRealData:""
+            ,recordCnt:0
+            ,key1:"default"
+            ,key2:"default"
+            ,key3:"default"
+            ,key4:"default"
+            ,key5:"default"
+            ,key6:"default"
+            ,key7:"default"
+            ,key8:"default"
+            ,key9:"default"
+            ,key0:"default"
         };
 
     }
@@ -44,16 +55,125 @@ export default class pirecord extends Component {
     {
         var piData = this.state.piData;
         var piRealData = this.state.piRealData;
-        console.log(piRealData);
-        console.log(piRealData.length);
+
+        /*
+        if(piRealDataLength != 0) {
+            piRealDataLength = piRealDataLength - 1;
+        }
+        */
+        var piRealDataLength = piRealData.length;
         if(piData == "") {
-            piData = "<span style='color:#fff;border:1px solid #fff;'>"+value+"</span>";
-            piRealData = value;
+            piData = "<span style='color:#fff;border:1px solid #fff;'>"+value+"</span><span></span>";
+            piRealData = value.toString();
         } else {
 
-            piData += "<span style='color:#fff;border:1px solid #fff;'>"+value+"</span>";
-            piRealData += value;
+            if(piRealDataLength > 5) {
+                piRealDataLength = piRealData.length;
+                var tempLength = piRealDataLength - 1;
+                if (tempLength % 10 == 0) {
+                    if(tempLength % 100 == 0) {
+                        if(tempLength % 1000 == 0) {
+                            if(tempLength % 1000 == 0) {
+                                piData += "<b style='color:#f0ff00;'>"+value+"</b>";
+                            }
+                            piData += "<b style='color:#0066ff;'>"+value+"</b>";
+                        }
+                        piData += "<b style='color:#ff0000;'>"+value+"</b>";
+
+                    }
+                    piData += "<b style='color:#f0ff00;'>"+value+"</b>";
+
+                } else {
+                    piData += "<span style='color:#fff;'>"+value+"</span>";
+                }
+            } else {
+                piData += "<span style='color:#fff;'>"+value+"</span>";
+            }
+            piRealData += value.toString();
         }
+
+        console.log(this.state.recordCnt);
+        console.log(piRealDataLength);
+
+        if(this.state.recordCnt < piRealDataLength) {
+
+        }
+
+
+
+        if(pi.pi_config[piRealDataLength] != value) {
+            switch (value) {
+                case 1:
+                    this.setState({key1: "N", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "default"})
+                    break;
+                case 2:
+                    this.setState({key1: "default", key2: "N", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "default"})
+                    break;
+                case 3:
+                    this.setState({key1: "default", key2: "default", key3: "N", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "default"})
+                    break;
+                case 4:
+                    this.setState({key1: "default", key2: "default", key3: "default", key4: "N", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "default"})
+                    break;
+                case 5:
+                    this.setState({key1: "default", key2: "default", key3: "default", key4: "default", key5: "N", key6: "default", key7: "default", key8: "default", key9: "default", key0: "default"})
+                    break;
+                case 6:
+                    this.setState({key1: "default", key2: "default", key3: "default", key4: "default", key5: "default", key6: "N", key7: "default", key8: "default", key9: "default", key0: "default"})
+                    break;
+                case 7:
+                    this.setState({key1: "default", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "N", key8: "default", key9: "default", key0: "default"})
+                    break;
+                case 8:
+                    this.setState({key1: "default", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "N", key9: "default", key0: "default"})
+                    break;
+                case 9:
+                    this.setState({key1: "default", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "N", key0: "default"})
+                    break;
+                case 0:
+                    this.setState({key1: "default", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "N"})
+                    break;
+            }
+            return;
+        }
+
+        if(pi.pi_config[piRealDataLength] == value) {
+            switch (value) {
+                case 1:
+                    this.setState({key1: "Y", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "default"})
+                    break;
+                case 2:
+                    this.setState({key1: "default", key2: "Y", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "default"})
+                    break;
+                case 3:
+                    this.setState({key1: "default", key2: "default", key3: "Y", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "default"})
+                    break;
+                case 4:
+                    this.setState({key1: "default", key2: "default", key3: "default", key4: "Y", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "default"})
+                    break;
+                case 5:
+                    this.setState({key1: "default", key2: "default", key3: "default", key4: "default", key5: "Y", key6: "default", key7: "default", key8: "default", key9: "default", key0: "default"})
+                    break;
+                case 6:
+                    this.setState({key1: "default", key2: "default", key3: "default", key4: "default", key5: "default", key6: "Y", key7: "default", key8: "default", key9: "default", key0: "default"})
+                    break;
+                case 7:
+                    this.setState({key1: "default", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "Y", key8: "default", key9: "default", key0: "default"})
+                    break;
+                case 8:
+                    this.setState({key1: "default", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "Y", key9: "default", key0: "default"})
+                    break;
+                case 9:
+                    this.setState({key1: "default", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "Y", key0: "default"})
+                    break;
+                case 0:
+                    this.setState({key1: "default", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "Y"})
+                    break;
+            }
+        }
+
+
+
 
         this.setState({piData:piData, piRealData:piRealData});
     }
@@ -68,6 +188,7 @@ export default class pirecord extends Component {
             if(json!=null) {
 
                 var keyboardUse = json.KEYBOARD;
+                var recordCnt = json.RECODE_CNT;
 
                 switch (keyboardUse) {
                     case "pc":
@@ -80,6 +201,10 @@ export default class pirecord extends Component {
                     default:
                         this.setState({keyboard: "pc"})
                         break;
+                }
+
+                if(recordCnt != null) {
+                    this.setState({recordCnt:recordCnt});
                 }
 
             } else {
@@ -139,28 +264,69 @@ export default class pirecord extends Component {
                                         <View style={keyboardStyle.keyboardView}>
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
-
+                                                    {renderIf(this.state.key1 == "default")(
                                                     <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(1)}>
                                                         <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
                                                     </Button>
+                                                    )}
+
+                                                    {renderIf(this.state.key1 == "N")(
+                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(1)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
+                                                        </Button>
+                                                    )}
+
+                                                    {renderIf(this.state.key1 == "Y")(
+                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(1)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
+                                                        </Button>
+                                                    )}
                                                 </View>
                                             </View>
                                             <View style={{flex:0.02}}>
                                             </View>
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
-                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(2)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
-                                                    </Button>
+                                                    {renderIf(this.state.key2 == "default")(
+                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(2)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
+                                                        </Button>
+                                                    )}
+
+                                                    {renderIf(this.state.key2 == "N")(
+                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(2)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
+                                                        </Button>
+                                                    )}
+
+                                                    {renderIf(this.state.key2 == "Y")(
+                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(2)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
+                                                        </Button>
+                                                    )}
                                                 </View>
                                             </View>
                                             <View style={{flex:0.02}}>
                                             </View>
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
-                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(3)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
-                                                    </Button>
+                                                    {renderIf(this.state.key3 == "default")(
+                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(3)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
+                                                        </Button>
+                                                    )}
+
+                                                    {renderIf(this.state.key3 == "N")(
+                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(3)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
+                                                        </Button>
+                                                    )}
+
+                                                    {renderIf(this.state.key3 == "Y")(
+                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(3)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
+                                                        </Button>
+                                                    )}
                                                 </View>
                                             </View>
 
@@ -169,27 +335,69 @@ export default class pirecord extends Component {
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
 
-                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(4)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
-                                                    </Button>
+                                                    {renderIf(this.state.key4 == "default")(
+                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(4)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
+                                                        </Button>
+                                                    )}
+
+                                                    {renderIf(this.state.key4 == "N")(
+                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(4)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
+                                                        </Button>
+                                                    )}
+
+                                                    {renderIf(this.state.key4 == "Y")(
+                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(4)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
+                                                        </Button>
+                                                    )}
                                                 </View>
                                             </View>
                                             <View style={{flex:0.02}}>
                                             </View>
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
-                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(5)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
-                                                    </Button>
+                                                    {renderIf(this.state.key5 == "default")(
+                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(5)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
+                                                        </Button>
+                                                    )}
+
+                                                    {renderIf(this.state.key5 == "N")(
+                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(5)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
+                                                        </Button>
+                                                    )}
+
+                                                    {renderIf(this.state.key5 == "Y")(
+                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(5)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
+                                                        </Button>
+                                                    )}
                                                 </View>
                                             </View>
                                             <View style={{flex:0.02}}>
                                             </View>
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
-                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(6)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
-                                                    </Button>
+                                                    {renderIf(this.state.key6 == "default")(
+                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(6)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
+                                                        </Button>
+                                                    )}
+
+                                                    {renderIf(this.state.key6 == "N")(
+                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(6)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
+                                                        </Button>
+                                                    )}
+
+                                                    {renderIf(this.state.key6 == "Y")(
+                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(6)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
+                                                        </Button>
+                                                    )}
                                                 </View>
                                             </View>
 
@@ -198,27 +406,69 @@ export default class pirecord extends Component {
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
 
-                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(7)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
-                                                    </Button>
+                                                    {renderIf(this.state.key7 == "default")(
+                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(7)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
+                                                        </Button>
+                                                    )}
+
+                                                    {renderIf(this.state.key7 == "N")(
+                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(7)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
+                                                        </Button>
+                                                    )}
+
+                                                    {renderIf(this.state.key7 == "Y")(
+                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(7)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
+                                                        </Button>
+                                                    )}
                                                 </View>
                                             </View>
                                             <View style={{flex:0.02}}>
                                             </View>
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
-                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(8)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
-                                                    </Button>
+                                                    {renderIf(this.state.key8 == "default")(
+                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(8)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
+                                                        </Button>
+                                                    )}
+
+                                                    {renderIf(this.state.key8 == "N")(
+                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(8)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
+                                                        </Button>
+                                                    )}
+
+                                                    {renderIf(this.state.key8 == "Y")(
+                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(8)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
+                                                        </Button>
+                                                    )}
                                                 </View>
                                             </View>
                                             <View style={{flex:0.02}}>
                                             </View>
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
-                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(9)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
-                                                    </Button>
+                                                    {renderIf(this.state.key9 == "default")(
+                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(9)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
+                                                        </Button>
+                                                    )}
+
+                                                    {renderIf(this.state.key9 == "N")(
+                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(9)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
+                                                        </Button>
+                                                    )}
+
+                                                    {renderIf(this.state.key9 == "Y")(
+                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(9)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
+                                                        </Button>
+                                                    )}
                                                 </View>
                                             </View>
 
@@ -232,9 +482,23 @@ export default class pirecord extends Component {
                                             </View>
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
-                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(0)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
-                                                    </Button>
+                                                    {renderIf(this.state.key0 == "default")(
+                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(0)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
+                                                        </Button>
+                                                    )}
+
+                                                    {renderIf(this.state.key0 == "N")(
+                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(0)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
+                                                        </Button>
+                                                    )}
+
+                                                    {renderIf(this.state.key0 == "Y")(
+                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(0)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
+                                                        </Button>
+                                                    )}
                                                 </View>
                                             </View>
                                             <View style={{flex:0.02}}>
@@ -254,27 +518,72 @@ export default class pirecord extends Component {
                                         <View style={{ flex:0.32}}>
                                             <View style={keyboardStyle.keyboardButtonLayout}>
 
-                                                <Button style={keyboardStyle.keyboardButton}>
-                                                    <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
-                                                </Button>
+                                                {renderIf(this.state.key7 == "default")(
+                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(7)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
+                                                    </Button>
+                                                )}
+
+                                                {renderIf(this.state.key7 == "N")(
+                                                    <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(7)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
+                                                    </Button>
+                                                )}
+
+                                                {renderIf(this.state.key7 == "Y")(
+                                                    <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(7)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
+                                                    </Button>
+                                                )}
+
+
+
                                             </View>
                                         </View>
                                         <View style={{flex:0.02}}>
                                         </View>
                                         <View style={{ flex:0.32}}>
                                             <View style={keyboardStyle.keyboardButtonLayout}>
-                                                <Button style={keyboardStyle.keyboardButton}>
-                                                    <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
-                                                </Button>
+                                                {renderIf(this.state.key8 == "default")(
+                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(8)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
+                                                    </Button>
+                                                )}
+
+                                                {renderIf(this.state.key8 == "N")(
+                                                    <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(8)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
+                                                    </Button>
+                                                )}
+
+                                                {renderIf(this.state.key8 == "Y")(
+                                                    <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(8)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
+                                                    </Button>
+                                                )}
                                             </View>
                                         </View>
                                         <View style={{flex:0.02}}>
                                         </View>
                                         <View style={{ flex:0.32}}>
                                             <View style={keyboardStyle.keyboardButtonLayout}>
-                                                <Button style={keyboardStyle.keyboardButton}>
-                                                    <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
-                                                </Button>
+                                                {renderIf(this.state.key9 == "default")(
+                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(9)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
+                                                    </Button>
+                                                )}
+
+                                                {renderIf(this.state.key9 == "N")(
+                                                    <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(9)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
+                                                    </Button>
+                                                )}
+
+                                                {renderIf(this.state.key9 == "Y")(
+                                                    <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(9)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
+                                                    </Button>
+                                                )}
                                             </View>
                                         </View>
 
@@ -283,27 +592,69 @@ export default class pirecord extends Component {
                                         <View style={{ flex:0.32}}>
                                             <View style={keyboardStyle.keyboardButtonLayout}>
 
-                                                <Button style={keyboardStyle.keyboardButton}>
-                                                    <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
-                                                </Button>
+                                                {renderIf(this.state.key4 == "default")(
+                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(4)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
+                                                    </Button>
+                                                )}
+
+                                                {renderIf(this.state.key4 == "N")(
+                                                    <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(4)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
+                                                    </Button>
+                                                )}
+
+                                                {renderIf(this.state.key4 == "Y")(
+                                                    <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(4)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
+                                                    </Button>
+                                                )}
                                             </View>
                                         </View>
                                         <View style={{flex:0.02}}>
                                         </View>
                                         <View style={{ flex:0.32}}>
                                             <View style={keyboardStyle.keyboardButtonLayout}>
-                                                <Button style={keyboardStyle.keyboardButton}>
-                                                    <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
-                                                </Button>
+                                                {renderIf(this.state.key5 == "default")(
+                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(5)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
+                                                    </Button>
+                                                )}
+
+                                                {renderIf(this.state.key5 == "N")(
+                                                    <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(5)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
+                                                    </Button>
+                                                )}
+
+                                                {renderIf(this.state.key5 == "Y")(
+                                                    <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(5)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
+                                                    </Button>
+                                                )}
                                             </View>
                                         </View>
                                         <View style={{flex:0.02}}>
                                         </View>
                                         <View style={{ flex:0.32}}>
                                             <View style={keyboardStyle.keyboardButtonLayout}>
-                                                <Button style={keyboardStyle.keyboardButton}>
-                                                    <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
-                                                </Button>
+                                                {renderIf(this.state.key6 == "default")(
+                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(6)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
+                                                    </Button>
+                                                )}
+
+                                                {renderIf(this.state.key6 == "N")(
+                                                    <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(6)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
+                                                    </Button>
+                                                )}
+
+                                                {renderIf(this.state.key6 == "Y")(
+                                                    <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(6)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
+                                                    </Button>
+                                                )}
                                             </View>
                                         </View>
 
@@ -312,27 +663,69 @@ export default class pirecord extends Component {
                                         <View style={{ flex:0.32}}>
                                             <View style={keyboardStyle.keyboardButtonLayout}>
 
-                                                <Button style={keyboardStyle.keyboardButton}>
-                                                    <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
-                                                </Button>
+                                                {renderIf(this.state.key3 == "default")(
+                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(3)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
+                                                    </Button>
+                                                )}
+
+                                                {renderIf(this.state.key3 == "N")(
+                                                    <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(3)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
+                                                    </Button>
+                                                )}
+
+                                                {renderIf(this.state.key3 == "Y")(
+                                                    <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(3)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
+                                                    </Button>
+                                                )}
                                             </View>
                                         </View>
                                         <View style={{flex:0.02}}>
                                         </View>
                                         <View style={{ flex:0.32}}>
                                             <View style={keyboardStyle.keyboardButtonLayout}>
-                                                <Button style={keyboardStyle.keyboardButton}>
-                                                    <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
-                                                </Button>
+                                                {renderIf(this.state.key2 == "default")(
+                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(2)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
+                                                    </Button>
+                                                )}
+
+                                                {renderIf(this.state.key2 == "N")(
+                                                    <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(2)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
+                                                    </Button>
+                                                )}
+
+                                                {renderIf(this.state.key2 == "Y")(
+                                                    <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(2)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
+                                                    </Button>
+                                                )}
                                             </View>
                                         </View>
                                         <View style={{flex:0.02}}>
                                         </View>
                                         <View style={{ flex:0.32}}>
                                             <View style={keyboardStyle.keyboardButtonLayout}>
-                                                <Button style={keyboardStyle.keyboardButton}>
-                                                    <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
-                                                </Button>
+                                                {renderIf(this.state.key1 == "default")(
+                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(1)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
+                                                    </Button>
+                                                )}
+
+                                                {renderIf(this.state.key1 == "N")(
+                                                    <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(1)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
+                                                    </Button>
+                                                )}
+
+                                                {renderIf(this.state.key1 == "Y")(
+                                                    <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(1)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
+                                                    </Button>
+                                                )}
                                             </View>
                                         </View>
 
@@ -340,11 +733,27 @@ export default class pirecord extends Component {
 
                                     <View style={keyboardStyle.keyboardView}>
                                         <View style={{ flex:0.66}}>
+
                                             <View style={keyboardStyle.keyboardButtonLayout}>
-                                                <Button style={keyboardStyle.keyboardButton}>
-                                                    <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
-                                                </Button>
+                                                {renderIf(this.state.key1 == "default")(
+                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(0)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
+                                                    </Button>
+                                                )}
+
+                                                {renderIf(this.state.key1 == "N")(
+                                                    <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(0)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
+                                                    </Button>
+                                                )}
+
+                                                {renderIf(this.state.key1 == "Y")(
+                                                    <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(0)}>
+                                                        <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
+                                                    </Button>
+                                                )}
                                             </View>
+
                                         </View>
                                         <View style={{flex:0.02}}>
                                         </View>

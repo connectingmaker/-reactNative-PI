@@ -42,8 +42,8 @@ export const pirecodeStyle = StyleSheet.create({
     ,contentsLayout: {
         width: "100%"
         ,height: (height / 2) - 70
-        ,paddingTop:10
-        ,paddingBottom:10
+        ,paddingTop:0
+        ,paddingBottom:0
         ,paddingLeft:20
         ,paddingRight:20
         ,backgroundColor:"#000"
