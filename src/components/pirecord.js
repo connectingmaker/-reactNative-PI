@@ -77,11 +77,13 @@ export default class pirecord extends Component {
                                 piData += "<b style='color:#f0ff00;'>"+value+"</b>";
                             }
                             piData += "<b style='color:#0066ff;'>"+value+"</b>";
+                        } else {
+                            piData += "<b style='color:#ff0000;'>" + value + "</b>";
                         }
-                        piData += "<b style='color:#ff0000;'>"+value+"</b>";
 
+                    } else {
+                        piData += "<b style='color:#f0ff00;'>"+value+"</b>";
                     }
-                    piData += "<b style='color:#f0ff00;'>"+value+"</b>";
 
                 } else {
                     piData += "<span style='color:#fff;'>"+value+"</span>";
@@ -96,6 +98,13 @@ export default class pirecord extends Component {
         console.log(piRealDataLength);
 
         if(this.state.recordCnt < piRealDataLength) {
+            pi.pi_grade_value.map((item) => {
+                var temp = item.split("~");
+                if(parseInt(temp[0]) < piRealDataLength) {
+
+                }
+            });
+
 
         }
 
