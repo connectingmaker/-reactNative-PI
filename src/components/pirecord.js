@@ -31,6 +31,7 @@ export default class pirecord extends Component {
             ,piData:""
             ,piRealData:""
             ,recordCnt:0
+            ,grade:"Halley's Comet"
             ,key1:"default"
             ,key2:"default"
             ,key3:"default"
@@ -94,19 +95,8 @@ export default class pirecord extends Component {
             piRealData += value.toString();
         }
 
-        console.log(this.state.recordCnt);
-        console.log(piRealDataLength);
-
-        if(this.state.recordCnt < piRealDataLength) {
-            pi.pi_grade_value.map((item) => {
-                var temp = item.split("~");
-                if(parseInt(temp[0]) < piRealDataLength) {
-
-                }
-            });
 
 
-        }
 
 
 
@@ -147,6 +137,42 @@ export default class pirecord extends Component {
         }
 
         if(pi.pi_config[piRealDataLength] == value) {
+
+            if(this.state.recordCnt <= piRealDataLength) {
+                /*
+                pi.pi_grade_value.map((item) => {
+                    var temp = item.split("~");
+                    console.log(temp);
+                    console.log(piRealDataLength);
+                    if(parseInt(temp[0]) >= piRealDataLength && parseInt(temp[1] <= piRealDataLength)) {
+                        console.log("111");
+                        return;
+                    }
+                });
+                */
+                for(var i = 0; i < pi.pi_grade_value.length; i++) {
+                    var temp = pi.pi_grade_value[i].split("~");
+                    if(parseInt(temp[0]) <= piRealDataLength && parseInt(temp[1]) >= piRealDataLength) {
+
+                        var dataObject = {
+                            "grade": pi.pi_grade[i]
+                            ,"recordCnt": piRealDataLength+1
+                        };
+
+                        AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
+                            this.setState({grade:pi.pi_grade[i],recordCnt:piRealDataLength+1});
+                        });
+
+
+
+                        break;
+                    }
+                }
+
+
+            }
+
+
             switch (value) {
                 case 1:
                     this.setState({key1: "Y", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "default"})
@@ -187,17 +213,29 @@ export default class pirecord extends Component {
         this.setState({piData:piData, piRealData:piRealData});
     }
 
+    _defaultBtn()
+    {
+        var dataObject = {
+            "grade": pi.pi_grade[0]
+            ,"recordCnt": 0
+        };
+        AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
+            this.setState({piData:"", piRealData: "", grade:pi.pi_grade[0],recordCnt:0, key1: "default", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "default"});
 
+        });
+    }
 
     loadData()
     {
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
-
+            console.log(json);
             if(json!=null) {
 
                 var keyboardUse = json.KEYBOARD;
-                var recordCnt = json.RECODE_CNT;
+                var recordCnt = json.recordCnt;
+                var grade = json.grade;
+
 
                 switch (keyboardUse) {
                     case "pc":
@@ -220,6 +258,10 @@ export default class pirecord extends Component {
                 this.setState({keyboard: "pc"})
             }
 
+            if(grade != null) {
+                this.setState({grade:grade});
+            }
+
 
         }).then(res => {
         });
@@ -239,17 +281,20 @@ export default class pirecord extends Component {
                     <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
                         <Text style={{fontSize:16,color:'#fff'}}>연습</Text>
                     </View>
-                    <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
-                    </View>
+                    <TouchableOpacity onPress={() => this._defaultBtn()} style={{flex:.2, alignItems: 'flex-end'}}>
+                        <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
+                            <Text style={{fontSize:12,color:'#fff'}}> 초기화 </Text>
+                        </View>
+                    </TouchableOpacity>
                 </Header>
 
                 <Content>
                     <View style={commonStyle.headerTitleLayout}>
                         <View style={commonStyle.headerTitleLeft}>
-                            <Text style={commonStyle.headerTitleTxt}> Halley's Comet</Text>
+                            <Text style={commonStyle.headerTitleTxt}> {this.state.grade}</Text>
                         </View>
                         <View style={commonStyle.headerTitleRight}>
-                            <Text style={commonStyle.headerTitleTxt}> 최고기록 : 0 </Text>
+                            <Text style={commonStyle.headerTitleTxt}> 최고기록 : {this.state.recordCnt} </Text>
                         </View>
                     </View>
 
@@ -260,7 +305,7 @@ export default class pirecord extends Component {
                         <View style={{flexDirection:'column', flex:1}}>
                             <View style={{flex:0.5}}>
                                 <ScrollView style={pirecodeStyle.contentsLayout}>
-                                    <HTML html={this.state.piData} />
+                                    <HTML html={this.state.piData} uri="" />
                                 </ScrollView>
                             </View>
 
