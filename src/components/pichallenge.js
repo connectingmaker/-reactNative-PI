@@ -828,6 +828,7 @@ export default class pichallenge extends Component {
 
                 </Content>
                 <Footer style={{backgroundColor:"#000"}}>
+                    {/*
                     <View style={{flex:0.44, justifyContent: 'center', alignItems: 'center'}}>
                         <Text style={{fontSize:12,color:'#fff'}}>도전시작</Text>
                     </View>
@@ -837,6 +838,23 @@ export default class pichallenge extends Component {
                     <View style={{flex:0.44, justifyContent: 'center', alignItems: 'center'}}>
                         <Text style={{fontSize:12,color:'#fff'}}>기록</Text>
                     </View>
+                    */}
+
+                    <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
+                        <Text style={{fontSize:12,color:'#fff'}}>도전시작</Text>
+                    </View>
+
+
+                    {/*<View style={{flex:0.44, justifyContent: 'center', alignItems: 'center'}}>*/}
+                        {/*<Text style={{fontSize:12,color:'#fff'}}>일시중지</Text>*/}
+                    {/*</View>*/}
+                    {/*<View style={{flex:0.02, justifyContent: 'center', alignItems: 'center'}}>*/}
+                        {/*<Text style={{fontSize:12,color:'#fff'}}>|</Text>*/}
+                    {/*</View>*/}
+                    {/*<View style={{flex:0.44, justifyContent: 'center', alignItems: 'center'}}>*/}
+                        {/*<Text style={{fontSize:12,color:'#fff'}}>도전완료</Text>*/}
+                    {/*</View>*/}
+
                 </Footer>
             </Container>
         );
