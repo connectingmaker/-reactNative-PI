@@ -16,6 +16,7 @@
     "react-native-device-info": "^0.13.0",
     "react-native-dialog-component": "^0.2.17",
     "react-native-htmlview": "^0.12.1",
+    "react-native-modal": "^4.1.1",
     "react-native-percentage-circle": "^1.0.6",
     "react-native-render-html": "^3.5.2",
     "react-native-router-flux": "^4.0.0-beta.24",

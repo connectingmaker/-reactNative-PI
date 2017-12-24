@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button,Spinner,Left,Right } from 'native-base';
 import HTML from 'react-native-render-html';
+import Modal from 'react-native-modal'
+
 
 import config from "../config/config";
 import pi from '../config/pi_config'
@@ -42,6 +44,7 @@ export default class pisection extends Component {
             ,key8:"default"
             ,key9:"default"
             ,key0:"default"
+            ,isModalVisible:false
         };
 
     }
@@ -267,7 +270,24 @@ export default class pisection extends Component {
         });
     }
 
+    _sectionPopup() {
+        this.setState({
+            isModalVisible: true
+        })
+    }
 
+    _sectionStart()
+    {
+        this.setState({
+            isModalVisible: false
+        })
+    }
+
+    _sectionClose() {
+        this.setState({
+            isModalVisible: false
+        })
+    }
 
     render() {
         return (
@@ -822,15 +842,43 @@ export default class pisection extends Component {
                         </View>
                     </View>
 
+                    <Modal isVisible={this.state.isModalVisible}>
+                        <View style={{ flex: 0.3 }}>
+                        </View>
+                        <View style={{ flex: 0.4, backgroundColor:"#fff"}}>
+                            <View style={{width:"100%", justifyContent: 'center', alignItems: 'center'}}>
+                                <Text style={{color:"#000", paddingTop:10, paddingBottom:10, fontSize:20, fontWeight:"bold" ,marginTop:10}}>구간설정</Text>
+                            </View>
+                            <View style={{width:"100%", justifyContent: 'center', alignItems: 'center', paddingLeft:20, paddingRight:20,marginTop:10}}>
+                                <Item regular>
+                                    <Input placeholder="시작 자리 수" />
+                                </Item>
+                            </View>
 
+                            <View style={{width:"100%", justifyContent: 'center', alignItems: 'center', paddingLeft:20, paddingRight:20,marginTop:10}}>
+                                <Item regular>
+                                    <Input placeholder="끝 자리 수" />
+                                </Item>
+                            </View>
+                            <View style={{width:"100%", justifyContent: 'center', alignItems: 'center', paddingLeft:20, paddingRight:20,marginTop:10}}>
+                                <Button style={{width:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={() => this._sectionStart()}>
+                                    <Text style={{color:"#fff"}}>시작</Text>
+                                </Button>
+                            </View>
+                        </View>
+                        <View style={{ flex: 0.3 }}>
+                        </View>
+                    </Modal>
 
 
 
                 </Content>
                 <Footer style={{backgroundColor:"#000"}}>
+                    <TouchableOpacity onPress={() => this._sectionPopup()}>
                     <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
                         <Text style={{fontSize:12,color:'#fff'}}>구간 설정</Text>
                     </View>
+                    </TouchableOpacity>
 
                 </Footer>
             </Container>
