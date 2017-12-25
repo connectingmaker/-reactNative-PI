@@ -52,7 +52,7 @@ export default class readerboard extends Component {
                         </View>
                     </TouchableOpacity>
                     <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize:16,color:'#fff'}}>리더보드</Text>
+                        <Text style={{fontSize:16,color:'#fff'}}>리더 보드</Text>
                     </View>
                     <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
                     </View>

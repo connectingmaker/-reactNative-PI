@@ -279,7 +279,7 @@ export default class pirecord extends Component {
                         </View>
                     </TouchableOpacity>
                     <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize:16,color:'#fff'}}>연습</Text>
+                        <Text style={{fontSize:16,color:'#fff'}}>연 습</Text>
                     </View>
                     <TouchableOpacity onPress={() => this._defaultBtn()} style={{flex:.2, alignItems: 'flex-end'}}>
                         <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>

@@ -26,7 +26,7 @@ export default class grade extends Component {
                         </View>
                     </TouchableOpacity>
                     <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize:16,color:'#fff'}}>등급</Text>
+                        <Text style={{fontSize:16,color:'#fff'}}>등급 보기</Text>
                     </View>
                     <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
                     </View>

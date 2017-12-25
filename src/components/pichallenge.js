@@ -325,7 +325,7 @@ export default class pichallenge extends Component {
                         </View>
                     </TouchableOpacity>
                     <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize:16,color:'#fff'}}>도전</Text>
+                        <Text style={{fontSize:16,color:'#fff'}}>도 전</Text>
                     </View>
                     <TouchableOpacity onPress={() => this._defaultBtn()} style={{flex:.2, alignItems: 'flex-end'}}>
                         <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
