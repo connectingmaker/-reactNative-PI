@@ -96,7 +96,7 @@ export default class keyboard extends Component {
                         </View>
                     </TouchableOpacity>
                     <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize:16,color:'#fff'}}>키보드 설정</Text>
+                        <Text style={{fontSize:16,color:'#fff'}}>키패드 설정</Text>
                     </View>
                     <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
                     </View>

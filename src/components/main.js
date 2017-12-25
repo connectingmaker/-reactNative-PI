@@ -115,7 +115,7 @@ export default class Main extends Component {
                         <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
                             <View style={{flex:0.48}}>
                                 <View style={MainFormStyle.contentsButtonLayout}>
-                                    <Button onPress={Actions.Grade} title="등급보기" color="#3e3e3e"></Button>
+                                    <Button onPress={Actions.Grade} title="등급 보기" color="#3e3e3e"></Button>
                                 </View>
                             </View>
                             <View style={{flex:0.04}}></View>
@@ -129,13 +129,13 @@ export default class Main extends Component {
                         <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
                             <View style={{flex:0.48}}>
                                 <View style={MainFormStyle.contentsButtonLayout}>
-                                    <Button onPress={Actions.Pirecord} title="연습" color="#3e3e3e"></Button>
+                                    <Button onPress={Actions.Pirecord} title="연 습" color="#3e3e3e"></Button>
                                 </View>
                             </View>
                             <View style={{flex:0.04}}></View>
                             <View style={{flex:0.48}}>
                                 <View style={MainFormStyle.contentsButtonLayout}>
-                                    <Button onPress={Actions.Pichallenge} title="도전" color="#3e3e3e"></Button>
+                                    <Button onPress={Actions.Pichallenge} title="도 전" color="#3e3e3e"></Button>
                                 </View>
                             </View>
                         </View>
@@ -144,13 +144,13 @@ export default class Main extends Component {
                         <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
                             <View style={{flex:0.48}}>
                                 <View style={MainFormStyle.contentsButtonLayout}>
-                                    <Button onPress={Actions.Pisection} title="구간연습" color="#3e3e3e"></Button>
+                                    <Button onPress={Actions.Pisection} title="구간 연습" color="#3e3e3e"></Button>
                                 </View>
                             </View>
                             <View style={{flex:0.04}}></View>
                             <View style={{flex:0.48}}>
                                 <View style={MainFormStyle.contentsButtonLayout}>
-                                    <Button onPress={Actions.Readerboard} title="리더보드" color="#3e3e3e"></Button>
+                                    <Button onPress={Actions.Readerboard} title="리더 보드" color="#3e3e3e"></Button>
                                 </View>
                             </View>
                         </View>
