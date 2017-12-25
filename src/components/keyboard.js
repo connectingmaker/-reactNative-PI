@@ -92,11 +92,11 @@ export default class keyboard extends Component {
                 <Header style={commonStyle.headerLayout}>
                     <TouchableOpacity onPress={Actions.pop} style={{flex:.2, alignItems: 'flex-start'}}>
                         <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={{fontSize:12,color:'#fff'}}> back </Text>
+                            <Text style={{fontSize:12,color:'#fff'}}> BACK </Text>
                         </View>
                     </TouchableOpacity>
                     <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize:16,color:'#fff'}}>키보드 설정</Text>
+                        <Text style={{fontSize:16,color:'#fff'}}>키패드 설정</Text>
                     </View>
                     <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
                     </View>

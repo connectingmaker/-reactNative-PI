@@ -21,8 +21,10 @@ import {pirecodeStyle} from "../style/pirecord";
 import {keyboardStyle} from "../style/keyboard";
 
 
+var timer;
 
 export default class pichallenge extends Component {
+
 
     constructor(){
         super();
@@ -42,6 +44,9 @@ export default class pichallenge extends Component {
             ,key8:"default"
             ,key9:"default"
             ,key0:"default"
+            ,challenge_start:false
+            ,challenge_timer:0
+            ,challenge_stop:false
         };
 
     }
@@ -54,6 +59,15 @@ export default class pichallenge extends Component {
 
     _keyboardPress(value)
     {
+        if(this.state.challenge_start == false) {
+            alert("도전시작을 눌러주세요.");
+            return;
+        }
+
+        if(this.state.challenge_stop == true) {
+            alert("일시중지 상태입니다. 재개를 눌러주세요.");
+            return;
+        }
         var piData = this.state.piData;
         var piRealData = this.state.piRealData;
 
@@ -268,6 +282,38 @@ export default class pichallenge extends Component {
     }
 
 
+    _challenge_start()
+    {
+        this.setState({
+            challenge_start: true
+            ,challenge_stop: false
+        });
+
+        timer = setInterval(() => {
+            if(this.state.challenge_stop == false) {
+                var challenge_timer = this.state.challenge_timer + 1;
+                this.setState({challenge_timer: challenge_timer});
+            }
+        }, 1000);
+    }
+
+    _challenge_stop()
+    {
+        if(this.state.challenge_stop == false) {
+            this.setState({challenge_stop: true});
+        } else {
+            this.setState({challenge_stop: false});
+        }
+    }
+
+    _challenge_end()
+    {
+        clearInterval(timer);
+        alert("종료되었습니다." + this.state.challenge_timer + "초");
+
+        this.setState({challenge_timer:0, challenge_stop: false, challenge_start:false});
+    }
+
 
     render() {
         return (
@@ -279,7 +325,7 @@ export default class pichallenge extends Component {
                         </View>
                     </TouchableOpacity>
                     <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize:16,color:'#fff'}}>도전</Text>
+                        <Text style={{fontSize:16,color:'#fff'}}>도 전</Text>
                     </View>
                     <TouchableOpacity onPress={() => this._defaultBtn()} style={{flex:.2, alignItems: 'flex-end'}}>
                         <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
@@ -303,13 +349,13 @@ export default class pichallenge extends Component {
                             <Text style={pirecodeStyle.title}>π= 3.</Text>
                         </View>
                         <View style={{flexDirection:'column', flex:1}}>
-                            <View style={{flex:0.5}}>
+                            <View style={{flex:0.3}}>
                                 <ScrollView style={pirecodeStyle.contentsLayout}>
                                     <HTML html={this.state.piData} uri="" />
                                 </ScrollView>
                             </View>
 
-                            <View style={{flex:0.5}}>
+                            <View style={{flex:0.7}}>
 
 
                                 {/*PC*/}
@@ -828,6 +874,7 @@ export default class pichallenge extends Component {
 
                 </Content>
                 <Footer style={{backgroundColor:"#000"}}>
+                    {/*
                     <View style={{flex:0.44, justifyContent: 'center', alignItems: 'center'}}>
                         <Text style={{fontSize:12,color:'#fff'}}>도전시작</Text>
                     </View>
@@ -837,6 +884,44 @@ export default class pichallenge extends Component {
                     <View style={{flex:0.44, justifyContent: 'center', alignItems: 'center'}}>
                         <Text style={{fontSize:12,color:'#fff'}}>기록</Text>
                     </View>
+                    */}
+
+                    {renderIf(this.state.challenge_start == false)(
+                        <TouchableOpacity onPress={() => this._challenge_start()}>
+                            <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
+                                <Text style={{fontSize:12,color:'#fff'}}>도전시작</Text>
+                            </View>
+                        </TouchableOpacity>
+                    )}
+
+                    {renderIf(this.state.challenge_start == true)(
+                    <View style={{flexDirection:"row", flex:1}}>
+                        <TouchableOpacity style={{flex:0.49, justifyContent: 'center', alignItems: 'center'}} onPress={() => this._challenge_stop()}>
+                            {renderIf(this.state.challenge_stop == false) (
+                            <View>
+                                <Text style={{fontSize:12,color:'#fff'}}>일시중지</Text>
+                            </View>
+                            )}
+
+                            {renderIf(this.state.challenge_stop == true) (
+                                <View>
+                                    <Text style={{fontSize:12,color:'#fff'}}>재개</Text>
+                                </View>
+                            )}
+
+                        </TouchableOpacity>
+                            <View style={{flex:0.02, justifyContent: 'center', alignItems: 'center'}}>
+                                <Text style={{fontSize:12,color:'#fff'}}>|</Text>
+                            </View>
+
+                        <TouchableOpacity style={{flex:0.49, justifyContent: 'center', alignItems: 'center'}} onPress={() => this._challenge_end()}>
+                            <View>
+                                <Text style={{fontSize:12,color:'#fff'}}>도전완료</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    )}
+
                 </Footer>
             </Container>
         );

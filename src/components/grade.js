@@ -26,13 +26,13 @@ export default class grade extends Component {
                         </View>
                     </TouchableOpacity>
                     <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize:16,color:'#fff'}}>등급</Text>
+                        <Text style={{fontSize:16,color:'#fff'}}>등급 보기</Text>
                     </View>
                     <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
                     </View>
                 </Header>
 
-                <Content style={{padding:10}}>
+                <Content>
                     <View style={commonStyle.headerTitleLayout}>
                         <View style={commonStyle.headerTitleLeft}>
                             <Text style={commonStyle.headerTitleTxt}> Halley's Comet</Text>
@@ -44,7 +44,7 @@ export default class grade extends Component {
 
                     <View style={gradeFormStyle.contentsLayout}>
                         <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
-                            <View style={{flex:.5, alignItems:'center'}}>
+                            <View style={{flex:.5, alignItems:'flex-start'}}>
                                 <Text style={gradeFormStyle.title}> 등급 </Text>
                             </View>
                             <View style={{flex:.5, alignItems:'center'}}>
@@ -53,7 +53,7 @@ export default class grade extends Component {
                         </View>
                         <View style={gradeFormStyle.lingBg}></View>
                         <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
-                            <View style={{flex:.5, alignItems:'center'}}>
+                            <View style={{flex:.5, alignItems:'flex-start'}}>
                                 <Text style={gradeFormStyle.title}> Halley’s Comet </Text>
                             </View>
                             <View style={{flex:.5, alignItems:'center'}}>
@@ -62,7 +62,7 @@ export default class grade extends Component {
                         </View>
                         <View style={gradeFormStyle.lingBg}></View>
                         <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
-                            <View style={{flex:.5, alignItems:'center'}}>
+                            <View style={{flex:.5, alignItems:'flex-start'}}>
                                 <Text style={gradeFormStyle.title}> Moon </Text>
                             </View>
                             <View style={{flex:.5, alignItems:'center'}}>
@@ -71,7 +71,7 @@ export default class grade extends Component {
                         </View>
                         <View style={gradeFormStyle.lingBg}></View>
                         <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
-                            <View style={{flex:.5, alignItems:'center'}}>
+                            <View style={{flex:.5, alignItems:'flex-start'}}>
                                 <Text style={gradeFormStyle.title}> Mercury </Text>
                             </View>
                             <View style={{flex:.5, alignItems:'center'}}>
@@ -80,7 +80,7 @@ export default class grade extends Component {
                         </View>
                         <View style={gradeFormStyle.lingBg}></View>
                         <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
-                            <View style={{flex:.5, alignItems:'center'}}>
+                            <View style={{flex:.5, alignItems:'flex-start'}}>
                                 <Text style={gradeFormStyle.title}> Mars </Text>
                             </View>
                             <View style={{flex:.5, alignItems:'center'}}>
@@ -89,7 +89,7 @@ export default class grade extends Component {
                         </View>
                         <View style={gradeFormStyle.lingBg}></View>
                         <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
-                            <View style={{flex:.5, alignItems:'center'}}>
+                            <View style={{flex:.5, alignItems:'flex-start'}}>
                                 <Text style={gradeFormStyle.title}> Venus </Text>
                             </View>
                             <View style={{flex:.5, alignItems:'center'}}>
@@ -98,7 +98,7 @@ export default class grade extends Component {
                         </View>
                         <View style={gradeFormStyle.lingBg}></View>
                         <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
-                            <View style={{flex:.5, alignItems:'center'}}>
+                            <View style={{flex:.5, alignItems:'flex-start'}}>
                                 <Text style={gradeFormStyle.title}> Earth </Text>
                             </View>
                             <View style={{flex:.5, alignItems:'center'}}>
@@ -108,7 +108,7 @@ export default class grade extends Component {
 
                         <View style={gradeFormStyle.lingBg}></View>
                         <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
-                            <View style={{flex:.5, alignItems:'center'}}>
+                            <View style={{flex:.5, alignItems:'flex-start'}}>
                                 <Text style={gradeFormStyle.title}> Neptune </Text>
                             </View>
                             <View style={{flex:.5, alignItems:'center'}}>
@@ -117,7 +117,7 @@ export default class grade extends Component {
                         </View>
                         <View style={gradeFormStyle.lingBg}></View>
                         <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
-                            <View style={{flex:.5, alignItems:'center'}}>
+                            <View style={{flex:.5, alignItems:'flex-start'}}>
                                 <Text style={gradeFormStyle.title}> Uranus </Text>
                             </View>
                             <View style={{flex:.5, alignItems:'center'}}>
@@ -126,7 +126,7 @@ export default class grade extends Component {
                         </View>
                         <View style={gradeFormStyle.lingBg}></View>
                         <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
-                            <View style={{flex:.5, alignItems:'center'}}>
+                            <View style={{flex:.5, alignItems:'flex-start'}}>
                                 <Text style={gradeFormStyle.title}> Saturn </Text>
                             </View>
                             <View style={{flex:.5, alignItems:'center'}}>
@@ -135,7 +135,7 @@ export default class grade extends Component {
                         </View>
                         <View style={gradeFormStyle.lingBg}></View>
                         <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
-                            <View style={{flex:.5, alignItems:'center'}}>
+                            <View style={{flex:.5, alignItems:'flex-start'}}>
                                 <Text style={gradeFormStyle.title}> Jupiter </Text>
                             </View>
                             <View style={{flex:.5, alignItems:'center'}}>
@@ -144,7 +144,7 @@ export default class grade extends Component {
                         </View>
                         <View style={gradeFormStyle.lingBg}></View>
                         <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
-                            <View style={{flex:.5, alignItems:'center'}}>
+                            <View style={{flex:.5, alignItems:'flex-start'}}>
                                 <Text style={gradeFormStyle.title}> Sun </Text>
                             </View>
                             <View style={{flex:.5, alignItems:'center'}}>

@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform,ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform,ScrollView,WebView } from 'react-native';
 import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button,Spinner } from 'native-base';
 import HTML from 'react-native-render-html';
 
@@ -55,50 +55,6 @@ export default class pivalue extends Component {
 
     _piText()
     {
-
-        var piData = "";
-        var piArr = Array.from(pi.pi_config);
-
-        var num = 1;
-        for(var i = 0; i<piArr.length; i+=10) {
-
-            for(var j = i; j<i+10; j++) {
-                if(piArr[j] == undefined) {
-                    break;
-                } else {
-                    if(piData == "") {
-
-                        piData = "<span style='color:#fff'>"+piArr[j]+"</span>";
-
-                    } else {
-                        if(num%10 == 0) {
-                            if(num%100 == 0) {
-
-                                if(num%1000 == 0) {
-                                    piData += "<span style='color:#0066ff'>"+piArr[j]+"</span>";
-                                } else {
-                                    piData += "<span style='color:#ff0000'>"+piArr[j]+"</span>";
-                                }
-                            } else {
-                                piData += "<span style='color:#f0ff00'>"+piArr[j]+"</span>";
-                            }
-
-
-
-                        } else {
-                            piData += "<span style='color:#fff'>"+piArr[j]+"</span>";
-                        }
-
-
-                    }
-                }
-                num++;
-            }
-
-        }
-
-        this.mounted = false;
-        this.setState({loadding:true, piData:piData});
 
     }
 
@@ -204,8 +160,6 @@ export default class pivalue extends Component {
             </Container>
         );
         */
-
-        if(this.state.loadding == true) {
             return (
                 <Container>
                     <Header style={pivalueFormStyle.headerLayout}>
@@ -222,16 +176,14 @@ export default class pivalue extends Component {
                     </Header>
 
                     <Content style={{padding:10}}>
+
+
+
                         <View>
                             <Text style={pivalueFormStyle.title}>π= 3.</Text>
                         </View>
 
-                        <ScrollView style={pivalueFormStyle.contentsLayout}>
-
-                            <HTML html={this.state.piData} style={{padding:0}} />
-
-
-                        </ScrollView>
+                        <WebView source={require('../webapp/pivalue.html')} style={{width:"100%", height:350}}></WebView>
 
                         <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
                             <View style={{flex:0.6}}>
@@ -296,30 +248,6 @@ export default class pivalue extends Component {
                     </Content>
                 </Container>
             );
-        } else {
-            return (
-                <Container>
-                    <Header style={pivalueFormStyle.headerLayout}>
-                        <TouchableOpacity onPress={Actions.pop} style={{flex:.2, alignItems: 'flex-start'}}>
-                            <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
-                                <Text style={{fontSize:12,color:'#fff'}}> back </Text>
-                            </View>
-                        </TouchableOpacity>
-                        <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={{fontSize:16,color:'#fff'}}>파이값 보기</Text>
-                        </View>
-                        <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
-                        </View>
-                    </Header>
-
-                    <Content style={{padding:10}}>
-                        <View><Spinner size="small" color="red" /></View>
-
-
-                    </Content>
-                </Container>
-            );
-        }
 
 
     }

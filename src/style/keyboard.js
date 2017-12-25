@@ -1,7 +1,9 @@
 /**
  * Created by jccho on 2017. 12. 14..
  */
-import { StyleSheet } from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
+const { width, height } = Dimensions.get('window');
+
 
 export const keyboardStyle = StyleSheet.create({
     bodyContents: {
@@ -20,6 +22,7 @@ export const keyboardStyle = StyleSheet.create({
         ,shadowOpacity: 0.3
         ,width:"100%"
         ,paddingLeft: 20
+
     }
     ,useBtnOn: {
         backgroundColor:"#da4211"
@@ -50,29 +53,33 @@ export const keyboardStyle = StyleSheet.create({
         flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:0
     }
     ,keyboardButtonLayout: {
-
         width:"100%"
     }
     ,keyboardButton: {
         backgroundColor:"#404040"
         ,width:"100%"
+        ,height:(height / 10)
         ,justifyContent: 'center'
     }
 
     ,keyboardButtonNot: {
         backgroundColor:"#f23611"
         ,width:"100%"
+        ,height:(height / 10)
         ,justifyContent: 'center'
     }
 
     ,keyboardButtonOk: {
         backgroundColor:"#00a2ff"
         ,width:"100%"
+        ,height:(height / 10)
         ,justifyContent: 'center'
     }
 
 
     ,keyboardButtonTxt: {
         color:"#fff"
+        ,fontWeight:"bold"
+        ,fontSize:14
     }
 })
