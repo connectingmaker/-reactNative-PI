@@ -88,12 +88,16 @@ export default class Main extends Component {
                 </Header>
                 <Content style={MainFormStyle.contentsLayout}>
                     <View style={MainFormStyle.contentsHeaderLayout}>
-                        <View style={{alignItems: 'center',justifyContent:'center',paddingTop:40}}>
+                        <View style={{alignItems: 'center',justifyContent:'center',paddingTop:20}}>
                             <Text style={MainFormStyle.boldFont}>{this.state.challenge_grade}</Text>
                         </View>
 
                         <View style={{alignItems: 'center',justifyContent:'center',paddingTop:20,paddingBottom:20}}>
-                            <PercentageCircle radius={40} percent={this.state.challenge_per} color={"#3498db"}></PercentageCircle>
+                            <PercentageCircle radius={40} percent={30} borderWidth={5}>
+                            </PercentageCircle>
+                            <View style={{alignItems: 'center',justifyContent:'center',paddingTop:20}}>
+                                <Text style={MainFormStyle.boldFont}>최고기록 : {this.state.challenge_recordCnt}</Text>
+                            </View>
                         </View>
 
                     </View>
