@@ -23,7 +23,7 @@ export const gradeFormStyle = StyleSheet.create({
     }
     ,contentsLayout: {
         width: "100%"
-        ,marginTop:10
+        ,margin:10
         ,paddingTop:10
         ,paddingBottom:10
         ,paddingLeft:20
@@ -32,6 +32,7 @@ export const gradeFormStyle = StyleSheet.create({
         ,shadowColor: "rgba(0,0,0,23)"
         ,shadowOffset: { width: 0, height: 1 }
         ,shadowOpacity: 0.3
+
     }
     ,contentsLayout2: {
         width: "100%"
