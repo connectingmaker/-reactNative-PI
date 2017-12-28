@@ -34,4 +34,6 @@
 
 body {
     font-family: 'Nanum Gothic';
+    line-height: 130%;
+    letter-spacing: 2px;
 }
