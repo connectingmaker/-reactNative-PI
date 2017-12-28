@@ -12,6 +12,8 @@ import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button,Spinn
 import HTML from 'react-native-render-html';
 import Modal from 'react-native-modal'
 
+import { NativeModules } from 'react-native'
+
 
 import config from "../config/config";
 import pi from '../config/pi_config'
@@ -22,6 +24,7 @@ import {MainFormStyle} from "../style/main";
 import {pirecodeStyle} from "../style/pirecord";
 import {keyboardStyle} from "../style/keyboard";
 
+const { InAppUtils } = NativeModules
 
 
 export default class pisection extends Component {
@@ -49,9 +52,25 @@ export default class pisection extends Component {
 
     }
 
+    _paymentCheck()
+    {
+        var products = [
+            'com.piking.app',
+        ];
+        console.log("OK");
+
+        InAppUtils.loadProducts(products, (error, products) => {
+            console.log(error);
+            console.log(products);
+        });
+    }
+
     componentWillMount()
     {
+        this._paymentCheck();
         this.loadData();
+
+
     }
 
 
@@ -232,7 +251,6 @@ export default class pisection extends Component {
     {
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
-            console.log(json);
             if(json!=null) {
 
                 var keyboardUse = json.KEYBOARD;
@@ -245,7 +263,6 @@ export default class pisection extends Component {
                         this.setState({keyboard: "pc"})
                         break;
                     case "mobile":
-                        console.log("OK");
                         this.setState({keyboard: "mobile"})
                         break;
                     default:
