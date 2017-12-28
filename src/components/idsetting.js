@@ -30,15 +30,14 @@ export default class Idsetting extends Component {
             , textInputValue2: ''
             , textInputValue3: ''
             , countryImg: ""
-            // ,username:''
-            // ,country:''
-            // ,age:''
-            // ,gender:''
+            ,username:''
+            ,country:''
+            ,age:''
+            ,gender:''
 
         }
 
         //console.log(country.country_config);
-        console.log(country.countries);
 
     }
 
@@ -55,29 +54,35 @@ export default class Idsetting extends Component {
     {
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
+            console.log("OK");
+            console.log(json.USERNAME);
             if(json!=null) {
 
-                var username = json.username;
-                var country = json.textInputValue;
-                var age = json.textInputValue3;
-                var gender = json.textInputValue2;
+                var username = json.USERNAME;
+                var country = json.COUNTRY;
+                var countryImg = json.COUNTRYIMG;
+                var age = json.AGE;
+                var gender = json.GENDER;
 
 
                 if (username != null) {
-                    this.setState({username: username});
-                    AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(username), () => {
-                        this.setState({username: username});
-                    });
+                    this.setState({USERNAME: username});
+                    // AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(username), () => {
+                    //     this.setState({USERNAME: username});
+                    // });
                 }
 
                 if (country != null) {
-                    this.setState({country: country});
+                    this.setState({textInputValue: country});
+                }
+                if (countryImg != null) {
+                    this.setState({countryImg: countryImg});
                 }
                 if (age != null) {
-                    this.setState({age: age});
+                    this.setState({textInputValue3: age});
                 }
                 if (gender != null) {
-                    this.setState({gender: gender});
+                    this.setState({textInputValue2: gender});
                 }
 
             }
@@ -88,8 +93,9 @@ export default class Idsetting extends Component {
     _save()
     {
         var dataObject = {
-            "USERNAME": this.state.username
+            "USERNAME": this.state.USERNAME
             ,"COUNTRY" : this.state.textInputValue
+            ,"COUNTRYIMG" : this.state.countryImg
             ,"AGE" : this.state.textInputValue3
             ,"GENDER" : this.state.textInputValue2
         };
@@ -458,7 +464,7 @@ export default class Idsetting extends Component {
                                 <Text style={idFormStyle.title}> USER NAME </Text>
                             </View>
                             <View style={{flex:.7, alignItems:'center'}}>
-                                <TextInput style = {idFormStyle.input} underlineColorAndroid = "transparent" placeholder = "사용할 아이디 입력해주세요." placeholderTextColor = "#9a73ef" autoCapitalize = "none" onChangeText={(text) => this.setState({USERNAME: text})} keyboardType="default"/>
+                                <TextInput style = {idFormStyle.input} underlineColorAndroid = "transparent" placeholder = "사용할 아이디 입력해주세요." placeholderTextColor = "#9a73ef" autoCapitalize = "none" value={this.state.USERNAME} onChangeText={(text) => this.setState({USERNAME: text})} keyboardType="default"/>
                             </View>
                         </View>
 
