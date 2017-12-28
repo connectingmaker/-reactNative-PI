@@ -299,8 +299,11 @@ export default class pirecord extends Component {
                     </View>
 
                     <View style={{padding:10}}>
-                        <View>
-                            <Text style={pirecodeStyle.title}>π= 3.</Text>
+                        <View stlye={{flex:1,flexDirection:'row'}}>
+                            <View style={{flex:.5}}>
+                                <Text style={pirecodeStyle.title}>π= 3.</Text>
+                            </View>
+
                         </View>
                         <View style={{flexDirection:'column', flex:1}}>
                             <View style={{flex:0.5}}>
@@ -561,7 +564,9 @@ export default class pirecord extends Component {
                                             </View>
 
                                         </View>
+                                        
                                     </View>
+
                                 )}
 
 
@@ -815,8 +820,10 @@ export default class pirecord extends Component {
                                         </View>
 
                                     </View>
+
                                 </View>
                                 )}
+
                             </View>
 
                         </View>
@@ -825,10 +832,17 @@ export default class pirecord extends Component {
 
 
 
-
                 </Content>
+                <TouchableOpacity onPress={Actions.Pivalue}>
+                    <Footer style={commonStyle.footerLayout}>
+                        <View>
+                            <Text style={commonStyle.footerColor}>파이값 보기</Text>
+                        </View>
+                    </Footer>
+                </TouchableOpacity>
             </Container>
         );
+
 
 
     }

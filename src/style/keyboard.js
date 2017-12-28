@@ -13,6 +13,7 @@ export const keyboardStyle = StyleSheet.create({
         ,flexDirection: 'row'
         ,paddingLeft:5
         ,paddingRight:5
+        ,paddingTop:100
 
     }
     ,useBtn: {
@@ -63,14 +64,16 @@ export const keyboardStyle = StyleSheet.create({
     }
 
     ,keyboardButtonNot: {
-        backgroundColor:"#f23611"
+        // backgroundColor:"#f23611"
+        backgroundColor:"#ff7c80"
         ,width:"100%"
         ,height:(height / 10)
         ,justifyContent: 'center'
     }
 
     ,keyboardButtonOk: {
-        backgroundColor:"#00a2ff"
+        // backgroundColor:"#00a2ff"
+        backgroundColor:"#afabab"
         ,width:"100%"
         ,height:(height / 10)
         ,justifyContent: 'center'

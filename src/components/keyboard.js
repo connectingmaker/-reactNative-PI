@@ -44,20 +44,20 @@ export default class keyboard extends Component {
                 var keyboardUse = json.KEYBOARD;
 
                 switch (keyboardUse) {
-                    case "pc":
-                        this.setState({keyboard: "pc"})
-                        break;
                     case "mobile":
-                        console.log("OK");
                         this.setState({keyboard: "mobile"})
                         break;
-                    default:
+                    case "pc":
+                        console.log("OK");
                         this.setState({keyboard: "pc"})
+                        break;
+                    default:
+                        this.setState({keyboard: "mobile"})
                         break;
                 }
 
             } else {
-                this.setState({keyboard: "pc"})
+                this.setState({keyboard: "mobile"})
             }
 
 
@@ -65,14 +65,14 @@ export default class keyboard extends Component {
         });
     }
 
-    _pcClick()
-    {
-        this.setState({keyboard:"pc"})
-    }
-
     _mobileClick()
     {
         this.setState({keyboard:"mobile"})
+    }
+
+    _pcClick()
+    {
+        this.setState({keyboard:"pc"})
     }
 
     _save()
@@ -106,24 +106,24 @@ export default class keyboard extends Component {
                     <View style={keyboardStyle.bodyContents}>
                         <View style={keyboardStyle.keyboardLayout}>
                             <View style={keyboardStyle.keyboardLayoutFlex}>
-                                {renderIf(this.state.keyboard == "pc")(
-                                <Button style={keyboardStyle.useBtnOn} onPress={() => this._pcClick()}>
+                                {renderIf(this.state.keyboard == "mobile")(
+                                <Button style={keyboardStyle.useBtnOn} onPress={() => this._mobileClick()}>
                                     <View style={{flex:0.1}}>
                                         <Image source={require('../../assets/img/icon/btn_icon_on.png')} resizeMode={'contain'} style={{width: 15, height: 15}}></Image>
                                     </View>
                                     <View style={{flex:0.9, paddingLeft:10}}>
-                                        <Text style={keyboardStyle.useBtnTextOn}>컴퓨터 키패드 설정</Text>
+                                        <Text style={keyboardStyle.useBtnTextOn}>모바일 키패드 설정</Text>
                                     </View>
                                 </Button>
                                 )}
 
-                                {renderIf(this.state.keyboard == "mobile")(
-                                    <Button style={keyboardStyle.useBtn} onPress={() => this._pcClick()}>
+                                {renderIf(this.state.keyboard == "pc")(
+                                    <Button style={keyboardStyle.useBtn} onPress={() => this._mobileClick()}>
                                         <View style={{flex:0.1}}>
                                             <Image source={require('../../assets/img/icon/btn_icon_off.png')} resizeMode={'contain'} style={{width: 15, height: 15}}></Image>
                                         </View>
                                         <View style={{flex:0.9, paddingLeft:10}}>
-                                            <Text style={keyboardStyle.useBtnText}>컴퓨터 키패드 설정</Text>
+                                            <Text style={keyboardStyle.useBtnText}>모바일 키패드 설정</Text>
                                         </View>
                                     </Button>
                                 )}
@@ -245,24 +245,24 @@ export default class keyboard extends Component {
 
                         <View style={keyboardStyle.keyboardLayout}>
                             <View style={keyboardStyle.keyboardLayoutFlex}>
-                                {renderIf(this.state.keyboard == "mobile")(
-                                    <Button style={keyboardStyle.useBtnOn} onPress={() => this._mobileClick()}>
+                                {renderIf(this.state.keyboard == "pc")(
+                                    <Button style={keyboardStyle.useBtnOn} onPress={() => this._pcClick()}>
                                         <View style={{flex:0.1}}>
                                             <Image source={require('../../assets/img/icon/btn_icon_on.png')} resizeMode={'contain'} style={{width: 15, height: 15}}></Image>
                                         </View>
                                         <View style={{flex:0.9, paddingLeft:10}}>
-                                            <Text style={keyboardStyle.useBtnTextOn}>모바일 키패드 설정</Text>
+                                            <Text style={keyboardStyle.useBtnTextOn}>컴퓨터 키패드 설정</Text>
                                         </View>
                                     </Button>
                                 )}
 
-                                {renderIf(this.state.keyboard == "pc")(
-                                    <Button style={keyboardStyle.useBtn} onPress={() => this._mobileClick()}>
+                                {renderIf(this.state.keyboard == "mobile")(
+                                    <Button style={keyboardStyle.useBtn} onPress={() => this._pcClick()}>
                                         <View style={{flex:0.1}}>
                                             <Image source={require('../../assets/img/icon/btn_icon_off.png')} resizeMode={'contain'} style={{width: 15, height: 15}}></Image>
                                         </View>
                                         <View style={{flex:0.9, paddingLeft:10}}>
-                                            <Text style={keyboardStyle.useBtnText}>모바일 키패드 설정</Text>
+                                            <Text style={keyboardStyle.useBtnText}>컴퓨터 키패드 설정</Text>
                                         </View>
                                     </Button>
                                 )}

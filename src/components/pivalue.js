@@ -187,7 +187,7 @@ export default class pivalue extends Component {
 
                         <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
                             <View style={{flex:0.6}}>
-                                <Text style={pivalueFormStyle.fontStyleTitle}>자리수 끊기 : 1 </Text>
+                                <Text style={pivalueFormStyle.fontStyleTitle}>그룹핑 : 1 </Text>
                             </View>
                             <View style={{flex:0.4}}>
                                 <View style={{flex:1, flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
