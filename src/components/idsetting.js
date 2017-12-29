@@ -52,6 +52,7 @@ export default class Idsetting extends Component {
     }
     loadData()
     {
+
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
             console.log("OK");
@@ -100,9 +101,91 @@ export default class Idsetting extends Component {
             ,"GENDER" : this.state.textInputValue2
         };
 
-        AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
-            alert("저장되었습니다.");
-        });
+        if(this.state.USERNAME == "") {
+            Alert.alert(
+                '',
+                '사용할 이을를 입력해주세요.',
+                [
+                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                ],
+                {cancelable: false}
+            )
+            return;
+        }else if(this.state.COUNTRY == ""){
+            Alert.alert(
+                '',
+                '국적을 선택해주세요.',
+                [
+                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                ],
+                {cancelable: false}
+            )
+            return;
+        }else if(this.state.AGE == ""){
+            Alert.alert(
+                '',
+                '나이을 선택해주세요.',
+                [
+                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                ],
+                {cancelable: false}
+            )
+            return;
+        }else if(this.state.GENDER == "") {
+            Alert.alert(
+                '',
+                '성별을 선택해주세요.',
+                [
+                    {text: '확인', onPress: () => console.log('OK Pressed')},
+                ],
+                {cancelable: false}
+            )
+            return;
+        }else{
+            var object = {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify( {
+                    "USERNAME": this.state.USERNAME
+                    ,"COUNTRY" : this.state.textInputValue
+                    ,"AGE" : this.state.textInputValue3
+                    ,"GENDER" : this.state.textInputValue2
+
+                })
+            };
+
+            fetch(config.SERVER_URL+'/memberInsert', object)
+                .then((response) => response.text())
+                .then((responseJson) => {
+                    //console.log(responseJson);
+                    var data = eval("("+responseJson+")");
+                    if(data.length == 0) {
+                        Alert.alert(
+                            'Error',
+                            '오류가 발생되었습니다.',
+                            [
+                                {text: '확인', onPress: () => console.log('OK Pressed')},
+                            ],
+                            { cancelable: false }
+                        );
+                    } else {
+
+                        AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
+
+                            alert("저장되었습니다.");
+                        });
+                    }
+
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+
+        }
+
     }
 
     render() {
