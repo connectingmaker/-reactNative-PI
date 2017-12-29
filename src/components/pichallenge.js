@@ -30,6 +30,7 @@ export default class pichallenge extends Component {
         super();
         this.state = {
             keyboard:""
+            ,uid:""
             ,piData:""
             ,piRealData:""
             ,challenge_recordCnt:0
@@ -243,6 +244,14 @@ export default class pichallenge extends Component {
     {
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
+
+            var uid = "";
+            if(json.UID != "") {
+                uid = json.UID;
+                this.setState({uid:uid});
+            }
+
+
             console.log(json);
             if(json!=null) {
 
@@ -312,6 +321,50 @@ export default class pichallenge extends Component {
         alert("종료되었습니다." + this.state.challenge_timer + "초");
 
         this.setState({challenge_timer:0, challenge_stop: false, challenge_start:false});
+
+        var formData = new FormData();
+        formData.append('TIMER', this.state.challenge_timer);
+        formData.append('CNT', this.state.challenge_recordCnt);
+        var object = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body:formData
+        };
+
+        console.log(object);
+
+        fetch(config.SERVER_URL+'/challenge/memberChallengeInsert', object)
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log(responseJson);
+                //console.log(responseJson);
+                /*
+                 var data = eval("("+responseJson+")");
+                 if(data.length == 0) {
+                 Alert.alert(
+                 'Error',
+                 '오류가 발생되었습니다.',
+                 [
+                 {text: '확인', onPress: () => console.log('OK Pressed')},
+                 ],
+                 { cancelable: false }
+                 );
+                 } else {
+
+                 AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
+
+                 alert("저장되었습니다.");
+                 });
+                 }
+                 */
+
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     }
 
 

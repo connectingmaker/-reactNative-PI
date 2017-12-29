@@ -56,11 +56,13 @@ export default class readerboard extends Component {
     loadData()
     {
         var object = {};
-        fetch(config.SERVER_URL, object)
+        fetch(config.SERVER_URL+"/leaderboard/top10", object)
             .then((response) => response.json())
             .then((responseData) =>
             {
+                console.log(responseData);
                 this.setState({dataSource:this.state.dataSource.cloneWithRows(responseData)});
+
 
                 AsyncStorage.getItem(config.STORE_KEY).then((value) => {
                     var json = eval("("+value+")");
@@ -99,6 +101,7 @@ export default class readerboard extends Component {
                     if(challenge_grade != null) {
                         this.setState({challenge_grade:challenge_grade});
                     }
+
 
 
                 }).then(res => {

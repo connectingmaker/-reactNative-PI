@@ -13,6 +13,8 @@ import stringify from 'json-stable-stringify';
 import {idFormStyle} from '../style/idsetting';
 import {commonStyle} from "../style/common";
 
+
+import FormData from 'FormData';
 import country from '../config/country_config'
 
 import config from "../config/config";
@@ -26,6 +28,7 @@ export default class Idsetting extends Component {
         super();
         this.state = {
             countryData: ""
+            ,uid:""
             , textInputValue: ''
             , textInputValue2: ''
             , textInputValue3: ''
@@ -64,6 +67,7 @@ export default class Idsetting extends Component {
                 var countryImg = json.COUNTRYIMG;
                 var age = json.AGE;
                 var gender = json.GENDER;
+                var uid = json.UID;
 
 
                 if (username != null) {
@@ -84,6 +88,10 @@ export default class Idsetting extends Component {
                 }
                 if (gender != null) {
                     this.setState({textInputValue2: gender});
+                }
+
+                if (uid != null) {
+                    this.setState({uid: uid});
                 }
 
             }
@@ -142,43 +150,62 @@ export default class Idsetting extends Component {
             )
             return;
         }else{
+
+            AsyncStorage.getItem(config.STORE_KEY).then((value) => {
+                var json = eval("("+value+")");
+                if(json!=null) {
+
+                    var username = json.USERNAME;
+                    var country = json.COUNTRY;
+                    var age = json.AGE;
+                    var gender = json.GENDER;
+
+
+                AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
+                    this.setState({username:username,country:country,age:age,gender:gender});
+                });
+                    
+
+                } else {
+                }
+
+
+
+            }).then(res => {
+            });
+
+
+            var formData = new FormData();
+            formData.append('UID', this.state.uid);
+            formData.append('USERNAME', this.state.USERNAME);
+            formData.append('COUNTRY', this.state.textInputValue);
+            formData.append('AGE', this.state.textInputValue3);
+            formData.append('GENDER', this.state.textInputValue2);
             var object = {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body:JSON.stringify( {
-                    "USERNAME": this.state.USERNAME
-                    ,"COUNTRY" : this.state.textInputValue
-                    ,"AGE" : this.state.textInputValue3
-                    ,"GENDER" : this.state.textInputValue2
-
-                })
+                body:formData
             };
 
-            fetch(config.SERVER_URL+'/memberInsert', object)
-                .then((response) => response.text())
+            console.log(object);
+
+
+            fetch(config.SERVER_URL+'/member/memberInsert', object)
+                .then((response) => response.json())
                 .then((responseJson) => {
-                    //console.log(responseJson);
-                    var data = eval("("+responseJson+")");
-                    if(data.length == 0) {
-                        Alert.alert(
-                            'Error',
-                            '오류가 발생되었습니다.',
-                            [
-                                {text: '확인', onPress: () => console.log('OK Pressed')},
-                            ],
-                            { cancelable: false }
-                        );
-                    } else {
+                    console.log(responseJson);
 
-                        AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
-
-                            alert("저장되었습니다.");
-                        });
+                    var object = {
+                        UID : responseJson.UID
                     }
 
+                    AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(object), () => {
+                        this.setState({uid:responseJson.UID});
+                        Actions.pop();
+                    });
                 })
                 .catch((error) => {
                     console.error(error);
