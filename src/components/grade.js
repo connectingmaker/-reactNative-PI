@@ -3,18 +3,76 @@
  */
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform,AsyncStorage } from 'react-native';
 import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button } from 'native-base';
 
 import {gradeFormStyle} from '../style/grade';
 import {commonStyle} from "../style/common";
+import config from "../config/config";
 
 import renderIf from 'render-if'
 
 
 export default class grade extends Component {
+    constructor(){
+        super();
+        this.state = {
+            challenge_recordCnt:0
+            ,challenge_per:0
+            ,challenge_grade:"Halley's Comet"
+        };
+
+    }
+
+    componentWillMount()
+    {
+        this.loadData();
+    }
+
+    loadData()
+    {
+        AsyncStorage.getItem(config.STORE_KEY).then((value) => {
+            var json = eval("("+value+")");
+            if(json!=null) {
+
+                var challenge_recordCnt = json.challenge_recordCnt;
+                var challenge_grade = json.challenge_grade;
 
 
+                if(challenge_recordCnt != null) {
+                    this.setState({challenge_recordCnt:challenge_recordCnt});
+
+                    for(var i = 0; i < pi.pi_grade_value.length; i++) {
+                        var temp = pi.pi_grade_value[i].split("~");
+                        if(parseInt(temp[0]) <= challenge_recordCnt && parseInt(temp[1]) >= challenge_recordCnt) {
+                            var per = Math.round((challenge_recordCnt / parseInt(temp[1])) * 100);
+                            var dataObject = {
+                                "challenge_grade": pi.pi_grade[i]
+                                ,"challenge_recordCnt": challenge_recordCnt
+                            };
+
+                            AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
+                                this.setState({challenge_grade:pi.pi_grade[i],challenge_recordCnt:challenge_recordCnt, challenge_per: per});
+                            });
+
+
+
+                            break;
+                        }
+                    }
+                }
+
+            } else {
+            }
+
+            if(challenge_grade != null) {
+                this.setState({challenge_grade:challenge_grade});
+            }
+
+
+        }).then(res => {
+        });
+    }
 
     render() {
         return (
@@ -35,10 +93,15 @@ export default class grade extends Component {
                 <Content>
                     <View style={commonStyle.headerTitleLayout}>
                         <View style={commonStyle.headerTitleLeft}>
-                            <Text style={commonStyle.headerTitleTxt}> Halley's Comet</Text>
+                            <TouchableOpacity onPress={Actions.Grade}>
+                                <Text style={commonStyle.headerTitleTxt}> {this.state.challenge_grade}</Text>
+                            </TouchableOpacity>
                         </View>
                         <View style={commonStyle.headerTitleRight}>
-                            <Text style={commonStyle.headerTitleTxt}> 최고기록 : 0 </Text>
+                            <TouchableOpacity onPress={Actions.Readerboard}>
+                                <Text style={commonStyle.headerTitleTxt}> 최고기록 : {this.state.challenge_recordCnt}</Text>
+                            </TouchableOpacity>
+
                         </View>
                     </View>
 

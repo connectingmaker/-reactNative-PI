@@ -564,7 +564,7 @@ export default class pirecord extends Component {
                                             </View>
 
                                         </View>
-                                        
+
                                     </View>
 
                                 )}
