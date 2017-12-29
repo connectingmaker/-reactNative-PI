@@ -12,6 +12,7 @@
     "react": "16.0.0",
     "react-base": "^0.2.0",
     "react-native": "0.51.0",
+    "react-native-billing": "^2.4.0",
     "react-native-country-picker": "^1.0.2",
     "react-native-device-info": "^0.13.0",
     "react-native-dialog-component": "^0.2.17",

@@ -61,53 +61,55 @@ export default class readerboard extends Component {
             .then((responseData) =>
             {
                 this.setState({dataSource:this.state.dataSource.cloneWithRows(responseData)});
+
+                AsyncStorage.getItem(config.STORE_KEY).then((value) => {
+                    var json = eval("("+value+")");
+                    if(json!=null) {
+
+                        var challenge_recordCnt = json.challenge_recordCnt;
+                        var challenge_grade = json.challenge_grade;
+
+
+                        if(challenge_recordCnt != null) {
+                            this.setState({challenge_recordCnt:challenge_recordCnt});
+
+                            for(var i = 0; i < pi.pi_grade_value.length; i++) {
+                                var temp = pi.pi_grade_value[i].split("~");
+                                if(parseInt(temp[0]) <= challenge_recordCnt && parseInt(temp[1]) >= challenge_recordCnt) {
+                                    var per = Math.round((challenge_recordCnt / parseInt(temp[1])) * 100);
+                                    var dataObject = {
+                                        "challenge_grade": pi.pi_grade[i]
+                                        ,"challenge_recordCnt": challenge_recordCnt
+                                    };
+
+                                    AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
+                                        this.setState({challenge_grade:pi.pi_grade[i],challenge_recordCnt:challenge_recordCnt, challenge_per: per});
+                                    });
+
+
+
+                                    break;
+                                }
+                            }
+                        }
+
+                    } else {
+                    }
+
+                    if(challenge_grade != null) {
+                        this.setState({challenge_grade:challenge_grade});
+                    }
+
+
+                }).then(res => {
+                });
             })
             .catch((err) => {
                 console.log(err);
             });
 
 
-        AsyncStorage.getItem(config.STORE_KEY).then((value) => {
-            var json = eval("("+value+")");
-            if(json!=null) {
 
-                var challenge_recordCnt = json.challenge_recordCnt;
-                var challenge_grade = json.challenge_grade;
-
-
-                if(challenge_recordCnt != null) {
-                    this.setState({challenge_recordCnt:challenge_recordCnt});
-
-                    for(var i = 0; i < pi.pi_grade_value.length; i++) {
-                        var temp = pi.pi_grade_value[i].split("~");
-                        if(parseInt(temp[0]) <= challenge_recordCnt && parseInt(temp[1]) >= challenge_recordCnt) {
-                            var per = Math.round((challenge_recordCnt / parseInt(temp[1])) * 100);
-                            var dataObject = {
-                                "challenge_grade": pi.pi_grade[i]
-                                ,"challenge_recordCnt": challenge_recordCnt
-                            };
-
-                            AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
-                                this.setState({challenge_grade:pi.pi_grade[i],challenge_recordCnt:challenge_recordCnt, challenge_per: per});
-                            });
-
-
-
-                            break;
-                        }
-                    }
-                }
-
-            } else {
-            }
-
-            if(challenge_grade != null) {
-                this.setState({challenge_grade:challenge_grade});
-            }
-
-
-        }).then(res => {
-        });
 
     }
 
