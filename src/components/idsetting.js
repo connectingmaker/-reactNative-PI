@@ -7,7 +7,6 @@ import {View, Text, AppRegistry, Image, StyleSheet, TouchableOpacity,AlertIOS,Al
 import {Container, Header, Body, Content, Footer,Item, Icon, Input,Button } from 'native-base';
 import ModalSelector from 'react-native-modal-selector';
 
-import stringify from 'json-stable-stringify';
 
 
 import {idFormStyle} from '../style/idsetting';
@@ -15,8 +14,6 @@ import {commonStyle} from "../style/common";
 
 
 import FormData from 'FormData';
-import country from '../config/country_config'
-
 import config from "../config/config";
 
 import renderIf from 'render-if'

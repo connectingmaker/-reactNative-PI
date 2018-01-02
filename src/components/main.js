@@ -25,6 +25,7 @@ export default class Main extends Component {
     }
     loadData()
     {
+        /*
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
             if(json!=null) {
@@ -66,6 +67,7 @@ export default class Main extends Component {
 
         }).then(res => {
         });
+        */
     }
 
 

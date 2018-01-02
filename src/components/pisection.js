@@ -26,13 +26,15 @@ import {keyboardStyle} from "../style/keyboard";
 
 const { InAppUtils } = NativeModules
 
+//import InAppBilling from 'react-native-billing';
+
 
 export default class pisection extends Component {
 
     constructor(){
         super();
         this.state = {
-            keyboard:""
+            keyboard:"pc"
             ,piData:""
             ,piRealData:""
             ,challenge_recordCnt:0
@@ -48,12 +50,15 @@ export default class pisection extends Component {
             ,key9:"default"
             ,key0:"default"
             ,isModalVisible:false
+            ,payment_start:""
+            ,payment_end:""
         };
 
     }
 
     _paymentCheck()
     {
+        /*
         var products = [
             'com.piking.app',
         ];
@@ -63,12 +68,17 @@ export default class pisection extends Component {
             console.log(error);
             console.log(products);
         });
+        */
+
+
     }
+
+
 
     componentWillMount()
     {
-        this._paymentCheck();
         this.loadData();
+
 
 
     }
@@ -282,6 +292,14 @@ export default class pisection extends Component {
                 this.setState({challenge_grade:challenge_grade});
             }
 
+            if(json.payment_start != null) {
+                this.setState({payment_start:json.payment_start});
+            }
+
+            if(json.payment_end != null) {
+                this.setState({payment_end:json.payment_end});
+            }
+
 
         }).then(res => {
         });
@@ -304,6 +322,45 @@ export default class pisection extends Component {
         this.setState({
             isModalVisible: false
         })
+    }
+
+    // To be sure the service is close before opening it
+    async _pay() {
+        if(Platform.OS == "ios") {
+            alert("IOS");
+            var productIdentifier = 'com.piking.app';
+            InAppUtils.purchaseProduct(productIdentifier, (error, response) => {
+                // NOTE for v3.0: User can cancel the payment which will be available as error object here.
+                if(response && response.productIdentifier) {
+                    Alert.alert('Purchase Successful', 'Your Transaction ID is ' + response.transactionIdentifier);
+                    //unlock store here.
+                }
+            });
+        } else {
+            /*
+            var productId = "android.test.purchased";
+            await InAppBilling.close();
+            try {
+                await InAppBilling.open();
+                if (!await InAppBilling.isPurchased(productId)) {
+                    const details = await InAppBilling.purchase(productId);
+                    alert("You purchased:"+details);
+                    //console.log('You purchased: ', details);
+                }
+                const transactionStatus = await InAppBilling.getPurchaseTransactionDetails(productId);
+                console.log('Transaction Status', transactionStatus);
+                const productDetails = await InAppBilling.getProductDetails(productId);
+                //console.log(productDetails);
+                alert(productDetails);
+            } catch (err) {
+                alert("오류");
+                console.log(err);
+            } finally {
+                await InAppBilling.consumePurchase(productId);
+                await InAppBilling.close();
+            }
+            */
+        }
     }
 
     render() {
@@ -891,7 +948,8 @@ export default class pisection extends Component {
 
                 </Content>
                 <Footer style={{backgroundColor:"#000"}}>
-                    <TouchableOpacity onPress={() => this._sectionPopup()}>
+                    {/*<TouchableOpacity onPress={() => this._sectionPopup()}>*/}
+                    <TouchableOpacity onPress={() => this._pay()}>
                     <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
                         <Text style={{fontSize:12,color:'#fff'}}>구간 설정</Text>
                     </View>
