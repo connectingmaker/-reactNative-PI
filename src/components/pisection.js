@@ -26,7 +26,7 @@ import {keyboardStyle} from "../style/keyboard";
 
 const { InAppUtils } = NativeModules
 
-//import InAppBilling from 'react-native-billing';
+import InAppBilling from 'react-native-billing';
 
 
 export default class pisection extends Component {
@@ -337,11 +337,13 @@ export default class pisection extends Component {
                 }
             });
         } else {
-            /*
+
             var productId = "android.test.purchased";
+            //var productId = "product1000";
             await InAppBilling.close();
             try {
                 await InAppBilling.open();
+
                 if (!await InAppBilling.isPurchased(productId)) {
                     const details = await InAppBilling.purchase(productId);
                     alert("You purchased:"+details);
@@ -353,13 +355,13 @@ export default class pisection extends Component {
                 //console.log(productDetails);
                 alert(productDetails);
             } catch (err) {
-                alert("오류");
+                alert("오류발생");
                 console.log(err);
             } finally {
                 await InAppBilling.consumePurchase(productId);
                 await InAppBilling.close();
             }
-            */
+
         }
     }
 

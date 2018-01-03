@@ -19,14 +19,28 @@ import renderIf from 'render-if'
 
 export default class pivalue extends Component {
 
+
     constructor(){
         super();
         this.state = {
             piData: ""
             ,loadding:false
+            ,max:1000
+            ,view:1
         }
 
+        this.webView = null;
 
+
+    }
+
+    sendPostMessage(view, max) {
+        this.webView.postMessage( view+"///"+max );
+        /*
+        setTimeout(function() {
+
+        }, 1000);
+        */
     }
 
     componentWillMount()
@@ -37,6 +51,7 @@ export default class pivalue extends Component {
     {
         this.mounted = true;
         this._piText();
+        this.sendPostMessage(1, 1000);
     }
 
     componentWillUnmount()
@@ -60,14 +75,62 @@ export default class pivalue extends Component {
 
     minus()
     {
+        if(this.state.view == 1) {
+            alert("최소 그룹입니다.");
+        } else {
+            if(this.state.view == 3) {
+                this.setState({view:1});
+
+                this.sendPostMessage(1, this.state.max);
+            } else if(this.state.view == 5) {
+                this.setState({view:3});
+                this.sendPostMessage(3, this.state.max);
+            } else if(this.state.view == 10) {
+                this.setState({view:5});
+                this.sendPostMessage(5, this.state.max);
+            }
+        }
+
+
+
 
     }
 
     plus()
     {
-
+        if(this.state.view == 10) {
+            alert("최대 그룹입니다.");
+        } else {
+            if(this.state.view == 1) {
+                this.setState({view:3});
+                this.sendPostMessage(3, this.state.max);
+            } else if(this.state.view == 3) {
+                this.setState({view:5});
+                this.sendPostMessage(5, this.state.max);
+            } else if(this.state.view == 5) {
+                this.setState({view:10});
+                this.sendPostMessage(10, this.state.max);
+            }
+        }
     }
 
+    max1000()
+    {
+        this.setState({max:1001});
+        this.sendPostMessage(this.state.view, 1001);
+    }
+
+    max5000()
+    {
+        this.setState({max:5001});
+        this.sendPostMessage(this.state.view, 5001);
+    }
+
+    max10000()
+    {
+        this.setState({max:10001});
+        this.sendPostMessage(this.state.view, 10001);
+    }
 
     render() {
         /*
@@ -183,11 +246,11 @@ export default class pivalue extends Component {
                             <Text style={pivalueFormStyle.title}>π= 3.</Text>
                         </View>
 
-                        <WebView source={require('../webapp/pivalue.html')} style={{width:"100%", height:350}}></WebView>
+                        <WebView ref={webview => { this.webView = webview; }} source={require('../webapp/pivalue.html')} style={{width:"100%", height:350}}></WebView>
 
                         <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
                             <View style={{flex:0.6}}>
-                                <Text style={pivalueFormStyle.fontStyleTitle}>그룹핑 : 1 </Text>
+                                <Text style={pivalueFormStyle.fontStyleTitle}>그룹핑 : {this.state.view} </Text>
                             </View>
                             <View style={{flex:0.4}}>
                                 <View style={{flex:1, flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
@@ -214,7 +277,7 @@ export default class pivalue extends Component {
 
                         <View style={{flex:1,flexDirection: 'row', paddingTop:10, paddingBottom:5,alignItems:'center',justifyContent:'center'}}>
                             <View style={{flex:0.3}}>
-                                <Button bordered full style={{borderColor:"#979797",borderWidth:10,height:70,borderRadius:10}}>
+                                <Button bordered full style={{borderColor:"#979797",borderWidth:10,height:70,borderRadius:10}} onPress={() => this.max1000()}>
                                     <View style={{flex:1,alignItems:'center'}}>
                                         <Text style={{color:'#405ce7',fontSize:15,fontWeight:'bold',paddingTop:5,paddingBottom:10}}>1,000</Text>
                                         <Text>자리까지</Text>
@@ -224,7 +287,7 @@ export default class pivalue extends Component {
                             </View>
 
                             <View style={{flex:0.3,paddingLeft:10}}>
-                                <Button bordered full style={{borderColor:"#979797",borderWidth:10,height:70,borderRadius:10}}>
+                                <Button bordered full style={{borderColor:"#979797",borderWidth:10,height:70,borderRadius:10}} onPress={() => this.max5000()}>
                                     <View style={{flex:1,alignItems:'center'}}>
                                         <Text style={{color:'#ff0018',fontSize:15,fontWeight:'bold',paddingTop:5,paddingBottom:10}}>5,000</Text>
                                         <Text>자리까지</Text>
@@ -234,7 +297,7 @@ export default class pivalue extends Component {
                             </View>
 
                             <View style={{flex:0.3,paddingLeft:10}}>
-                                <Button bordered full style={{borderColor:"#979797",borderWidth:10,height:70,borderRadius:10}}>
+                                <Button bordered full style={{borderColor:"#979797",borderWidth:10,height:70,borderRadius:10}} onPress={() => this.max10000()}>
                                     <View style={{flex:1,alignItems:'center'}}>
                                         <Text style={{color:'#377a0e',fontSize:15,fontWeight:'bold',paddingTop:5,paddingBottom:10}}>10,000</Text>
                                         <Text>자리까지</Text>
