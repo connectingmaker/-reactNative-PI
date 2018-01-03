@@ -25,14 +25,17 @@ export default class Main extends Component {
     }
     loadData()
     {
-        /*
+
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
+            //console.log("main");
+           // console.log(json);
             if(json!=null) {
 
                 var challenge_recordCnt = json.challenge_recordCnt;
                 var challenge_grade = json.challenge_grade;
 
+               // console.log(challenge_recordCnt+":::::"+challenge_grade);
 
                 if(challenge_recordCnt != null) {
                     this.setState({challenge_recordCnt:challenge_recordCnt});
@@ -41,6 +44,8 @@ export default class Main extends Component {
                         var temp = pi.pi_grade_value[i].split("~");
                         if(parseInt(temp[0]) <= challenge_recordCnt && parseInt(temp[1]) >= challenge_recordCnt) {
                             var per = Math.round((challenge_recordCnt / parseInt(temp[1])) * 100);
+
+                            console.log(parseInt(temp[1]));
                             var dataObject = {
                                 "challenge_grade": pi.pi_grade[i]
                                 ,"challenge_recordCnt": challenge_recordCnt
@@ -67,7 +72,7 @@ export default class Main extends Component {
 
         }).then(res => {
         });
-        */
+
     }
 
 
