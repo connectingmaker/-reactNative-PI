@@ -50,6 +50,12 @@ export const MainFormStyle = StyleSheet.create({
         ,shadowColor: "rgba(0,0,0,23)"
         ,shadowOffset: { width: 0, height: 1 }
         ,shadowOpacity: 0.3
+        ,justifyContent: 'center'
+        ,alignItems: 'center'
+    }
+    ,contentsButtonText: {
+        color:"#3e3e3e"
+        ,fontSize:18
     }
     ,contentsSize: {
         fontSize:13

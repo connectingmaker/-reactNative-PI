@@ -59,7 +59,7 @@ export const keyboardStyle = StyleSheet.create({
     ,keyboardButton: {
         backgroundColor:"#404040"
         ,width:"100%"
-        ,height:(height / 10)
+        ,height:(height / 11)
         ,justifyContent: 'center'
     }
 
@@ -67,7 +67,7 @@ export const keyboardStyle = StyleSheet.create({
         // backgroundColor:"#f23611"
         backgroundColor:"#ff7c80"
         ,width:"100%"
-        ,height:(height / 10)
+        ,height:(height / 11)
         ,justifyContent: 'center'
     }
 
@@ -75,7 +75,7 @@ export const keyboardStyle = StyleSheet.create({
         // backgroundColor:"#00a2ff"
         backgroundColor:"#afabab"
         ,width:"100%"
-        ,height:(height / 10)
+        ,height:(height / 11)
         ,justifyContent: 'center'
     }
 
@@ -83,6 +83,6 @@ export const keyboardStyle = StyleSheet.create({
     ,keyboardButtonTxt: {
         color:"#fff"
         ,fontWeight:"bold"
-        ,fontSize:14
+        ,fontSize:20
     }
 })

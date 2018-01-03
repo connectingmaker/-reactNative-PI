@@ -405,7 +405,7 @@ export default class pisection extends Component {
                                 </ScrollView>
                             </View>
 
-                            <View style={{flex:0.5}}>
+                            <View style={{flex:0.5, paddingTop:20}}>
 
 
                                 {/*PC*/}

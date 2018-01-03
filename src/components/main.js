@@ -111,58 +111,103 @@ export default class Main extends Component {
                     <View style={{paddingTop:10}}>
                         <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
                             <View style={{flex:0.48}}>
-                                <View style={MainFormStyle.contentsButtonLayout}>
-                                    <Button onPress={Actions.Idsetting} title="아이디 설정" color="#3e3e3e"></Button>
-                                </View>
+                                {/*<View style={MainFormStyle.contentsButtonLayout}>*/}
+                                    {/*<Button onPress={Actions.Idsetting} title="아이디 설정" color="#3e3e3e"></Button>*/}
+                                {/*</View>*/}
+
+                                <TouchableOpacity onPress={Actions.Idsetting}>
+                                    <View style={MainFormStyle.contentsButtonLayout}>
+                                        <Text style={MainFormStyle.contentsButtonText}>아이디 설정</Text>
+                                    </View>
+                                </TouchableOpacity>
                             </View>
                             <View style={{flex:0.04}}></View>
                             <View style={{flex:0.48}}>
-                                <View style={MainFormStyle.contentsButtonLayout}>
-                                    <Button onPress={Actions.Keyboard} title="키패드 설정" color="#3e3e3e"></Button>
-                                </View>
+                                {/*<View style={MainFormStyle.contentsButtonLayout}>*/}
+                                    {/*<Button onPress={Actions.Keyboard} title="키패드 설정" color="#3e3e3e"></Button>*/}
+                                {/*</View>*/}
+
+                                <TouchableOpacity onPress={Actions.Keyboard}>
+                                    <View style={MainFormStyle.contentsButtonLayout}>
+                                        <Text style={MainFormStyle.contentsButtonText}>키패드 설정</Text>
+                                    </View>
+                                </TouchableOpacity>
                             </View>
                         </View>
 
                         <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
                             <View style={{flex:0.48}}>
+
+                                {/*<Button onPress={Actions.Grade} title="등급 보기" color="#3e3e3e"></Button>*/}
+                                <TouchableOpacity onPress={Actions.Grade}>
                                 <View style={MainFormStyle.contentsButtonLayout}>
-                                    <Button onPress={Actions.Grade} title="등급 보기" color="#3e3e3e"></Button>
+                                    <Text style={MainFormStyle.contentsButtonText}>등급 보기</Text>
                                 </View>
+                                </TouchableOpacity>
                             </View>
                             <View style={{flex:0.04}}></View>
                             <View style={{flex:0.48}}>
-                                <View style={MainFormStyle.contentsButtonLayout}>
-                                    <Button onPress={Actions.Pivalue} title="파이값 보기" color="#3e3e3e"></Button>
-                                </View>
+                                {/*<View style={MainFormStyle.contentsButtonLayout}>*/}
+                                    {/*<Button onPress={Actions.Pivalue} title="파이값 보기" color="#3e3e3e"></Button>*/}
+                                {/*</View>*/}
+
+                                <TouchableOpacity onPress={Actions.Pivalue}>
+                                    <View style={MainFormStyle.contentsButtonLayout}>
+                                        <Text style={MainFormStyle.contentsButtonText}>파이값 보기</Text>
+                                    </View>
+                                </TouchableOpacity>
                             </View>
                         </View>
 
                         <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
                             <View style={{flex:0.48}}>
-                                <View style={MainFormStyle.contentsButtonLayout}>
-                                    <Button onPress={Actions.Pirecord} title="연 습" color="#3e3e3e"></Button>
-                                </View>
+                                {/*<View style={MainFormStyle.contentsButtonLayout}>*/}
+                                    {/*<Button onPress={Actions.Pirecord} title="연 습" color="#3e3e3e"></Button>*/}
+                                {/*</View>*/}
+
+                                <TouchableOpacity onPress={Actions.Pirecord}>
+                                    <View style={MainFormStyle.contentsButtonLayout}>
+                                        <Text style={MainFormStyle.contentsButtonText}>연 습</Text>
+                                    </View>
+                                </TouchableOpacity>
                             </View>
                             <View style={{flex:0.04}}></View>
                             <View style={{flex:0.48}}>
-                                <View style={MainFormStyle.contentsButtonLayout}>
-                                    <Button onPress={Actions.Pichallenge} title="도 전" color="#3e3e3e"></Button>
-                                </View>
+                                {/*<View style={MainFormStyle.contentsButtonLayout}>*/}
+                                    {/*<Button onPress={Actions.Pichallenge} title="도 전" color="#3e3e3e"></Button>*/}
+                                {/*</View>*/}
+                                <TouchableOpacity onPress={Actions.Pichallenge}>
+                                    <View style={MainFormStyle.contentsButtonLayout}>
+                                        <Text style={MainFormStyle.contentsButtonText}>도 전</Text>
+                                    </View>
+                                </TouchableOpacity>
                             </View>
                         </View>
 
 
                         <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
                             <View style={{flex:0.48}}>
-                                <View style={MainFormStyle.contentsButtonLayout}>
-                                    <Button onPress={Actions.Pisection} title="구간 연습" color="#3e3e3e"></Button>
-                                </View>
+                                {/*<View style={MainFormStyle.contentsButtonLayout}>*/}
+                                    {/*<Button onPress={Actions.Pisection} title="구간 연습" color="#3e3e3e"></Button>*/}
+                                {/*</View>*/}
+
+                                <TouchableOpacity onPress={Actions.Pisection}>
+                                    <View style={MainFormStyle.contentsButtonLayout}>
+                                        <Text style={MainFormStyle.contentsButtonText}>구간 연습</Text>
+                                    </View>
+                                </TouchableOpacity>
                             </View>
                             <View style={{flex:0.04}}></View>
                             <View style={{flex:0.48}}>
-                                <View style={MainFormStyle.contentsButtonLayout}>
-                                    <Button onPress={Actions.Readerboard} title="리더 보드" color="#3e3e3e"></Button>
-                                </View>
+                                {/*<View style={MainFormStyle.contentsButtonLayout}>*/}
+                                    {/*<Button onPress={Actions.Readerboard} title="리더 보드" color="#3e3e3e"></Button>*/}
+                                {/*</View>*/}
+
+                                <TouchableOpacity onPress={Actions.Readerboard}>
+                                    <View style={MainFormStyle.contentsButtonLayout}>
+                                        <Text style={MainFormStyle.contentsButtonText}>리더 보드</Text>
+                                    </View>
+                                </TouchableOpacity>
                             </View>
                         </View>
                     </View>

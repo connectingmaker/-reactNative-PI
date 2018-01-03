@@ -27,7 +27,7 @@ export default class pirecord extends Component {
     constructor(){
         super();
         this.state = {
-            keyboard:""
+            keyboard:"pc"
             ,piData:""
             ,piRealData:""
             ,recordCnt:0
@@ -312,7 +312,7 @@ export default class pirecord extends Component {
                                 </ScrollView>
                             </View>
 
-                            <View style={{flex:0.5}}>
+                            <View style={{flex:0.5, paddingTop:20}}>
 
 
                                 {/*PC*/}
