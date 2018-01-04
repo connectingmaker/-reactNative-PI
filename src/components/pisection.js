@@ -953,8 +953,8 @@ export default class pisection extends Component {
 
 
                 </Content>
-                <TouchableOpacity onPress={() => this._pay()}>
-                {/*<TouchableOpacity onPress={() => this._sectionPopup()}>*/}
+                {/*<TouchableOpacity onPress={() => this._pay()}>*/}
+                <TouchableOpacity onPress={() => this._sectionPopup()}>
                 <Footer style={{backgroundColor:"#000"}}>
 
                     {/*<TouchableOpacity onPress={() => this._pay()}>*/}
