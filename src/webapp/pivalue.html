@@ -17,7 +17,6 @@
     <script language="JavaScript">
 
         document.addEventListener("message", function(event) {
-            //event.data);
             var temp = event.data;
             var split_data = temp.split("///");
 
@@ -119,7 +118,7 @@
                         countNum++;
 
                         if(countNum%3 == 0) {
-                            pi_data += "<span style='color:#fff; font-size:1.6em;line-height:30px;'>" + pi_config[i] + "</span><span style='font-size:1.6em;line-height:30px;'>&nbsp;</span>";
+                            pi_data += "<span style='color:#fff; font-size:1.6em;line-height:30px;'>" + pi_config[i] + "</span><span style='font-size:1.6em;line-height:30px;'></span>";
                             countNum = 0;
                         } else {
                             pi_data += "<span style='color:#fff; font-size:1.6em;line-height:30px;'>" + pi_config[i] + "</span>";
@@ -163,7 +162,7 @@
                         countNum++;
 
                         if(countNum%5 == 0) {
-                            pi_data += "<span style='color:#fff; font-size:1.6em;line-height:30px;'>" + pi_config[i] + "</span><span style='font-size:1.6em;line-height:30px;'>&nbsp;</span>";
+                            pi_data += "<span style='color:#fff; font-size:1.6em;line-height:30px;'>" + pi_config[i] + "</span><span style='font-size:1.6em;line-height:30px;'></span>";
                             countNum = 0;
                         } else {
                             pi_data += "<span style='color:#fff; font-size:1.6em;line-height:30px;'>" + pi_config[i] + "</span>";
@@ -172,7 +171,7 @@
 
                     }
                     if(num%20 == 0) {
-                        pi_data += "<br>";
+                        //pi_data += "<br>";
                     }
                     num++;
                 }
@@ -218,7 +217,7 @@
 
                     }
                     if(num%20 == 0) {
-                        pi_data += "<br>";
+                        //pi_data += "<br>";
                     }
                     num++;
                 }

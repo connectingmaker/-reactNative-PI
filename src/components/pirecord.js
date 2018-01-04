@@ -273,7 +273,7 @@ export default class pirecord extends Component {
         return (
             <Container>
                 <Header style={commonStyle.headerLayout}>
-                    <TouchableOpacity onPress={Actions.pop} style={{flex:.2, alignItems: 'flex-start'}}>
+                    <TouchableOpacity onPress={Actions.pop} style={{flex:.2, alignItems: 'flex-start', width:"100%"}}>
                         <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
                             <Text style={{fontSize:12,color:'#fff'}}> BACK </Text>
                         </View>
@@ -281,7 +281,7 @@ export default class pirecord extends Component {
                     <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
                         <Text style={{fontSize:16,color:'#fff'}}>연 습</Text>
                     </View>
-                    <TouchableOpacity onPress={() => this._defaultBtn()} style={{flex:.2, alignItems: 'flex-end'}}>
+                    <TouchableOpacity onPress={() => this._defaultBtn()} style={{flex:.2, alignItems: 'flex-end', width:"100%"}}>
                         <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
                             <Text style={{fontSize:12,color:'#fff'}}> 초기화 </Text>
                         </View>

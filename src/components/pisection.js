@@ -919,9 +919,8 @@ export default class pisection extends Component {
                     </View>
 
                     <Modal isVisible={this.state.isModalVisible}>
-                        <View style={{ flex: 0.3 }}>
-                        </View>
-                        <View style={{ flex: 0.4, backgroundColor:"#fff"}}>
+
+                        <View style={{backgroundColor:"#fff", height:280}}>
                             <View style={{width:"100%", justifyContent: 'center', alignItems: 'center'}}>
                                 <Text style={{color:"#000", paddingTop:10, paddingBottom:10, fontSize:20, fontWeight:"bold" ,marginTop:10}}>구간설정</Text>
                             </View>
@@ -936,28 +935,36 @@ export default class pisection extends Component {
                                     <Input placeholder="끝 자리 수" />
                                 </Item>
                             </View>
-                            <View style={{width:"100%", justifyContent: 'center', alignItems: 'center', paddingLeft:20, paddingRight:20,marginTop:10}}>
+                            <View style={{width:"100%",flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingLeft:20, paddingRight:20,marginTop:10, paddingBottom:20}}>
+                                <View style={{width:"50%", paddingRight:5}}>
+                                <Button style={{width:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={() => this._sectionClose()}>
+                                    <Text style={{color:"#fff"}}>닫기</Text>
+                                </Button>
+                                </View>
+                                <View style={{width:"50%",paddingLeft:5}}>
                                 <Button style={{width:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={() => this._sectionStart()}>
                                     <Text style={{color:"#fff"}}>시작</Text>
                                 </Button>
+                                </View>
                             </View>
-                        </View>
-                        <View style={{ flex: 0.3 }}>
                         </View>
                     </Modal>
 
 
 
                 </Content>
+                <TouchableOpacity onPress={() => this._pay()}>
+                {/*<TouchableOpacity onPress={() => this._sectionPopup()}>*/}
                 <Footer style={{backgroundColor:"#000"}}>
-                    {/*<TouchableOpacity onPress={() => this._sectionPopup()}>*/}
-                    <TouchableOpacity onPress={() => this._pay()}>
+
+                    {/*<TouchableOpacity onPress={() => this._pay()}>*/}
                     <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
                         <Text style={{fontSize:12,color:'#fff'}}>구간 설정</Text>
                     </View>
-                    </TouchableOpacity>
+
 
                 </Footer>
+                </TouchableOpacity>
             </Container>
         );
 

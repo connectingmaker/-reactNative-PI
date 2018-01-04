@@ -35,12 +35,11 @@ export default class pivalue extends Component {
     }
 
     sendPostMessage(view, max) {
-        this.webView.postMessage( view+"///"+max );
-        /*
-        setTimeout(function() {
 
-        }, 1000);
-        */
+        setTimeout(() => {
+            this.webView.postMessage(view+"///"+max);
+        }, 1000)
+
     }
 
     componentWillMount()
@@ -246,7 +245,7 @@ export default class pivalue extends Component {
                             <Text style={pivalueFormStyle.title}>π= 3.</Text>
                         </View>
 
-                        <WebView ref={webview => { this.webView = webview; }} source={require('../webapp/pivalue.html')} style={{width:"100%", height:350}}></WebView>
+                        <WebView ref={webview => { this.webView = webview; }} source={require('../webapp/pivalue.html')} style={{width:"100%", height:350}} javaScriptEnabledAndroid={true} javaScriptEnabled={true}></WebView>
 
                         <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
                             <View style={{flex:0.6}}>
