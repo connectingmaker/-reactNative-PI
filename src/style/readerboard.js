@@ -19,7 +19,7 @@ export const readerboardFormStyle = StyleSheet.create({
 
     }
     ,contentheaderContent:{
-        fontSize: 15 , color:"#fff",fontWeight:'bold'
+        fontSize: 11 , color:"#fff",fontWeight:'bold'
     }
     ,bodyLayout : {
         width: "100%"
@@ -51,7 +51,7 @@ export const readerboardFormStyle = StyleSheet.create({
     }
 
     ,contentsSize: {
-        fontSize:13
+        fontSize:10
         ,lineHeight:25
     }
     ,boldFont: {
@@ -73,6 +73,9 @@ export const readerboardFormStyle = StyleSheet.create({
         ,marginTop:10
         ,marginBottom:10
 
+    }
+    ,title:{
+        fontSize:10
     }
 
 

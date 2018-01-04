@@ -6,6 +6,8 @@ import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform,ScrollView,ListView,AsyncStorage} from 'react-native';
 import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button,Spinner,Left,Right } from 'native-base';
+import TimeFormatter from 'minutes-seconds-milliseconds';
+
 import HTML from 'react-native-render-html';
 
 import {pivalueFormStyle} from '../style/pivalue';
@@ -55,15 +57,15 @@ export default class readerboard extends Component {
 
     loadData()
     {
+        console.log("리더보드 데이터");
         var object = {};
-        fetch(config.SERVER_URL+"/leaderboard/top10", object)
+        fetch(config.SERVER_URL+"/leaderboard/topmember", object)
             .then((response) => response.json())
             .then((responseData) =>
             {
+                console.log("리더보드 데이");
                 console.log(responseData);
                 this.setState({dataSource:this.state.dataSource.cloneWithRows(responseData)});
-
-
                 AsyncStorage.getItem(config.STORE_KEY).then((value) => {
                     var json = eval("("+value+")");
                     if(json!=null) {
@@ -88,8 +90,6 @@ export default class readerboard extends Component {
                                         this.setState({challenge_grade:pi.pi_grade[i],challenge_recordCnt:challenge_recordCnt, challenge_per: per});
                                     });
 
-
-
                                     break;
                                 }
                             }
@@ -101,8 +101,6 @@ export default class readerboard extends Component {
                     if(challenge_grade != null) {
                         this.setState({challenge_grade:challenge_grade});
                     }
-
-
 
                 }).then(res => {
                 });
@@ -120,7 +118,26 @@ export default class readerboard extends Component {
     {
         return (
             <View>
-                <Text>{obj.username}</Text>
+
+
+                <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
+                    <View style={{flex:.1, alignItems:'center'}}>
+                        <Text style={readerboardFormStyle.title}> {obj.SEQ} </Text>
+                    </View>
+                    <View style={{flex:.3, alignItems:'center'}}>
+                        <Text style={readerboardFormStyle.title}> {obj.USERNAME} </Text>
+                    </View>
+                    <View style={{flex:.2, alignItems:'center'}}>
+                        <Text style={readerboardFormStyle.title}> {obj.COUNTRY} </Text>
+                    </View>
+                    <View style={{flex:.2, alignItems:'center'}}>
+                        <Text style={readerboardFormStyle.title}> {obj.CNT} pt </Text>
+                    </View>
+                    <View style={{flex:.2, alignItems:'center'}}>
+                        <Text style={readerboardFormStyle.title}> {TimeFormatter(obj.TIMER)} </Text>
+                    </View>
+                </View>
+                <View style={readerboardFormStyle.lingBg}></View>
             </View>
         );
     }
@@ -158,6 +175,26 @@ export default class readerboard extends Component {
                     <View style={readerboardFormStyle.headercontetLayout}>
                         <Text>Ranking</Text>
                     </View>
+                    <View>
+                        <View style={{flex:1,flexDirection: 'row', paddingTop:10, paddingBottom:5}}>
+                            <View style={{flex:.1, alignItems:'center'}}>
+                                <Text style={readerboardFormStyle.title}> TOP </Text>
+                            </View>
+                            <View style={{flex:.3, alignItems:'center'}}>
+                                <Text style={readerboardFormStyle.title}> USERNAME </Text>
+                            </View>
+                            <View style={{flex:.2, alignItems:'center'}}>
+                                <Text style={readerboardFormStyle.title}> COUNTRY </Text>
+                            </View>
+                            <View style={{flex:.2, alignItems:'center'}}>
+                                <Text style={readerboardFormStyle.title}> RECORD </Text>
+                            </View>
+                            <View style={{flex:.2, alignItems:'center'}}>
+                                <Text style={readerboardFormStyle.title}> TIMER </Text>
+                            </View>
+                        </View>
+                    </View>
+                    <View style={readerboardFormStyle.lingBg}></View>
                     <ListView
                         dataSource={this.state.dataSource}
                         renderRow={(rowData) => this.readerBoard(rowData) }

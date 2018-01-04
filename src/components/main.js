@@ -100,7 +100,7 @@ export default class Main extends Component {
                         </View>
 
                         <View style={{alignItems: 'center',justifyContent:'center',paddingTop:20,paddingBottom:20}}>
-                            <PercentageCircle radius={40} percent={30} borderWidth={5}>
+                            <PercentageCircle radius={40} percent={this.state.challenge_per} borderWidth={5}>
                             </PercentageCircle>
                             <View style={{alignItems: 'center',justifyContent:'center',paddingTop:20}}>
                                 <Text style={MainFormStyle.boldFont}>최고기록 : {this.state.challenge_recordCnt}</Text>

@@ -31,6 +31,11 @@ export default class pichallenge extends Component {
         this.state = {
             keyboard:""
             ,uid:""
+            ,username:""
+            ,country:""
+            ,countryImg:""
+            ,age:""
+            ,gender:""
             ,piData:""
             ,piRealData:""
             ,challenge_recordCnt:0
@@ -60,6 +65,7 @@ export default class pichallenge extends Component {
 
     _keyboardPress(value)
     {
+        var uid = this.state.uid;
         if(this.state.challenge_start == false) {
             alert("도전시작을 눌러주세요.");
             return;
@@ -79,7 +85,7 @@ export default class pichallenge extends Component {
         */
         var piRealDataLength = piRealData.length;
         if(piData == "") {
-            piData = "<span style='color:#fff;border:1px solid #fff;'>"+value+"</span><span></span>";
+            piData = "<span style='color:#fff;border:1px solid #fff; font-size: 1.6em;'>"+value+"</span><span></span>";
             piRealData = value.toString();
         } else {
 
@@ -90,22 +96,22 @@ export default class pichallenge extends Component {
                     if(tempLength % 100 == 0) {
                         if(tempLength % 1000 == 0) {
                             if(tempLength % 1000 == 0) {
-                                piData += "<b style='color:#f0ff00;'>"+value+"</b>";
+                                piData += "<b style='color:#f0ff00;font-size: 1.6em;'>"+value+"</b>";
                             }
-                            piData += "<b style='color:#0066ff;'>"+value+"</b>";
+                            piData += "<b style='color:#0066ff;font-size: 1.6em;'>"+value+"</b>";
                         } else {
-                            piData += "<b style='color:#ff0000;'>" + value + "</b>";
+                            piData += "<b style='color:#ff0000;font-size: 1.6em;'>" + value + "</b>";
                         }
 
                     } else {
-                        piData += "<b style='color:#f0ff00;'>"+value+"</b>";
+                        piData += "<b style='color:#f0ff00;font-size: 1.6em;'>"+value+"</b>";
                     }
 
                 } else {
-                    piData += "<span style='color:#fff;'>"+value+"</span>";
+                    piData += "<span style='color:#fff;font-size: 1.6em;'>"+value+"</span>";
                 }
             } else {
-                piData += "<span style='color:#fff;'>"+value+"</span>";
+                piData += "<span style='color:#fff;font-size: 1.6em;'>"+value+"</span>";
             }
             piRealData += value.toString();
         }
@@ -225,7 +231,9 @@ export default class pichallenge extends Component {
 
 
 
-        this.setState({piData:piData, piRealData:piRealData});
+        this.setState({piData:piData, piRealData:piRealData, uid:uid, username:this.state.username, country:this.state.country,countryImg:this.state.countryImg,age:this.state.age,gender:this.state.gender});
+
+        console.log("key push");
     }
 
     _defaultBtn()
@@ -248,10 +256,10 @@ export default class pichallenge extends Component {
             var uid = "";
             if(json.UID != "") {
                 uid = json.UID;
-                this.setState({uid:uid});
+                this.setState({uid:uid,USERNAME:this.state.USERNAME,COUNTRY:this.state.COUNTRY,COUNTRYIMG:this.state.COUNTRYIMG,AGE:this.state.AGE,GENDER:this.state.GENDER});
             }
-
-
+            console.log("도전 loadData!!");
+            console.log(uid);
             console.log(json);
             if(json!=null) {
 
@@ -317,14 +325,23 @@ export default class pichallenge extends Component {
 
     _challenge_end()
     {
+
         clearInterval(timer);
         alert("종료되었습니다." + this.state.challenge_timer + "초");
 
         this.setState({challenge_timer:0, challenge_stop: false, challenge_start:false});
 
         var formData = new FormData();
+        formData.append('UID', this.state.uid);
         formData.append('TIMER', this.state.challenge_timer);
         formData.append('CNT', this.state.challenge_recordCnt);
+        formData.append('USERNAME', this.state.USERNAME);
+        formData.append('COUNTRY', this.state.textInputValue);
+        formData.append('COUNTRYIMG', this.state.countryImg);
+        formData.append('AGE', this.state.textInputValue3);
+        formData.append('GENDER', this.state.textInputValue2);
+
+
         var object = {
             method: 'POST',
             headers: {
@@ -334,33 +351,31 @@ export default class pichallenge extends Component {
             body:formData
         };
 
+        console.log("도전완료");
         console.log(object);
 
         fetch(config.SERVER_URL+'/challenge/memberChallengeInsert', object)
             .then((response) => response.json())
             .then((responseJson) => {
-                console.log(responseJson);
-                //console.log(responseJson);
-                /*
-                 var data = eval("("+responseJson+")");
-                 if(data.length == 0) {
-                 Alert.alert(
-                 'Error',
-                 '오류가 발생되었습니다.',
-                 [
-                 {text: '확인', onPress: () => console.log('OK Pressed')},
-                 ],
-                 { cancelable: false }
-                 );
-                 } else {
+            console.log("responseJon&memberChallengeInsert");
+            console.log(responseJson);
 
-                 AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
+                var object = {
+                    UID : responseJson.UID
+                    ,TIMER : responseJson.TIMER
+                    ,CNT : responseJson.CNT
+                    ,USERNAME : responseJson.USERNAME
+                    ,COUNTRY : responseJson.COUNTRY
+                    ,COUNTRYIMG : responseJson.COUNTRYIMG
+                    ,AGE : responseJson.AGE
+                    ,GENDER : responseJson.GENDER
 
-                 alert("저장되었습니다.");
-                 });
-                 }
-                 */
+                }
 
+                AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(object), () => {
+                    this.setState({UID:responseJson.UID,TIMER:responseJson.TIMER, CNT:responseJson.CNT,USERNAME:responseJson.USERNAME,COUNTRY:responseJson.COUNTRY, COUNTRYIMG:responseJson.COUNTRYIMG ,AGE:responseJson.AGE, GENDER:responseJson.GENDER});
+                    Actions.pop();
+                });
             })
             .catch((error) => {
                 console.error(error);
@@ -408,7 +423,7 @@ export default class pichallenge extends Component {
                                 </ScrollView>
                             </View>
 
-                            <View style={{flex:0.7}}>
+                            <View style={{flex:0.7,paddingTop:20}}>
 
 
                                 {/*PC*/}

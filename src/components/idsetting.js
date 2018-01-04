@@ -53,7 +53,7 @@ export default class Idsetting extends Component {
 
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
-            console.log("OK!loaddata");
+            console.log(" idseeting!loaddata");
             console.log(json);
             if(json!=null) {
                 var username = json.USERNAME;
@@ -63,7 +63,7 @@ export default class Idsetting extends Component {
                 var gender = json.GENDER;
                 var uid = json.UID;
 
-
+                console.log(countryImg);
                 if (username != null) {
                     this.setState({USERNAME: username});
                     // AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(username), () => {
@@ -173,14 +173,18 @@ export default class Idsetting extends Component {
             // });
 
             AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
-                this.setState({USERNAME:this.state.USERNAME,COUNTRY:this.state.textInputValue,AGE:this.state.textInputValue3,GENDER:this.state.textInputValue2});
+                this.setState({USERNAME:this.state.USERNAME,COUNTRY:this.state.textInputValue, COUNTRYIMG:this.state.countryImg, AGE:this.state.textInputValue3,GENDER:this.state.textInputValue2});
             });
+
+            console.log("COUNTRYIMG");
+            console.log(this.state.countryImg);
 
 
             var formData = new FormData();
             formData.append('UID', this.state.uid);
             formData.append('USERNAME', this.state.USERNAME);
             formData.append('COUNTRY', this.state.textInputValue);
+            formData.append('COUNTRYIMG', this.state.countryImg);
             formData.append('AGE', this.state.textInputValue3);
             formData.append('GENDER', this.state.textInputValue2);
             var object = {
@@ -204,12 +208,13 @@ export default class Idsetting extends Component {
                         UID : responseJson.UID
                         ,USERNAME : responseJson.USERNAME
                         ,COUNTRY : responseJson.COUNTRY
+                        ,COUNTRYIMG : responseJson.COUNTRYIMG
                         ,AGE : responseJson.AGE
                         ,GENDER : responseJson.GENDER
                     }
 
                     AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(object), () => {
-                        this.setState({UID:responseJson.UID});
+                        this.setState({UID:responseJson.UID,USERNAME:responseJson.USERNAME,COUNTRY:responseJson.COUNTRY, COUNTRYIMG:responseJson.COUNTRYIMG ,AGE:responseJson.AGE, GENDER:responseJson.GENDER});
                         Actions.pop();
                     });
                 })
