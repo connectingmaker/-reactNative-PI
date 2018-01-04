@@ -117,7 +117,7 @@ export default class readerboard extends Component {
     readerBoard(obj)
     {
         return (
-            <View>
+            <View style={{backgroundColor:"#fff"}}>
 
 
                 <View style={{flex:1,flexDirection: 'row', paddingTop:5, paddingBottom:5}}>
@@ -158,7 +158,7 @@ export default class readerboard extends Component {
                     </View>
                 </Header>
 
-                <Content style={{padding:10}}>
+                <Content style={{padding:10,backgroundColor:"#fff"}}>
                     <View style={commonStyle.headerTitleLayout}>
                         <View style={commonStyle.headerTitleLeft}>
                             <TouchableOpacity onPress={Actions.Grade}>
@@ -175,7 +175,8 @@ export default class readerboard extends Component {
                     <View style={readerboardFormStyle.headercontetLayout}>
                         <Text>Ranking</Text>
                     </View>
-                    <View>
+                    <View style={{backgroundColor:"#fff"}}>
+                        <View style={readerboardFormStyle.lingBg}></View>
                         <View style={{flex:1,flexDirection: 'row', paddingTop:10, paddingBottom:5}}>
                             <View style={{flex:.1, alignItems:'center'}}>
                                 <Text style={readerboardFormStyle.title}> TOP </Text>
@@ -195,7 +196,7 @@ export default class readerboard extends Component {
                         </View>
                     </View>
                     <View style={readerboardFormStyle.lingBg}></View>
-                    <ListView
+                    <ListView style={{backgroundColor:"#fff"}}
                         dataSource={this.state.dataSource}
                         renderRow={(rowData) => this.readerBoard(rowData) }
                     />

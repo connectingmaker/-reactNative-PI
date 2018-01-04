@@ -75,22 +75,22 @@ export default class pirecord extends Component {
                     if(tempLength % 100 == 0) {
                         if(tempLength % 1000 == 0) {
                             if(tempLength % 1000 == 0) {
-                                piData += "<b style='color:#f0ff00;font-size:1.4em;'>"+value+"</b>";
+                                piData += "<b style='color:#f0ff00;font-size:1.6em;'>"+value+"</b>";
                             }
-                            piData += "<b style='color:#0066ff;font-size:1.4em;'>"+value+"</b>";
+                            piData += "<b style='color:#0066ff;font-size:1.6em;'>"+value+"</b>";
                         } else {
-                            piData += "<b style='color:#ff0000;font-size:1.4em;'>" + value + "</b>";
+                            piData += "<b style='color:#ff0000;font-size:1.6em;'>" + value + "</b>";
                         }
 
                     } else {
-                        piData += "<b style='color:#f0ff00;font-size:1.4em;'>"+value+"</b>";
+                        piData += "<b style='color:#f0ff00;font-size:1.6em;'>"+value+"</b>";
                     }
 
                 } else {
-                    piData += "<span style='color:#fff;font-size:1.4em;'>"+value+"</span>";
+                    piData += "<span style='color:#fff;font-size:1.6em;'>"+value+"</span>";
                 }
             } else {
-                piData += "<span style='color:#fff;font-size:1.4em;'>"+value+"</span>";
+                piData += "<span style='color:#fff;font-size:1.6em;'>"+value+"</span>";
             }
             piRealData += value.toString();
         }
