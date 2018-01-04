@@ -64,7 +64,7 @@ export default class pirecord extends Component {
         */
         var piRealDataLength = piRealData.length;
         if(piData == "") {
-            piData = "<span style='color:#fff;border:1px solid #fff;font-size:1.4em;'>"+value+"</span><span></span>";
+            piData = "<span style='color:#fff;border:1px solid #fff;font-size:1.6em;'>"+value+"</span><span></span>";
             piRealData = value.toString();
         } else {
 
