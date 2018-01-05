@@ -37,6 +37,9 @@ export default class Idsetting extends Component {
             ,country:''
             ,age:''
             ,gender:''
+            ,challenge_recordCnt:0
+            ,challenge_grade:''
+            ,keyboard:''
 
         }
 
@@ -66,8 +69,14 @@ export default class Idsetting extends Component {
                 var age = json.AGE;
                 var gender = json.GENDER;
                 var uid = json.UID;
+                var challenge_recordCnt = json.challenge_recordCnt;
+                var challenge_grade = json.challenge_grade;
+                var keyboard = json.KEYBOARD;
 
-                console.log(countryImg);
+
+                if(uid != null) {
+                    this.setState({uid:uid});
+                }
                 if (username != null) {
                     this.setState({USERNAME: username});
                     // AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(username), () => {
@@ -90,6 +99,18 @@ export default class Idsetting extends Component {
 
                 if (uid != null) {
                     this.setState({uid: uid});
+                }
+
+                if(keyboard != null) {
+                    this.setState({keyboard:keyboard});
+                }
+
+                if(challenge_recordCnt != null) {
+                    this.setState({challenge_recordCnt:challenge_recordCnt});
+                }
+
+                if(challenge_grade != null) {
+                    this.setState({challenge_grade:challenge_grade});
                 }
 
             }
@@ -149,39 +170,8 @@ export default class Idsetting extends Component {
             return;
         }else{
 
-            // AsyncStorage.getItem(config.STORE_KEY).then((value) => {
-            //     var json = eval("("+value+")");
-            //     //console.log("save");
-            //     //console.log(json);
-            //     if(json!=null) {
-            //
-            //
-            //         var username = json.USERNAME;
-            //         var country = json.COUNTRY;
-            //         var age = json.AGE;
-            //         var gender = json.GENDER;
-            //         var uid = json.UID;
-            //
-            //
-            //     AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
-            //         this.setState({USERNAME:username,COUNTRY:country,AGE:age,GENDER:gender});
-            //     });
-            //
-            //
-            //     } else {
-            //     }
-            //
-            //
-            //
-            // }).then(res => {
-            // });
 
-            AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
-                this.setState({USERNAME:this.state.USERNAME,COUNTRY:this.state.textInputValue, COUNTRYIMG:this.state.countryImg, AGE:this.state.textInputValue3,GENDER:this.state.textInputValue2});
-            });
 
-            console.log("COUNTRYIMG");
-            console.log(this.state.countryImg);
 
 
             var formData = new FormData();
@@ -195,7 +185,7 @@ export default class Idsetting extends Component {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'multipart/form-data'
                 },
                 body:formData
             };
@@ -206,7 +196,8 @@ export default class Idsetting extends Component {
             fetch(config.SERVER_URL+'/member/memberInsert', object)
                 .then((response) => response.json())
                 .then((responseJson) => {
-                    console.log(responseJson);
+
+
 
                     var object = {
                         UID : responseJson.UID
@@ -215,16 +206,31 @@ export default class Idsetting extends Component {
                         ,COUNTRYIMG : responseJson.COUNTRYIMG
                         ,AGE : responseJson.AGE
                         ,GENDER : responseJson.GENDER
+                        ,keyboard:this.state.keyboard
+                        ,challenge_recordCnt:this.state.challenge_recordCnt
+                        ,challenge_grade:this.state.challenge_grade
                     }
 
+                    console.log(object);
+
+
                     AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(object), () => {
-                        this.setState({UID:responseJson.UID,USERNAME:responseJson.USERNAME,COUNTRY:responseJson.COUNTRY, COUNTRYIMG:responseJson.COUNTRYIMG ,AGE:responseJson.AGE, GENDER:responseJson.GENDER});
+                        this.setState({
+                            UID:responseJson.UID
+                            ,USERNAME:responseJson.USERNAME
+                            ,COUNTRY:responseJson.COUNTRY
+                            , COUNTRYIMG:responseJson.COUNTRYIMG
+                            ,AGE:responseJson.AGE
+                            ,GENDER:responseJson.GENDER
+                        });
                         Actions.pop();
                     });
+
                 })
                 .catch((error) => {
                     console.error(error);
                 });
+
 
         }
 
@@ -598,6 +604,7 @@ export default class Idsetting extends Component {
                                 <Text style={idFormStyle.title}> COUNTRY </Text>
                             </View>
                             <View style={{flex:.7, alignItems:'center'}}>
+
                                 <ModalSelector
                                     data={data} initValue="국적을 선택해주세요." onChange={(option)=> this._contryChange(option)}>
                                     <TextInput placeholder="국적을 선택해주세요." placeholderTextColor = "#9a73ef"

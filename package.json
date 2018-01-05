@@ -24,6 +24,7 @@
     "react-native-percentage-circle": "^1.0.6",
     "react-native-render-html": "^3.5.2",
     "react-native-router-flux": "^4.0.0-beta.24",
+    "react-native-search-modal": "^1.0.1",
     "render-if": "^0.1.1"
   },
   "devDependencies": {

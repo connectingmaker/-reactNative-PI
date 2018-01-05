@@ -796,19 +796,19 @@ export default class pirecord extends Component {
                                         <View style={{ flex:0.66}}>
 
                                             <View style={keyboardStyle.keyboardButtonLayout}>
-                                                {renderIf(this.state.key1 == "default")(
+                                                {renderIf(this.state.key0 == "default")(
                                                     <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(0)}>
                                                         <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
                                                     </Button>
                                                 )}
 
-                                                {renderIf(this.state.key1 == "N")(
+                                                {renderIf(this.state.key0 == "N")(
                                                     <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(0)}>
                                                         <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
                                                     </Button>
                                                 )}
 
-                                                {renderIf(this.state.key1 == "Y")(
+                                                {renderIf(this.state.key0 == "Y")(
                                                     <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(0)}>
                                                         <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
                                                     </Button>
