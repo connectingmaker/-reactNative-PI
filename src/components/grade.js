@@ -3,7 +3,7 @@
  */
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform,AsyncStorage } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform,AsyncStorage,BackAndroid } from 'react-native';
 import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button } from 'native-base';
 
 import {gradeFormStyle} from '../style/grade';
@@ -27,6 +27,7 @@ export default class grade extends Component {
     componentWillMount()
     {
         this.loadData();
+        BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
     }
 
     loadData()

@@ -3,7 +3,10 @@
  */
 import React, { Component } from 'react';
 import {Actions } from 'react-native-router-flux';
-import {View, Text, AppRegistry, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform,TextInput,AsyncStorage } from 'react-native';
+import {
+    View, Text, AppRegistry, Image, StyleSheet, TouchableOpacity, AlertIOS, Alert, Platform, TextInput,
+    AsyncStorage, BackAndroid
+} from 'react-native';
 import {Container, Header, Body, Content, Footer,Item, Icon, Input,Button } from 'native-base';
 import ModalSelector from 'react-native-modal-selector';
 
@@ -47,6 +50,7 @@ export default class Idsetting extends Component {
     componentWillMount()
     {
         this.loadData();
+        BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
     }
     loadData()
     {

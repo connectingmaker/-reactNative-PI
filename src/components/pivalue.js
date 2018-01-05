@@ -4,7 +4,10 @@
 
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform,ScrollView,WebView } from 'react-native';
+import {
+    View, Text, Image, StyleSheet, TouchableOpacity, AlertIOS, Alert, Platform, ScrollView, WebView,
+    BackAndroid
+} from 'react-native';
 import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button,Spinner } from 'native-base';
 import HTML from 'react-native-render-html';
 
@@ -44,6 +47,7 @@ export default class pivalue extends Component {
 
     componentWillMount()
     {
+        BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
     }
 
     componentDidMount()

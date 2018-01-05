@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import {
     View, Text, Image, StyleSheet, TouchableOpacity, AlertIOS, Alert, Platform, ScrollView,
-    AsyncStorage
+    AsyncStorage, BackAndroid
 } from 'react-native';
 import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button,Spinner,Left,Right } from 'native-base';
 import HTML from 'react-native-render-html';
@@ -78,7 +78,7 @@ export default class pisection extends Component {
     componentWillMount()
     {
         this.loadData();
-
+        BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
 
 
     }
@@ -337,25 +337,21 @@ export default class pisection extends Component {
                 }
             });
         } else {
-
             var productId = "android.test.purchased";
-            //var productId = "product1000";
             await InAppBilling.close();
             try {
                 await InAppBilling.open();
-
                 if (!await InAppBilling.isPurchased(productId)) {
                     const details = await InAppBilling.purchase(productId);
-                    alert("You purchased:"+details);
-                    //console.log('You purchased: ', details);
+                    alert(details);
+                    console.log('You purchased: ', details);
                 }
                 const transactionStatus = await InAppBilling.getPurchaseTransactionDetails(productId);
                 console.log('Transaction Status', transactionStatus);
                 const productDetails = await InAppBilling.getProductDetails(productId);
-                //console.log(productDetails);
-                alert(productDetails);
+                console.log(productDetails);
             } catch (err) {
-                alert("오류발생");
+                alert(err);
                 console.log(err);
             } finally {
                 await InAppBilling.consumePurchase(productId);
@@ -953,8 +949,8 @@ export default class pisection extends Component {
 
 
                 </Content>
-                {/*<TouchableOpacity onPress={() => this._pay()}>*/}
-                <TouchableOpacity onPress={() => this._sectionPopup()}>
+                <TouchableOpacity onPress={() => this._pay()}>
+                {/*<TouchableOpacity onPress={() => this._sectionPopup()}>*/}
                 <Footer style={{backgroundColor:"#000"}}>
 
                     {/*<TouchableOpacity onPress={() => this._pay()}>*/}
