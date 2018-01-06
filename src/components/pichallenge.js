@@ -347,7 +347,7 @@ export default class pichallenge extends Component {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'multipart/form-data'
             },
             body:formData
         };
@@ -372,6 +372,20 @@ export default class pichallenge extends Component {
                     ,GENDER : responseJson.GENDER
 
                 }
+                /*
+                var dataObject = {
+                    "UID": this.state.uid
+                    ,"USERNAME": this.state.username
+                    ,"COUNTRY": this.state.country
+                    ,"COUNTRYIMG": this.state.countryImg
+                    ,"AGE": this.state.age
+                    ,"GENDER": this.state.gender
+                    ,"challenge_recordCnt" : this.state.challenge_recordCnt
+                    ,"challenge_grade" : this.state.challenge_grade
+                    ,"grade": pi.pi_grade[0]
+                    ,"recordCnt": 0
+                };
+                */
 
                 AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(object), () => {
                     this.setState({UID:responseJson.UID,TIMER:responseJson.TIMER, CNT:responseJson.CNT,USERNAME:responseJson.USERNAME,COUNTRY:responseJson.COUNTRY, COUNTRYIMG:responseJson.COUNTRYIMG ,AGE:responseJson.AGE, GENDER:responseJson.GENDER});

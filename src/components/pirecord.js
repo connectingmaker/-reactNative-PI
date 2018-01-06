@@ -26,8 +26,17 @@ export default class pirecord extends Component {
 
     constructor(){
         super();
+
         this.state = {
             keyboard:"pc"
+            ,uid:""
+            ,username:""
+            ,country:""
+            ,countryImg:""
+            ,age:""
+            ,gender:""
+            ,challenge_recordCnt:""
+            ,challenge_grade:""
             ,piData:""
             ,piRealData:""
             ,recordCnt:0
@@ -157,13 +166,23 @@ export default class pirecord extends Component {
                     if(parseInt(temp[0]) <= piRealDataLength && parseInt(temp[1]) >= piRealDataLength) {
 
                         var dataObject = {
-                            "grade": pi.pi_grade[i]
+                            "UID": this.state.uid
+                            ,"USERNAME": this.state.username
+                            ,"COUNTRY": this.state.country
+                            ,"COUNTRYIMG": this.state.countryImg
+                            ,"AGE": this.state.age
+                            ,"GENDER":this.state.gender
+                            ,"challenge_recordCnt" : this.state.challenge_recordCnt
+                            ,"challenge_grade" : this.state.challenge_grade
+                            ,"grade": pi.pi_grade[i]
                             ,"recordCnt": piRealDataLength+1
                         };
 
                         AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
                             this.setState({grade:pi.pi_grade[i],recordCnt:piRealDataLength+1});
                         });
+
+                        console.log(dataObject);
 
 
 
@@ -217,12 +236,46 @@ export default class pirecord extends Component {
 
     _defaultBtn()
     {
+
+        var username = json.USERNAME;
+        var country = json.COUNTRY;
+        var countryImg = json.COUNTRYIMG;
+        var age = json.AGE;
+        var gender = json.GENDER;
+        var uid = json.UID;
+        var challenge_recordCnt = json.challenge_recordCnt;
+        var challenge_grade = json.challenge_grade;
+
+
         var dataObject = {
-            "grade": pi.pi_grade[0]
+            "UID": this.state.uid
+            ,"USERNAME": this.state.username
+            ,"COUNTRY": this.state.country
+            ,"COUNTRYIMG": this.state.countryImg
+            ,"AGE": this.state.age
+            ,"GENDER": this.state.gender
+            ,"challenge_recordCnt" : this.state.challenge_recordCnt
+            ,"challenge_grade" : this.state.challenge_grade
+            ,"grade": pi.pi_grade[0]
             ,"recordCnt": 0
         };
         AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
-            this.setState({piData:"", piRealData: "", grade:pi.pi_grade[0],recordCnt:0, key1: "default", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "default"});
+            this.setState({
+                piData:""
+                , piRealData: ""
+                , grade:pi.pi_grade[0]
+                , recordCnt:0
+                , key1: "default"
+                , key2: "default"
+                , key3: "default"
+                , key4: "default"
+                , key5: "default"
+                , key6: "default"
+                , key7: "default"
+                , key8: "default"
+                , key9: "default"
+                , key0: "default"
+            });
 
         });
     }
@@ -234,9 +287,22 @@ export default class pirecord extends Component {
             console.log(json);
             if(json!=null) {
 
+
+
+                var username = json.USERNAME;
+                var country = json.COUNTRY;
+                var countryImg = json.COUNTRYIMG;
+                var age = json.AGE;
+                var gender = json.GENDER;
+                var uid = json.UID;
+                var challenge_recordCnt = json.challenge_recordCnt;
+                var challenge_grade = json.challenge_grade;
+
+
                 var keyboardUse = json.KEYBOARD;
                 var recordCnt = json.recordCnt;
                 var grade = json.grade;
+
 
 
                 switch (keyboardUse) {
@@ -255,6 +321,39 @@ export default class pirecord extends Component {
                 if(recordCnt != null) {
                     this.setState({recordCnt:recordCnt});
                 }
+
+                if(uid != null) {
+                    this.setState({uid:uid});
+                }
+
+                if(username != null) {
+                    this.setState({username:username});
+                }
+                if(country != null) {
+                    this.setState({country:country});
+                }
+
+                if(countryImg != null) {
+                    this.setState({countryImg:countryImg});
+                }
+
+
+                if(age != null) {
+                    this.setState({age:age});
+                }
+
+                if(gender != null) {
+                    this.setState({gender:gender});
+                }
+
+                if(challenge_recordCnt != null) {
+                    this.setState({challenge_recordCnt:challenge_recordCnt});
+                }
+
+                if(challenge_grade != null) {
+                    this.setState({challenge_grade:challenge_grade});
+                }
+
 
             } else {
                 this.setState({keyboard: "pc"})

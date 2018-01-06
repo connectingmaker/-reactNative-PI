@@ -60,7 +60,6 @@ export default class Idsetting extends Component {
 
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
-            console.log(" idseeting!loaddata");
             console.log(json);
             if(json!=null) {
                 var username = json.USERNAME;
@@ -225,6 +224,7 @@ export default class Idsetting extends Component {
                         });
                         Actions.pop();
                     });
+
 
                 })
                 .catch((error) => {
