@@ -82,8 +82,8 @@ export default class readerboard extends Component {
                         var uid = json.UID;
 
                         var keyboardUse = json.KEYBOARD;
-                        var challenge_recordCnt = json.CNT;
-                        var challenge_grade = json.GRADE;
+                        var challenge_recordCnt = json.challenge_recordCnt;
+                        var challenge_grade = json.challenge_grade;
 
 
 
