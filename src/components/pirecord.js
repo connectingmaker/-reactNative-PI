@@ -41,6 +41,7 @@ export default class pirecord extends Component {
             ,piRealData:""
             ,recordCnt:0
             ,grade:"Halley's Comet"
+            ,payment_start : ""
             ,key1:"default"
             ,key2:"default"
             ,key3:"default"
@@ -52,6 +53,8 @@ export default class pirecord extends Component {
             ,key9:"default"
             ,key0:"default"
         };
+
+
 
     }
 
@@ -174,6 +177,7 @@ export default class pirecord extends Component {
                             ,"GENDER":this.state.gender
                             ,"challenge_recordCnt" : this.state.challenge_recordCnt
                             ,"challenge_grade" : this.state.challenge_grade
+                            ,"payment_start": this.state.payment_start
                             ,"grade": pi.pi_grade[i]
                             ,"recordCnt": piRealDataLength+1
                         };
@@ -237,14 +241,6 @@ export default class pirecord extends Component {
     _defaultBtn()
     {
 
-        var username = json.USERNAME;
-        var country = json.COUNTRY;
-        var countryImg = json.COUNTRYIMG;
-        var age = json.AGE;
-        var gender = json.GENDER;
-        var uid = json.UID;
-        var challenge_recordCnt = json.challenge_recordCnt;
-        var challenge_grade = json.challenge_grade;
 
 
         var dataObject = {
@@ -254,6 +250,7 @@ export default class pirecord extends Component {
             ,"COUNTRYIMG": this.state.countryImg
             ,"AGE": this.state.age
             ,"GENDER": this.state.gender
+            ,"payment_start": this.state.payment_start
             ,"challenge_recordCnt" : this.state.challenge_recordCnt
             ,"challenge_grade" : this.state.challenge_grade
             ,"grade": pi.pi_grade[0]
@@ -284,7 +281,6 @@ export default class pirecord extends Component {
     {
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
-            console.log(json);
             if(json!=null) {
 
 
@@ -302,6 +298,7 @@ export default class pirecord extends Component {
                 var keyboardUse = json.KEYBOARD;
                 var recordCnt = json.recordCnt;
                 var grade = json.grade;
+                var payment_start = json.payment_start;
 
 
 
@@ -352,6 +349,10 @@ export default class pirecord extends Component {
 
                 if(challenge_grade != null) {
                     this.setState({challenge_grade:challenge_grade});
+                }
+
+                if(payment_start != null) {
+                    this.setState({payment_start:payment_start});
                 }
 
 

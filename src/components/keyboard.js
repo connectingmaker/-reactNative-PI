@@ -27,7 +27,7 @@ export default class keyboard extends Component {
     constructor(){
         super();
         this.state = {
-            keyboard:""
+            keyboard:"mobile"
         };
 
     }
@@ -40,6 +40,8 @@ export default class keyboard extends Component {
 
     loadData()
     {
+
+
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
 
@@ -86,6 +88,7 @@ export default class keyboard extends Component {
         var dataObject = {
             "KEYBOARD": this.state.keyboard
         };
+
 
         AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
             alert("저장되었습니다.");

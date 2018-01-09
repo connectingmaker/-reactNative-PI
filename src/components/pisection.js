@@ -12,6 +12,9 @@ import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button,Spinn
 import HTML from 'react-native-render-html';
 import Modal from 'react-native-modal'
 
+import InAppBilling from 'react-native-billing';
+
+
 import { NativeModules } from 'react-native'
 
 
@@ -26,15 +29,31 @@ import {keyboardStyle} from "../style/keyboard";
 
 const { InAppUtils } = NativeModules
 
-import InAppBilling from 'react-native-billing';
 
+
+if(Platform.OS === 'android') {
+    new InAppBilling("MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAh3RXVAsdcShkIGhOdcQHzpf1S3zLX17lJbPGLEGzTE00JN+TCfDJ/DwW1wLK8/T0tod2TgBBYNxYSbvN+UeZXADMwEBoojZwXU3Tp/KVZazy5cEk0EgR/fclFBuOf5fq4RIV0YBDKCfPkv2pZQti96fBF50+DNn9VSqvdfyopFZUf69c4LWitkITzTU1jwyn95JF9pdSqDcZrMoWs4PcV3DnkRvsMrnrh8JsgHKCm0xy2Lumn4b2LbSBO5AhOZVv17gbsj94LqhA+VUjX2rJxvTuMN1X4q7r9IVii+xJFSjbtjbs+eaRwcjqd5uwP1XgikYNnIHqSFcjHrDK3N+22wIDAQAB");
+}
+
+var now_timestamp = new Date().getTime();
+var next_date = new Date();
+next_date.setDate(next_date.getMonth() + 1);
+var next_timestemp = new Date(next_date).getTime();
 
 export default class pisection extends Component {
 
+
     constructor(){
         super();
+
+
+
         this.state = {
-            keyboard:"pc"
+            uid: ""
+            ,username: ""
+            ,country: ""
+            ,countryImg: ""
+            ,keyboard:"pc"
             ,piData:""
             ,piRealData:""
             ,challenge_recordCnt:0
@@ -50,9 +69,13 @@ export default class pisection extends Component {
             ,key9:"default"
             ,key0:"default"
             ,isModalVisible:false
-            ,payment_start:""
-            ,payment_end:""
+            ,payment_start:0
+            ,payment_end:0
+            ,test:"상태"
         };
+
+
+
 
     }
 
@@ -259,13 +282,31 @@ export default class pisection extends Component {
 
     loadData()
     {
+
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
+            console.log(json);
             if(json!=null) {
 
-                var keyboardUse = json.KEYBOARD;
+
+
+                var username = json.USERNAME;
+                var country = json.COUNTRY;
+                var countryImg = json.COUNTRYIMG;
+                var age = json.AGE;
+                var gender = json.GENDER;
+                var uid = json.UID;
                 var challenge_recordCnt = json.challenge_recordCnt;
                 var challenge_grade = json.challenge_grade;
+
+
+                var keyboardUse = json.KEYBOARD;
+                var recordCnt = json.recordCnt;
+                var grade = json.grade;
+                var payment_start = json.payment_start;
+                var payment_end = json.payment_end;
+                //alert(payment_start);
+                console.log(payment_start);
 
 
                 switch (keyboardUse) {
@@ -273,6 +314,7 @@ export default class pisection extends Component {
                         this.setState({keyboard: "pc"})
                         break;
                     case "mobile":
+                        console.log("OK");
                         this.setState({keyboard: "mobile"})
                         break;
                     default:
@@ -280,24 +322,59 @@ export default class pisection extends Component {
                         break;
                 }
 
+                if(recordCnt != null) {
+                    this.setState({recordCnt:recordCnt});
+                }
+
+                if(uid != null) {
+                    this.setState({uid:uid});
+                }
+
+                if(username != null) {
+                    this.setState({username:username});
+                }
+                if(country != null) {
+                    this.setState({country:country});
+                }
+
+                if(countryImg != null) {
+                    this.setState({countryImg:countryImg});
+                }
+
+
+                if(age != null) {
+                    this.setState({age:age});
+                }
+
+                if(gender != null) {
+                    this.setState({gender:gender});
+                }
+
                 if(challenge_recordCnt != null) {
                     this.setState({challenge_recordCnt:challenge_recordCnt});
                 }
+
+                if(challenge_grade != null) {
+                    this.setState({challenge_grade:challenge_grade});
+                }
+
+                if(payment_start != null) {
+                    this.setState({payment_start:payment_start});
+                }
+
+                if(payment_end != null) {
+                    this.setState({payment_end:payment_end});
+                }
+
+
+
 
             } else {
                 this.setState({keyboard: "pc"})
             }
 
-            if(challenge_grade != null) {
-                this.setState({challenge_grade:challenge_grade});
-            }
-
-            if(json.payment_start != null) {
-                this.setState({payment_start:json.payment_start});
-            }
-
-            if(json.payment_end != null) {
-                this.setState({payment_end:json.payment_end});
+            if(grade != null) {
+                this.setState({grade:grade});
             }
 
 
@@ -330,33 +407,48 @@ export default class pisection extends Component {
             alert("IOS");
             var productIdentifier = 'com.piking.app';
             InAppUtils.purchaseProduct(productIdentifier, (error, response) => {
-                // NOTE for v3.0: User can cancel the payment which will be available as error object here.
-                if(response && response.productIdentifier) {
-                    Alert.alert('Purchase Successful', 'Your Transaction ID is ' + response.transactionIdentifier);
-                    //unlock store here.
+
+                if(error) {
+                    reject(error);
+                } else if(response && response.productIdentifier) {
+                        Alert.alert('Purchase Successful', 'Your Transaction ID is ' + response.transactionIdentifier);
                 }
             });
         } else {
-            var productId = "android.test.purchased";
+            var productId = "product1000";
+
+            //var productId = "android.test.purchased";
+
+
             await InAppBilling.close();
+            this.setState({test:"시작"});
             try {
                 await InAppBilling.open();
                 if (!await InAppBilling.isPurchased(productId)) {
                     const details = await InAppBilling.purchase(productId);
-                    alert(details);
+                    this.setState({test:"결제"});
+                    console.log('You purchased: ', details);
+                } else {
+                    await InAppBilling.consumePurchase(productId);
+                    const details = await InAppBilling.purchase(productId);
+                    this.setState({test:"결제2"});
                     console.log('You purchased: ', details);
                 }
-                const transactionStatus = await InAppBilling.getPurchaseTransactionDetails(productId);
-                console.log('Transaction Status', transactionStatus);
-                const productDetails = await InAppBilling.getProductDetails(productId);
-                console.log(productDetails);
             } catch (err) {
-                alert(err);
                 console.log(err);
+
             } finally {
+                this.setState({test:"결제성공"});
                 await InAppBilling.consumePurchase(productId);
                 await InAppBilling.close();
             }
+
+
+
+
+
+
+
 
         }
     }
@@ -392,7 +484,7 @@ export default class pisection extends Component {
 
                     <View style={{padding:10}}>
                         <View>
-                            <Text style={pirecodeStyle.title}>π= 3.</Text>
+                            <Text style={pirecodeStyle.title}>π= 3.{this.state.test}</Text>
                         </View>
                         <View style={{flexDirection:'column', flex:1}}>
                             <View style={{flex:0.5}}>
@@ -949,8 +1041,10 @@ export default class pisection extends Component {
 
 
                 </Content>
-                <TouchableOpacity onPress={() => this._pay()}>
+
                 {/*<TouchableOpacity onPress={() => this._sectionPopup()}>*/}
+                {renderIf(now_timestamp <= this.state.payment_start && next_timestemp >= this.state.payment_end)(
+                <TouchableOpacity onPress={() => this._sectionPopup()}>
                 <Footer style={{backgroundColor:"#000"}}>
 
                     {/*<TouchableOpacity onPress={() => this._pay()}>*/}
@@ -961,6 +1055,22 @@ export default class pisection extends Component {
 
                 </Footer>
                 </TouchableOpacity>
+                )}
+
+
+                {renderIf((now_timestamp >= this.state.payment_start && next_timestemp <= this.state.payment_end) || (this.state.payment_start == 0 || this.state.payment_end == 0))(
+                    <TouchableOpacity onPress={() => this._pay()}>
+                        <Footer style={{backgroundColor:"#000"}}>
+
+                            {/*<TouchableOpacity onPress={() => this._pay()}>*/}
+                            <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
+                                <Text style={{fontSize:12,color:'#fff'}}>구간 설정</Text>
+                            </View>
+
+
+                        </Footer>
+                    </TouchableOpacity>
+                )}
             </Container>
         );
 

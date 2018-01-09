@@ -39,35 +39,39 @@ export default class pivalue extends Component {
 
     sendPostMessage(view, max) {
 
-        setTimeout(() => {
-            this.webView.postMessage(view+"///"+max);
-        }, 1000)
+        this.webView.postMessage(view+"///"+max);
+
+
+        //this.webView.postMessage(view+"///"+max);
 
     }
 
     componentWillMount()
     {
+
         BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
     }
 
     componentDidMount()
     {
         this.mounted = true;
+        //this.sendPostMessage(1, 1000);
         this._piText();
-        this.sendPostMessage(1, 1000);
+
     }
 
     componentWillUnmount()
     {
         this.mounted = false;
+
+
+
     }
 
     _piValue(value)
     {
         this.setState({loadding:false});
         var piData = "";
-        var piArr = Array.from(pi.pi_config);
-        this.setState({piData:piArr});
 
     }
 
