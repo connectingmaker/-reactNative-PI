@@ -53,7 +53,7 @@ export default class Idsetting extends Component {
     componentWillMount()
     {
         this.loadData();
-        BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
+        BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop({ refresh: {refresh:true} }));
     }
     loadData()
     {
@@ -585,7 +585,7 @@ export default class Idsetting extends Component {
 
                 <Header style={commonStyle.headerLayout}>
 
-                    <TouchableOpacity onPress={Actions.pop} style={{flex:.2, alignItems: 'flex-start'}}>
+                    <TouchableOpacity onPress={() => Actions.pop({ refresh: {refresh:true} })} style={{flex:.2, alignItems: 'flex-start'}}>
                         <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
                             <Text style={{fontSize:12,color:'#fff'}}> BACK </Text>
                         </View>

@@ -9,12 +9,13 @@ import config from "../config/config";
 import pi from "../config/pi_config";
 
 export default class Main extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
-            challenge_recordCnt:0
-            ,challenge_per:0
-            ,challenge_grade:"Halley's Comet"
+            challenge_recordCnt:0,
+            challenge_per:0,
+            challenge_grade:"Halley's Comet",
+
         };
 
     }
@@ -23,8 +24,15 @@ export default class Main extends Component {
     {
         this.loadData();
     }
+
+    componentWillReceiveProps(nextProps)
+    {
+        this.loadData();
+    }
     loadData()
     {
+
+        console.log("LOADDATA");
 
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
@@ -32,6 +40,14 @@ export default class Main extends Component {
            // console.log(json);
             if(json!=null) {
 
+                var username = json.USERNAME;
+                var country = json.COUNTRY;
+                var countryImg = json.COUNTRYIMG;
+                var age = json.AGE;
+                var gender = json.GENDER;
+                var uid = json.UID;
+
+                var keyboardUse = json.KEYBOARD;
                 var challenge_recordCnt = json.CNT;
                 var challenge_grade = json.GRADE;
 
@@ -45,17 +61,46 @@ export default class Main extends Component {
                         if(parseInt(temp[0]) <= challenge_recordCnt && parseInt(temp[1]) >= challenge_recordCnt) {
                             var per = Math.round((challenge_recordCnt / parseInt(temp[1])) * 100);
 
-                            console.log(parseInt(temp[1]));
                             var dataObject = {
-                                "challenge_grade": pi.pi_grade[i]
+                                "UID": uid
+                                ,"USERNAME": username
+                                ,"COUNTRY": country
+                                ,"COUNTRYIMG": countryImg
+                                ,"AGE": age
+                                ,"GENDER": gender
+
+                                ,"challenge_grade": pi.pi_grade[i]
                                 ,"challenge_recordCnt": challenge_recordCnt
                             };
 
+                            console.log(dataObject);
                             AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
                                 this.setState({challenge_grade:pi.pi_grade[i],challenge_recordCnt:challenge_recordCnt, challenge_per: per});
                             });
 
+                            if(uid != null) {
+                                this.setState({uid:uid});
+                            }
 
+                            if(username != null) {
+                                this.setState({username:username});
+                            }
+                            if(country != null) {
+                                this.setState({country:country});
+                            }
+
+                            if(countryImg != null) {
+                                this.setState({countryImg:countryImg});
+                            }
+
+
+                            if(age != null) {
+                                this.setState({age:age});
+                            }
+
+                            if(gender != null) {
+                                this.setState({gender:gender});
+                            }
 
                             break;
                         }

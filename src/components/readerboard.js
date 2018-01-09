@@ -45,7 +45,7 @@ export default class readerboard extends Component {
     componentWillMount()
     {
         this.loadData();
-        BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
+        BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop({ refresh: {refresh:true} }));
     }
 
     componentDidMount()
@@ -72,8 +72,19 @@ export default class readerboard extends Component {
                     var json = eval("("+value+")");
                     if(json!=null) {
 
-                        var challenge_recordCnt = json.challenge_recordCnt;
-                        var challenge_grade = json.challenge_grade;
+                        // var challenge_recordCnt = json.challenge_recordCnt;
+                        // var challenge_grade = json.challenge_grade;
+                        var username = json.USERNAME;
+                        var country = json.COUNTRY;
+                        var countryImg = json.COUNTRYIMG;
+                        var age = json.AGE;
+                        var gender = json.GENDER;
+                        var uid = json.UID;
+
+                        var keyboardUse = json.KEYBOARD;
+                        var challenge_recordCnt = json.CNT;
+                        var challenge_grade = json.GRADE;
+
 
 
                         if(challenge_recordCnt != null) {
@@ -84,7 +95,13 @@ export default class readerboard extends Component {
                                 if(parseInt(temp[0]) <= challenge_recordCnt && parseInt(temp[1]) >= challenge_recordCnt) {
                                     var per = Math.round((challenge_recordCnt / parseInt(temp[1])) * 100);
                                     var dataObject = {
-                                        "challenge_grade": pi.pi_grade[i]
+                                        "UID": uid
+                                        ,"USERNAME": username
+                                        ,"COUNTRY": country
+                                        ,"COUNTRYIMG": countryImg
+                                        ,"AGE": age
+                                        ,"GENDER": gender
+                                        ,"challenge_grade": pi.pi_grade[i]
                                         ,"challenge_recordCnt": challenge_recordCnt
                                     };
 
@@ -92,6 +109,29 @@ export default class readerboard extends Component {
                                         this.setState({challenge_grade:pi.pi_grade[i],challenge_recordCnt:challenge_recordCnt, challenge_per: per});
                                     });
 
+                                    if(uid != null) {
+                                        this.setState({uid:uid});
+                                    }
+
+                                    if(username != null) {
+                                        this.setState({username:username});
+                                    }
+                                    if(country != null) {
+                                        this.setState({country:country});
+                                    }
+
+                                    if(countryImg != null) {
+                                        this.setState({countryImg:countryImg});
+                                    }
+
+
+                                    if(age != null) {
+                                        this.setState({age:age});
+                                    }
+
+                                    if(gender != null) {
+                                        this.setState({gender:gender});
+                                    }
                                     break;
                                 }
                             }
@@ -136,7 +176,8 @@ export default class readerboard extends Component {
                         <Text style={readerboardFormStyle.title}> {obj.CNT} pt </Text>
                     </View>
                     <View style={{flex:.2, alignItems:'center'}}>
-                        <Text style={readerboardFormStyle.title}> {TimeFormatter(obj.TIMER)} </Text>
+                        {/*<Text style={readerboardFormStyle.title}> {TimeFormatter(obj.TIMER)} </Text>*/}
+                        <Text style={readerboardFormStyle.title}> {obj.TIMER} sec </Text>
                     </View>
                 </View>
                 <View style={readerboardFormStyle.lingBg}></View>
@@ -148,7 +189,7 @@ export default class readerboard extends Component {
         return (
             <Container>
                 <Header style={readerboardFormStyle.headerLayout}>
-                    <TouchableOpacity onPress={Actions.pop} style={{flex:.2, alignItems: 'flex-start'}}>
+                    <TouchableOpacity onPress={() => Actions.pop({ refresh: {refresh:true} })}style={{flex:.2, alignItems: 'flex-start'}}>
                         <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
                             <Text style={{fontSize:12,color:'#fff'}}> BACK </Text>
                         </View>

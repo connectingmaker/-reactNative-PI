@@ -60,7 +60,7 @@ export default class pichallenge extends Component {
     componentWillMount()
     {
         this.loadData();
-        BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
+        BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop({ refresh: {} }));
     }
 
 
@@ -197,7 +197,6 @@ export default class pichallenge extends Component {
                     }
                 }
 
-
             }
 
 
@@ -276,7 +275,7 @@ export default class pichallenge extends Component {
                 var uid = json.UID;
 
                 var keyboardUse = json.KEYBOARD;
-                var challenge_recordCnt = json.CNT;
+                var challenge_recordCnt = json.challenge_recordCnt;
                 var challenge_grade = json.challenge_grade;
 
                 console.log(challenge_recordCnt);
@@ -471,7 +470,7 @@ export default class pichallenge extends Component {
 
                 AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(object), () => {
                     this.setState({UID:responseJson.UID,TIMER:responseJson.TIMER, CNT:responseJson.CNT,USERNAME:responseJson.USERNAME,COUNTRY:responseJson.COUNTRY, COUNTRYIMG:responseJson.COUNTRYIMG ,AGE:responseJson.AGE, GENDER:responseJson.GENDER, GRADE:responseJson.GRADE});
-                    Actions.pop();
+                    Actions.pop({ refresh: {refresh:true} });
                 });
             })
             .catch((error) => {
@@ -484,7 +483,7 @@ export default class pichallenge extends Component {
         return (
             <Container>
                 <Header style={commonStyle.headerLayout}>
-                    <TouchableOpacity onPress={Actions.pop} style={{flex:.2, alignItems: 'flex-start'}}>
+                    <TouchableOpacity onPress={() => Actions.pop({ refresh: {refresh:true} })} style={{flex:.2, alignItems: 'flex-start'}}>
                         <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
                             <Text style={{fontSize:12,color:'#fff'}}> BACK </Text>
                         </View>
