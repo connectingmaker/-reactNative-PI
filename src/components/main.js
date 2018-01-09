@@ -37,7 +37,7 @@ export default class Main extends Component {
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
             //console.log("main");
-           // console.log(json);
+            console.log(json);
             if(json!=null) {
 
                 var username = json.USERNAME;
@@ -48,8 +48,9 @@ export default class Main extends Component {
                 var uid = json.UID;
 
                 var keyboardUse = json.KEYBOARD;
-                var challenge_recordCnt = json.CNT;
-                var challenge_grade = json.GRADE;
+                var challenge_recordCnt = json.challenge_recordCnt;
+                var challenge_recordCnt = json.challenge_recordCnt;
+                var challenge_grade = json.challenge_grade;
 
                console.log(challenge_recordCnt+":::::"+challenge_grade);
 
