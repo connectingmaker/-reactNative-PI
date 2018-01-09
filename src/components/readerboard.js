@@ -31,9 +31,7 @@ export default class readerboard extends Component {
         super();
         this.state = {
             loaded: false
-            ,uid : ""
             ,challenge_recordCnt:0
-            ,challenge_per:0
             ,challenge_grade:"Halley's Comet"
             ,dataSource: new ListView.DataSource({
                 rowHasChanged: (row1, row2) => row1 !== row2,

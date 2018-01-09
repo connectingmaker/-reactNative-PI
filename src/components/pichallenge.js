@@ -16,7 +16,6 @@ import pi from '../config/pi_config'
 import renderIf from 'render-if'
 
 import {commonStyle} from '../style/common';
-import {MainFormStyle} from "../style/main";
 import {pirecodeStyle} from "../style/pirecord";
 import {keyboardStyle} from "../style/keyboard";
 
@@ -28,6 +27,7 @@ export default class pichallenge extends Component {
 
     constructor(){
         super();
+
         this.state = {
             keyboard:""
             ,uid:""
@@ -177,15 +177,21 @@ export default class pichallenge extends Component {
                     if(parseInt(temp[0]) <= piRealDataLength && parseInt(temp[1]) >= piRealDataLength) {
 
                         var dataObject = {
-                            "challenge_grade": pi.pi_grade[i]
+                            "UID": this.state.uid
+                            ,"USERNAME": this.state.username
+                            ,"COUNTRY": this.state.country
+                            ,"COUNTRYIMG": this.state.countryImg
+                            ,"AGE": this.state.age
+                            ,"GENDER":this.state.gender
+                            ,"challenge_grade": pi.pi_grade[i]
                             ,"challenge_recordCnt": piRealDataLength+1
                         };
 
                         AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
-                            this.setState({challenge_grade:pi.pi_grade[i],challenge_recordCnt:piRealDataLength+1});
+                            this.setState({challenge_grade:pi.pi_grade[i],challenge_recordCnt: piRealDataLength+1});
                         });
 
-
+                        console.log(dataObject);
 
                         break;
                     }
@@ -230,11 +236,9 @@ export default class pichallenge extends Component {
         }
 
 
+        this.setState({piData:piData, piRealData:piRealData});
 
 
-        this.setState({piData:piData, piRealData:piRealData, uid:uid, username:this.state.username, country:this.state.country,countryImg:this.state.countryImg,age:this.state.age,gender:this.state.gender});
-
-        console.log("key push");
     }
 
     _defaultBtn()
@@ -254,15 +258,133 @@ export default class pichallenge extends Component {
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
 
-            var uid = "";
-            if(json.UID != "") {
-                uid = json.UID;
-                this.setState({uid:uid,USERNAME:this.state.USERNAME,COUNTRY:this.state.COUNTRY,COUNTRYIMG:this.state.COUNTRYIMG,AGE:this.state.AGE,GENDER:this.state.GENDER});
-            }
-            console.log("도전 loadData!!");
-            console.log(uid);
-            console.log(json);
+            // var uid = "";
+            // if(json.UID != "") {
+            //     uid = json.UID;
+            //     this.setState({uid:uid,USERNAME:this.state.USERNAME,COUNTRY:this.state.COUNTRY,COUNTRYIMG:this.state.COUNTRYIMG,AGE:this.state.AGE,GENDER:this.state.GENDER});
+            // }
+            // console.log("도전 loadData!!");
+            // console.log(uid);
+             console.log(json);
             if(json!=null) {
+
+                var username = json.USERNAME;
+                var country = json.COUNTRY;
+                var countryImg = json.COUNTRYIMG;
+                var age = json.AGE;
+                var gender = json.GENDER;
+                var uid = json.UID;
+
+                var keyboardUse = json.KEYBOARD;
+                var challenge_recordCnt = json.CNT;
+                var challenge_grade = json.challenge_grade;
+
+                console.log(challenge_recordCnt);
+                switch (keyboardUse) {
+                    case "pc":
+                        this.setState({keyboard: "pc"})
+                        break;
+                    case "mobile":
+                        console.log("OK");
+                        this.setState({keyboard: "mobile"})
+                        break;
+                    default:
+                        this.setState({keyboard: "pc"})
+                        break;
+                }
+
+                if(uid != null) {
+                    this.setState({uid:uid});
+                }
+
+                if(username != null) {
+                    this.setState({username:username});
+                }
+                if(country != null) {
+                    this.setState({country:country});
+                }
+
+                if(countryImg != null) {
+                    this.setState({countryImg:countryImg});
+                }
+
+
+                if(age != null) {
+                    this.setState({age:age});
+                }
+
+                if(gender != null) {
+                    this.setState({gender:gender});
+                }
+
+                if(challenge_recordCnt != null) {
+                    this.setState({challenge_recordCnt:challenge_recordCnt});
+                }
+
+
+
+            } else {
+                this.setState({keyboard: "pc"})
+            }
+
+            if(challenge_grade != null) {
+                this.setState({challenge_grade:challenge_grade});
+            }
+
+
+        }).then(res => {
+        });
+    }
+
+
+    _challenge_start()
+    {
+        if(this.state.uid == "" || this.state.username == "")
+        {
+            alert("아이디 설정하고 도전을 해주세요.");
+            return;
+        }
+        this.setState({
+            challenge_start: true
+            ,challenge_stop: false
+        });
+
+        timer = setInterval(() => {
+            if(this.state.challenge_stop == false) {
+                var challenge_timer = this.state.challenge_timer + 1;
+                this.setState({challenge_timer: challenge_timer});
+            }
+        }, 1000);
+    }
+
+    _challenge_stop()
+    {
+        if(this.state.challenge_stop == false) {
+            this.setState({challenge_stop: true});
+        } else {
+            this.setState({challenge_stop: false});
+        }
+    }
+
+    _challenge_end()
+    {
+        AsyncStorage.getItem(config.STORE_KEY).then((value) => {
+            var json = eval("("+value+")");
+
+            // var uid = "";
+            // if(json.UID != "") {
+            //     uid = json.UID;
+            //     this.setState({uid:uid,USERNAME:this.state.USERNAME,COUNTRY:this.state.COUNTRY,COUNTRYIMG:this.state.COUNTRYIMG,AGE:this.state.AGE,GENDER:this.state.GENDER});
+            // }
+            // console.log("도전완료 저장값보기");
+            // console.log(json);
+            if(json!=null) {
+                var username = json.USERNAME;
+                var country = json.COUNTRY;
+                var countryImg = json.COUNTRYIMG;
+                var age = json.AGE;
+                var gender = json.GENDER;
+                var uid = json.UID;
 
                 var keyboardUse = json.KEYBOARD;
                 var challenge_recordCnt = json.challenge_recordCnt;
@@ -297,35 +419,6 @@ export default class pichallenge extends Component {
 
         }).then(res => {
         });
-    }
-
-
-    _challenge_start()
-    {
-        this.setState({
-            challenge_start: true
-            ,challenge_stop: false
-        });
-
-        timer = setInterval(() => {
-            if(this.state.challenge_stop == false) {
-                var challenge_timer = this.state.challenge_timer + 1;
-                this.setState({challenge_timer: challenge_timer});
-            }
-        }, 1000);
-    }
-
-    _challenge_stop()
-    {
-        if(this.state.challenge_stop == false) {
-            this.setState({challenge_stop: true});
-        } else {
-            this.setState({challenge_stop: false});
-        }
-    }
-
-    _challenge_end()
-    {
 
         clearInterval(timer);
         alert("종료되었습니다." + this.state.challenge_timer + "초");
@@ -334,14 +427,16 @@ export default class pichallenge extends Component {
 
         var formData = new FormData();
         formData.append('UID', this.state.uid);
+        formData.append('USERNAME', this.state.username);
+        formData.append('COUNTRY', this.state.country);
+        formData.append('COUNTRYIMG', this.state.countryImg);
+        formData.append('AGE', this.state.age);
+        formData.append('GENDER', this.state.gender);
         formData.append('TIMER', this.state.challenge_timer);
         formData.append('CNT', this.state.challenge_recordCnt);
-        formData.append('USERNAME', this.state.USERNAME);
-        formData.append('COUNTRY', this.state.textInputValue);
-        formData.append('COUNTRYIMG', this.state.countryImg);
-        formData.append('AGE', this.state.textInputValue3);
-        formData.append('GENDER', this.state.textInputValue2);
+        formData.append('GRADE', this.state.challenge_grade);
 
+        console.log(this.state.challenge_recordCnt);
 
         var object = {
             method: 'POST',
@@ -355,40 +450,27 @@ export default class pichallenge extends Component {
         console.log("도전완료");
         console.log(object);
 
-        fetch(config.SERVER_URL+'/challenge/memberChallengeInsert', object)
+        fetch(config.SERVER_URL+'/member/memberInsert', object)
             .then((response) => response.json())
             .then((responseJson) => {
-            console.log("responseJon&memberChallengeInsert");
-            console.log(responseJson);
-
+                console.log(responseJson);
                 var object = {
                     UID : responseJson.UID
-                    ,TIMER : responseJson.TIMER
-                    ,CNT : responseJson.CNT
                     ,USERNAME : responseJson.USERNAME
                     ,COUNTRY : responseJson.COUNTRY
                     ,COUNTRYIMG : responseJson.COUNTRYIMG
                     ,AGE : responseJson.AGE
                     ,GENDER : responseJson.GENDER
+                    ,TIMER : responseJson.TIMER
+                    ,CNT : responseJson.CNT
+                    ,GRADE : responseJson.GRADE
 
                 }
-                /*
-                var dataObject = {
-                    "UID": this.state.uid
-                    ,"USERNAME": this.state.username
-                    ,"COUNTRY": this.state.country
-                    ,"COUNTRYIMG": this.state.countryImg
-                    ,"AGE": this.state.age
-                    ,"GENDER": this.state.gender
-                    ,"challenge_recordCnt" : this.state.challenge_recordCnt
-                    ,"challenge_grade" : this.state.challenge_grade
-                    ,"grade": pi.pi_grade[0]
-                    ,"recordCnt": 0
-                };
-                */
+
+                console.log(object);
 
                 AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(object), () => {
-                    this.setState({UID:responseJson.UID,TIMER:responseJson.TIMER, CNT:responseJson.CNT,USERNAME:responseJson.USERNAME,COUNTRY:responseJson.COUNTRY, COUNTRYIMG:responseJson.COUNTRYIMG ,AGE:responseJson.AGE, GENDER:responseJson.GENDER});
+                    this.setState({UID:responseJson.UID,TIMER:responseJson.TIMER, CNT:responseJson.CNT,USERNAME:responseJson.USERNAME,COUNTRY:responseJson.COUNTRY, COUNTRYIMG:responseJson.COUNTRYIMG ,AGE:responseJson.AGE, GENDER:responseJson.GENDER, GRADE:responseJson.GRADE});
                     Actions.pop();
                 });
             })

@@ -32,10 +32,10 @@ export default class Main extends Component {
            // console.log(json);
             if(json!=null) {
 
-                var challenge_recordCnt = json.challenge_recordCnt;
-                var challenge_grade = json.challenge_grade;
+                var challenge_recordCnt = json.CNT;
+                var challenge_grade = json.GRADE;
 
-               // console.log(challenge_recordCnt+":::::"+challenge_grade);
+               console.log(challenge_recordCnt+":::::"+challenge_grade);
 
                 if(challenge_recordCnt != null) {
                     this.setState({challenge_recordCnt:challenge_recordCnt});

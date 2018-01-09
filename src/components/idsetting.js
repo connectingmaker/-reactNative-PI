@@ -119,13 +119,13 @@ export default class Idsetting extends Component {
 
     _save()
     {
-        var dataObject = {
-            "USERNAME": this.state.USERNAME
-            ,"COUNTRY" : this.state.textInputValue
-            ,"COUNTRYIMG" : this.state.countryImg
-            ,"AGE" : this.state.textInputValue3
-            ,"GENDER" : this.state.textInputValue2
-        };
+        // var dataObject = {
+        //     "USERNAME": this.state.USERNAME
+        //     ,"COUNTRY" : this.state.textInputValue
+        //     ,"COUNTRYIMG" : this.state.countryImg
+        //     ,"AGE" : this.state.textInputValue3
+        //     ,"GENDER" : this.state.textInputValue2
+        // };
 
         if(this.state.USERNAME == "") {
             Alert.alert(
@@ -171,7 +171,13 @@ export default class Idsetting extends Component {
 
 
 
+            if(this.state.challenge_timer == ""){
+                this.state.challenge_timer = 0;
+            }
 
+            if(this.state.challenge_recordCnt == ""){
+                this.state.challenge_recordCnt = 0;
+            }
 
             var formData = new FormData();
             formData.append('UID', this.state.uid);
@@ -180,6 +186,8 @@ export default class Idsetting extends Component {
             formData.append('COUNTRYIMG', this.state.countryImg);
             formData.append('AGE', this.state.textInputValue3);
             formData.append('GENDER', this.state.textInputValue2);
+            formData.append('TIMER', this.state.challenge_timer);
+            formData.append('CNT', this.state.challenge_recordCnt);
             var object = {
                 method: 'POST',
                 headers: {
@@ -205,11 +213,13 @@ export default class Idsetting extends Component {
                         ,COUNTRYIMG : responseJson.COUNTRYIMG
                         ,AGE : responseJson.AGE
                         ,GENDER : responseJson.GENDER
+                        ,TIMER : responseJson.TIMER
+                        ,CNT : responseJson.CNT
                         ,keyboard:this.state.keyboard
-                        ,challenge_recordCnt:this.state.challenge_recordCnt
-                        ,challenge_grade:this.state.challenge_grade
+                        ,GRADE:responseJson.GRADE
                     }
 
+                    console.log("아이디저장");
                     console.log(object);
 
 
@@ -218,7 +228,7 @@ export default class Idsetting extends Component {
                             UID:responseJson.UID
                             ,USERNAME:responseJson.USERNAME
                             ,COUNTRY:responseJson.COUNTRY
-                            , COUNTRYIMG:responseJson.COUNTRYIMG
+                            ,COUNTRYIMG:responseJson.COUNTRYIMG
                             ,AGE:responseJson.AGE
                             ,GENDER:responseJson.GENDER
                         });
