@@ -42,6 +42,7 @@ export default class pirecord extends Component {
             ,recordCnt:0
             ,grade:"Halley's Comet"
             ,payment_start : ""
+            ,payment_end: ""
             ,key1:"default"
             ,key2:"default"
             ,key3:"default"

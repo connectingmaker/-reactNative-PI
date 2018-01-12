@@ -5,17 +5,13 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import {
-    View, Text, Image, StyleSheet, TouchableOpacity, AlertIOS, Alert, Platform, ScrollView,
-    AsyncStorage, BackAndroid
+    View, Text, Image, StyleSheet, TouchableOpacity, AlertIOS, Alert, Platform, ScrollView,AsyncStorage, BackAndroid, NativeModules
 } from 'react-native';
 import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button,Spinner,Left,Right } from 'native-base';
 import HTML from 'react-native-render-html';
 import Modal from 'react-native-modal'
 
 import InAppBilling from 'react-native-billing';
-
-
-import { NativeModules } from 'react-native'
 
 
 import config from "../config/config";
@@ -26,8 +22,9 @@ import {commonStyle} from '../style/common';
 import {MainFormStyle} from "../style/main";
 import {pirecodeStyle} from "../style/pirecord";
 import {keyboardStyle} from "../style/keyboard";
+import iapReceiptValidator from 'iap-receipt-validator';
 
-const { InAppUtils } = NativeModules
+const { InAppUtils } = NativeModules;
 
 
 
@@ -40,24 +37,54 @@ var next_date = new Date();
 next_date.setDate(next_date.getMonth() + 1);
 var next_timestemp = new Date(next_date).getTime();
 
+var productId = "product1000";
+
+
+const password = 'a0df903145d34474bea481dda4aba823'; // Shared Secret from iTunes connect
+const production = false; // use sandbox or production url for validation
+const validateReceipt = iapReceiptValidator(password, production);
+
+
+
 export default class pisection extends Component {
 
 
     constructor(){
         super();
-
-
-
-        this.state = {
-            uid: ""
-            ,username: ""
-            ,country: ""
-            ,countryImg: ""
-            ,keyboard:"pc"
+        /*
+        keyboard:"pc"
+            ,uid:""
+            ,username:""
+            ,country:""
+            ,countryImg:""
+            ,age:""
+            ,gender:""
+            ,challenge_recordCnt:""
+            ,challenge_grade:""
             ,piData:""
             ,piRealData:""
-            ,challenge_recordCnt:0
-            ,challenge_grade:"Halley's Comet"
+            ,recordCnt:0
+            ,grade:"Halley's Comet"
+            ,payment_start : ""
+            ,payment_end: ""
+            */
+
+        this.state = {
+            keyboard:"pc"
+            ,uid:""
+            ,username:""
+            ,country:""
+            ,countryImg:""
+            ,age:""
+            ,gender:""
+            ,challenge_recordCnt:""
+            ,challenge_grade:""
+            ,piData:""
+            ,piRealData:""
+            ,recordCnt:0
+            ,grade:"Halley's Comet"
+            ,payment_start : ""
+            ,payment_end: ""
             ,key1:"default"
             ,key2:"default"
             ,key3:"default"
@@ -76,6 +103,10 @@ export default class pisection extends Component {
 
 
 
+
+    }
+
+    componentDidMount() {
 
     }
 
@@ -270,14 +301,7 @@ export default class pisection extends Component {
 
     _defaultBtn()
     {
-        var dataObject = {
-            "challenge_grade": pi.pi_grade[0]
-            ,"challenge_recordCnt": 0
-        };
-        AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
-            this.setState({piData:"", piRealData: "", challenge_grade:pi.pi_grade[0],challenge_recordCnt:0, key1: "default", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "default"});
 
-        });
     }
 
     loadData()
@@ -401,29 +425,54 @@ export default class pisection extends Component {
         })
     }
 
+
+
+
     // To be sure the service is close before opening it
     async _pay() {
         if(Platform.OS == "ios") {
-            alert("IOS");
-            var productIdentifier = 'com.piking.app';
-            InAppUtils.purchaseProduct(productIdentifier, (error, response) => {
+            return new Promise(async(resolve, reject) => {
+                var productIdentifiers = 'com.piking.app.';
 
+
+                InAppUtils.purchaseProduct(productIdentifiers, (error, response) => {
+                    // NOTE for v3.0: User can cancel the payment which will be available as error object here.
+                    if(error){
+                        this.setState({test:error});
+                    } else {
+                        if (response && response.productIdentifier) {
+                            this.setState({test:response.transactionIdentifier});
+                            //Alert.alert('Purchase Successful', 'Your Transaction ID is ' + response.transactionIdentifier);
+                            //unlock store here.
+                        }
+                    }
+                });
+
+            });
+            /*
+            var productIdentifier = 'com.piking.app.1000';
+            InAppUtils.purchaseProduct(productIdentifier, (error, response) => {
+npm i --save iap-receipt-validator
                 if(error) {
-                    reject(error);
+                    this.setState({test:error});
                 } else if(response && response.productIdentifier) {
-                        Alert.alert('Purchase Successful', 'Your Transaction ID is ' + response.transactionIdentifier);
+                    this.setState({test:"결제성공"});
+                    Alert.alert('Purchase Successful', 'Your Transaction ID is ' + response.transactionIdentifier);
                 }
             });
+            */
+
+
         } else {
-            var productId = "product1000";
+
 
             //var productId = "android.test.purchased";
 
-
+            this.setState({test:"시도"});
             await InAppBilling.close();
-            this.setState({test:"시작"});
+            await InAppBilling.open();
+            this.setState({test:"준비"});
             try {
-                await InAppBilling.open();
                 if (!await InAppBilling.isPurchased(productId)) {
                     const details = await InAppBilling.purchase(productId);
                     this.setState({test:"결제"});
@@ -435,13 +484,21 @@ export default class pisection extends Component {
                     console.log('You purchased: ', details);
                 }
             } catch (err) {
+                this.setState({test:"결제에러"});
                 console.log(err);
 
             } finally {
-                this.setState({test:"결제성공"});
+                if (!await InAppBilling.isPurchased(productId)) {
+
+                } else {
+                    this.setState({test:"결제_성공"});
+                }
+
                 await InAppBilling.consumePurchase(productId);
                 await InAppBilling.close();
             }
+
+            this.setState({test:"종료"});
 
 
 

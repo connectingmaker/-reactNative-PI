@@ -38,11 +38,13 @@ export default class pivalue extends Component {
     }
 
     sendPostMessage(view, max) {
+        /*
+        setTimeout(() => {
+            this.webView.postMessage(view+"///"+max);
+        }, 1000)
+        */
 
         this.webView.postMessage(view+"///"+max);
-
-
-        //this.webView.postMessage(view+"///"+max);
 
     }
 
@@ -55,7 +57,7 @@ export default class pivalue extends Component {
     componentDidMount()
     {
         this.mounted = true;
-        //this.sendPostMessage(1, 1000);
+
         this._piText();
 
     }
@@ -72,6 +74,7 @@ export default class pivalue extends Component {
     {
         this.setState({loadding:false});
         var piData = "";
+        this.setState({piData:piArr});
 
     }
 
