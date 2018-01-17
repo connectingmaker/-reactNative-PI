@@ -15,7 +15,15 @@ export default class Main extends Component {
             challenge_recordCnt:0,
             challenge_per:0,
             challenge_grade:"Halley's Comet",
-
+            username:"",
+            country:"",
+            countryImg:"",
+            age:"",
+            gender:"",
+            keyboardUse:"",
+            payment_start:"",
+            payment_end:"",
+            timer:""
         };
 
     }
@@ -32,7 +40,6 @@ export default class Main extends Component {
     loadData()
     {
 
-        console.log("LOADDATA");
 
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
@@ -40,19 +47,29 @@ export default class Main extends Component {
             console.log(json);
             if(json!=null) {
 
+
+
+
                 var username = json.USERNAME;
                 var country = json.COUNTRY;
                 var countryImg = json.COUNTRYIMG;
                 var age = json.AGE;
                 var gender = json.GENDER;
                 var uid = json.UID;
-
-                var keyboardUse = json.KEYBOARD;
-                var challenge_recordCnt = json.challenge_recordCnt;
                 var challenge_recordCnt = json.challenge_recordCnt;
                 var challenge_grade = json.challenge_grade;
+                var keyboardUse = json.KEYBOARD;
+                var payment_start = json.payment_start;
+                var payment_end = json.payment_end;
+                var timer = json.TIMER;
+                var cnt = json.CNT;
+                var grade = json.grade;
+                var keyboard = "mobile";
 
-               console.log(challenge_recordCnt+":::::"+challenge_grade);
+                if(json.keyboard != undefined) {
+                    keyboard = json.keyboard;
+                }
+
 
                 if(challenge_recordCnt != null) {
                     this.setState({challenge_recordCnt:challenge_recordCnt});
@@ -69,9 +86,15 @@ export default class Main extends Component {
                                 ,"COUNTRYIMG": countryImg
                                 ,"AGE": age
                                 ,"GENDER": gender
-
+                                ,"TIMER" : timer
+                                ,"CNT": cnt
+                                ,"keyboard":keyboardUse
+                                ,"grade":grade
                                 ,"challenge_grade": pi.pi_grade[i]
                                 ,"challenge_recordCnt": challenge_recordCnt
+                                ,"payment_start":payment_start
+                                ,"payment_end":payment_start
+                                ,"keyboard":keyboard
                             };
 
                             console.log(dataObject);

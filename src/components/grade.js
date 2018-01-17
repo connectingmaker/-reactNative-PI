@@ -61,6 +61,12 @@ export default class grade extends Component {
                             break;
                         }
                     }
+                } else {
+                    this.setState({challenge_recordCnt:0});
+                }
+
+                if(challenge_grade == null) {
+                    this.setState({challenge_grade:"Halley's Comet"});
                 }
 
             } else {

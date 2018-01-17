@@ -176,11 +176,15 @@ export default class pirecord extends Component {
                             ,"COUNTRYIMG": this.state.countryImg
                             ,"AGE": this.state.age
                             ,"GENDER":this.state.gender
+                            ,"TIMER":this.state.TIMER
+                            ,"CNT":this.state.CNT
                             ,"challenge_recordCnt" : this.state.challenge_recordCnt
                             ,"challenge_grade" : this.state.challenge_grade
                             ,"payment_start": this.state.payment_start
+                            ,"payment_end": this.state.payment_end
                             ,"grade": pi.pi_grade[i]
                             ,"recordCnt": piRealDataLength+1
+                            ,"keyboard":this.state.keyboard
                         };
 
                         AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
@@ -242,24 +246,8 @@ export default class pirecord extends Component {
     _defaultBtn()
     {
 
-
-
-        var dataObject = {
-            "UID": this.state.uid
-            ,"USERNAME": this.state.username
-            ,"COUNTRY": this.state.country
-            ,"COUNTRYIMG": this.state.countryImg
-            ,"AGE": this.state.age
-            ,"GENDER": this.state.gender
-            ,"payment_start": this.state.payment_start
-            ,"challenge_recordCnt" : this.state.challenge_recordCnt
-            ,"challenge_grade" : this.state.challenge_grade
-            ,"grade": pi.pi_grade[0]
-            ,"recordCnt": 0
-        };
-        AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
             this.setState({
-                piData:""
+                piData:"<span></span>"
                 , piRealData: ""
                 , grade:pi.pi_grade[0]
                 , recordCnt:0
@@ -275,7 +263,6 @@ export default class pirecord extends Component {
                 , key0: "default"
             });
 
-        });
     }
 
     loadData()

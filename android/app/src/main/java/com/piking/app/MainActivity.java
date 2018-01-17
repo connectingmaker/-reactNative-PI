@@ -22,28 +22,6 @@ public class MainActivity extends ReactActivity {
         return "PI";
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState); // Always call the superclass first
 
-
-        mReactInstanceManager = ReactInstanceManager.builder()
-                .setApplication(getApplication())
-                .setBundleAssetName("index.android.bundle")
-                .setJSBundleFile("index.android")
-                .addPackage(new MainReactPackage())
-                .addPackage(new InAppBillingBridgePackage())
-                .setUseDeveloperSupport(BuildConfig.DEBUG)
-                .setInitialLifecycleState(LifecycleState.RESUMED)
-                .build();
-
-
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        mReactInstanceManager.onActivityResult(this, requestCode, resultCode, data);
-        //super.onActivityResult(requestCode, resultCode, data);
-    }
 
 }

@@ -40,16 +40,37 @@ export default class App extends Component<{}> {
         console.log(nextProps);
     }
 
-
-
-    componentWillUnmount(){
-        BackAndroid.removeEventListener('hardwareBackPress', () => {
+    componentDidMount() {
+      /*
+        BackAndroid.addEventListener('hardwareBackPress', () => {
+            console.log(navigator.getCurrentRoutes().length);
             if (this.navigator && this.navigator.getCurrentRoutes().length > 1) {
                 this.navigator.pop();
                 return true;
+            } else {
+                console.log("OK");
             }
             return false;
         });
+        */
+        BackAndroid.addEventListener('hardwareBackPress', this.onBackPress.bind(this));
+    }
+
+    componentWillUnmount(){
+        BackAndroid.removeEventListener('hardwareBackPress', this.onBackPress.bind(this));
+    }
+
+
+    onBackPress () {
+
+        if (this.navigator && this.navigator.getCurrentRoutes().length > 1) {
+            this.navigator.pop();
+            return true;
+        } else {
+            BackAndroid.exitApp();
+            return true;
+        }
+
     }
 
 

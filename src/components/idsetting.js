@@ -40,6 +40,9 @@ export default class Idsetting extends Component {
             ,challenge_recordCnt:0
             ,challenge_grade:''
             ,keyboard:''
+            ,payment_start:0
+            ,payment_end:0
+            ,timer:""
 
         }
 
@@ -71,6 +74,9 @@ export default class Idsetting extends Component {
                 var challenge_recordCnt = json.challenge_recordCnt;
                 var challenge_grade = json.challenge_grade;
                 var keyboard = json.KEYBOARD;
+                var payment_start = json.payment_start;
+                var payment_end = json.payment_end;
+                var timer = json.TIMER;
 
 
                 if(uid != null) {
@@ -111,6 +117,20 @@ export default class Idsetting extends Component {
                 if(challenge_grade != null) {
                     this.setState({challenge_grade:challenge_grade});
                 }
+
+                if(payment_start != null) {
+                    this.setState({payment_start:payment_start});
+                }
+
+                if(payment_end != null) {
+                    this.setState({payment_end:payment_end});
+                }
+
+                if(timer != null){
+                    this.setState({timer:timer});
+                }
+
+
 
             }
         }).then(res => {
@@ -216,7 +236,11 @@ export default class Idsetting extends Component {
                         ,TIMER : responseJson.TIMER
                         ,CNT : responseJson.CNT
                         ,keyboard:this.state.keyboard
-                        ,GRADE:responseJson.GRADE
+                        ,grade:responseJson.GRADE
+                        ,challenge_grade:this.state.challenge_grade
+                        ,challenge_recordCnt:this.state.challenge_recordCnt
+                        ,payment_start:this.state.payment_start
+                        ,payment_end:this.state.payment_end
                     }
 
                     console.log("아이디저장");

@@ -27,7 +27,19 @@ export default class keyboard extends Component {
     constructor(){
         super();
         this.state = {
-            keyboard:"mobile"
+            uid:""
+            ,username:""
+            ,country:""
+            ,countryImg:""
+            ,age:""
+            ,gender:""
+            ,keyboard:"mobile"
+            ,timer:""
+            ,challenge_recordCnt:""
+            ,challenge_grade:""
+            ,payment_start:""
+            ,payment_end:""
+            ,cnt:""
         };
 
     }
@@ -41,35 +53,86 @@ export default class keyboard extends Component {
     loadData()
     {
 
-
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
-
             if(json!=null) {
+                var username = json.USERNAME;
+                var country = json.COUNTRY;
+                var countryImg = json.COUNTRYIMG;
+                var age = json.AGE;
+                var gender = json.GENDER;
+                var uid = json.UID;
+                var challenge_recordCnt = json.challenge_recordCnt;
+                var challenge_grade = json.challenge_grade;
+                var keyboard = json.KEYBOARD;
+                var payment_start = json.payment_start;
+                var payment_end = json.payment_end;
+                var timer = json.TIMER;
+                var cnt = json.CNT;
+                var grade = json.grade;
 
-                var keyboardUse = json.KEYBOARD;
 
-                switch (keyboardUse) {
-                    case "mobile":
-                        this.setState({keyboard: "mobile"})
-                        break;
-                    case "pc":
-                        console.log("OK");
-                        this.setState({keyboard: "pc"})
-                        break;
-                    default:
-                        this.setState({keyboard: "mobile"})
-                        break;
+                if(uid != null) {
+                    this.setState({uid:uid});
+                }
+                if (username != null) {
+                    this.setState({username: username});
                 }
 
-            } else {
-                this.setState({keyboard: "mobile"})
+                if (country != null) {
+                    this.setState({country: country});
+                }
+                if (countryImg != null) {
+                    this.setState({countryImg: countryImg});
+                }
+                if (age != null) {
+                    this.setState({age: age});
+                }
+                if (gender != null) {
+                    this.setState({gender: gender});
+                }
+
+                if (uid != null) {
+                    this.setState({uid: uid});
+                }
+
+                if(keyboard != null) {
+                    this.setState({keyboard:keyboard});
+                }
+
+                if(challenge_recordCnt != null) {
+                    this.setState({challenge_recordCnt:challenge_recordCnt});
+                }
+
+                if(challenge_grade != null) {
+                    this.setState({challenge_grade:challenge_grade});
+                }
+
+                if(payment_start != null) {
+                    this.setState({payment_start:payment_start});
+                }
+
+                if(payment_end != null) {
+                    this.setState({payment_end:payment_end});
+                }
+
+                if(timer != null) {
+                    this.setState({timer:timer});
+                }
+
+                if(cnt != null) {
+                    this.setState({cnt:cnt});
+                }
+
+                if(grade != null) {
+                    this.setState({grade:grade});
+                }
+
+
+
             }
-
-
         }).then(res => {
         });
-
 
     }
 
@@ -85,9 +148,25 @@ export default class keyboard extends Component {
 
     _save()
     {
+
         var dataObject = {
-            "KEYBOARD": this.state.keyboard
-        };
+            UID : this.state.uid
+            ,USERNAME : this.state.username
+            ,COUNTRY : this.state.country
+            ,COUNTRYIMG : this.state.countryImg
+            ,AGE : this.state.age
+            ,GENDER : this.state.gender
+            ,TIMER : this.state.timer
+            ,CNT : this.state.CNT
+            ,keyboard:this.state.keyboard
+            ,grade:this.state.grade
+            ,challenge_grade:this.state.challenge_grade
+            ,challenge_recordCnt:this.state.challenge_recordCnt
+            ,payment_start:this.state.payment_start
+            ,payment_end:this.state.payment_end
+            ,keyboard:this.state.keyboard
+        }
+
 
 
         AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {

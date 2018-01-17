@@ -65,8 +65,6 @@ export default class readerboard extends Component {
             .then((response) => response.json())
             .then((responseData) =>
             {
-                console.log("리더보드 데이");
-                console.log(responseData);
                 this.setState({dataSource:this.state.dataSource.cloneWithRows(responseData)});
                 AsyncStorage.getItem(config.STORE_KEY).then((value) => {
                     var json = eval("("+value+")");
@@ -94,20 +92,8 @@ export default class readerboard extends Component {
                                 var temp = pi.pi_grade_value[i].split("~");
                                 if(parseInt(temp[0]) <= challenge_recordCnt && parseInt(temp[1]) >= challenge_recordCnt) {
                                     var per = Math.round((challenge_recordCnt / parseInt(temp[1])) * 100);
-                                    var dataObject = {
-                                        "UID": uid
-                                        ,"USERNAME": username
-                                        ,"COUNTRY": country
-                                        ,"COUNTRYIMG": countryImg
-                                        ,"AGE": age
-                                        ,"GENDER": gender
-                                        ,"challenge_grade": pi.pi_grade[i]
-                                        ,"challenge_recordCnt": challenge_recordCnt
-                                    };
 
-                                    AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
-                                        this.setState({challenge_grade:pi.pi_grade[i],challenge_recordCnt:challenge_recordCnt, challenge_per: per});
-                                    });
+                                    this.setState({challenge_grade:pi.pi_grade[i],challenge_recordCnt:challenge_recordCnt, challenge_per: per});
 
                                     if(uid != null) {
                                         this.setState({uid:uid});

@@ -99,6 +99,9 @@ export default class pisection extends Component {
             ,payment_start:0
             ,payment_end:0
             ,test:"상태"
+            ,start_pi:0
+            ,end_pi:0
+            ,startYN:"N"
         };
 
 
@@ -140,17 +143,24 @@ export default class pisection extends Component {
 
     _keyboardPress(value)
     {
+        if(this.state.startYN == "N") {
+            alert("구간설정을 해주세요.");
+            return;
+        }
         var piData = this.state.piData;
         var piRealData = this.state.piRealData;
+
+        console.log(this.state.start_pi + "///" + this.state.end_pi);
 
         /*
         if(piRealDataLength != 0) {
             piRealDataLength = piRealDataLength - 1;
         }
         */
-        var piRealDataLength = piRealData.length;
+        var piRealDataLength = piRealData.length + (parseInt(this.state.start_pi) - 1);
+        console.log(piRealDataLength);
         if(piData == "") {
-            piData = "<span style='color:#fff;border:1px solid #fff;'>"+value+"</span><span></span>";
+            piData = "<span style='color:#fff;border:1px solid #fff;font-size: 1.6em;'>"+value+"</span><span></span>";
             piRealData = value.toString();
         } else {
 
@@ -161,22 +171,22 @@ export default class pisection extends Component {
                     if(tempLength % 100 == 0) {
                         if(tempLength % 1000 == 0) {
                             if(tempLength % 1000 == 0) {
-                                piData += "<b style='color:#f0ff00;'>"+value+"</b>";
+                                piData += "<b style='color:#f0ff00;font-size: 1.6em;'>"+value+"</b>";
                             }
-                            piData += "<b style='color:#0066ff;'>"+value+"</b>";
+                            piData += "<b style='color:#0066ff;font-size: 1.6em;'>"+value+"</b>";
                         } else {
-                            piData += "<b style='color:#ff0000;'>" + value + "</b>";
+                            piData += "<b style='color:#ff0000;font-size: 1.6em;'>" + value + "</b>";
                         }
 
                     } else {
-                        piData += "<b style='color:#f0ff00;'>"+value+"</b>";
+                        piData += "<b style='color:#f0ff00;font-size: 1.6em;'>"+value+"</b>";
                     }
 
                 } else {
-                    piData += "<span style='color:#fff;'>"+value+"</span>";
+                    piData += "<span style='color:#fff;font-size: 1.6em;'>"+value+"</span>";
                 }
             } else {
-                piData += "<span style='color:#fff;'>"+value+"</span>";
+                piData += "<span style='color:#fff;font-size: 1.6em;'>"+value+"</span>";
             }
             piRealData += value.toString();
         }
@@ -224,39 +234,6 @@ export default class pisection extends Component {
 
         if(pi.pi_config[piRealDataLength] == value) {
 
-            if(this.state.challenge_recordCnt <= piRealDataLength) {
-                /*
-                pi.pi_grade_value.map((item) => {
-                    var temp = item.split("~");
-                    console.log(temp);
-                    console.log(piRealDataLength);
-                    if(parseInt(temp[0]) >= piRealDataLength && parseInt(temp[1] <= piRealDataLength)) {
-                        console.log("111");
-                        return;
-                    }
-                });
-                */
-                for(var i = 0; i < pi.pi_grade_value.length; i++) {
-                    var temp = pi.pi_grade_value[i].split("~");
-                    if(parseInt(temp[0]) <= piRealDataLength && parseInt(temp[1]) >= piRealDataLength) {
-
-                        var dataObject = {
-                            "challenge_grade": pi.pi_grade[i]
-                            ,"challenge_recordCnt": piRealDataLength+1
-                        };
-
-                        AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
-                            this.setState({challenge_grade:pi.pi_grade[i],challenge_recordCnt:piRealDataLength+1});
-                        });
-
-
-
-                        break;
-                    }
-                }
-
-
-            }
 
 
             switch (value) {
@@ -301,7 +278,25 @@ export default class pisection extends Component {
 
     _defaultBtn()
     {
-
+        console.log("초기화");
+        this.setState({
+            piData:"<span></span>"
+            , piRealData: ""
+            , grade:pi.pi_grade[0]
+            , recordCnt:0
+            , key1: "default"
+            , key2: "default"
+            , key3: "default"
+            , key4: "default"
+            , key5: "default"
+            , key6: "default"
+            , key7: "default"
+            , key8: "default"
+            , key9: "default"
+            , key0: "default"
+            , startYN:"Y"
+        });
+        console.log(this.state);
     }
 
     loadData()
@@ -402,6 +397,9 @@ export default class pisection extends Component {
             }
 
 
+            this.setState({test:payment_start + ":::" + payment_end});
+
+
         }).then(res => {
         });
     }
@@ -414,14 +412,21 @@ export default class pisection extends Component {
 
     _sectionStart()
     {
+        //console.log(this.state.start_pi + "///" + this.state.end_pi);
+        if(this.state.start_pi >= this.state.end_pi) {
+            alert("범위가 잘못되었습니다.");
+            return;
+        }
         this.setState({
             isModalVisible: false
+            ,startYN:"Y"
         })
     }
 
     _sectionClose() {
         this.setState({
             isModalVisible: false
+            ,startYN:"N"
         })
     }
 
@@ -467,38 +472,87 @@ npm i --save iap-receipt-validator
 
 
             //var productId = "android.test.purchased";
-
+            /*
             this.setState({test:"시도"});
-            await InAppBilling.close();
             await InAppBilling.open();
             this.setState({test:"준비"});
             try {
                 if (!await InAppBilling.isPurchased(productId)) {
+                    await this.setState({test:"결제"});
                     const details = await InAppBilling.purchase(productId);
-                    this.setState({test:"결제"});
+
                     console.log('You purchased: ', details);
                 } else {
                     await InAppBilling.consumePurchase(productId);
+                    await this.setState({test:"결제2"});
                     const details = await InAppBilling.purchase(productId);
-                    this.setState({test:"결제2"});
+
                     console.log('You purchased: ', details);
                 }
+
+
             } catch (err) {
                 this.setState({test:"결제에러"});
                 console.log(err);
 
             } finally {
-                if (!await InAppBilling.isPurchased(productId)) {
-
-                } else {
-                    this.setState({test:"결제_성공"});
-                }
-
                 await InAppBilling.consumePurchase(productId);
                 await InAppBilling.close();
             }
+            */
 
-            this.setState({test:"종료"});
+            await InAppBilling.open().
+            then(() => InAppBilling.purchase(productId))
+                .then((details) => {
+
+                    return InAppBilling.getProductDetails(productId);
+                })
+                .then((productDetails) => {
+
+
+                    var timestamp = new Date().getTime();
+                    var next_date2 = new Date();
+                    next_date2.setDate(next_date2.getMonth() + 1);
+                    var timestemp2 = new Date(next_date2).getTime();
+
+
+                    var dataObject = {
+                        "UID": this.state.uid
+                        ,"USERNAME": this.state.username
+                        ,"COUNTRY": this.state.country
+                        ,"COUNTRYIMG": this.state.countryImg
+                        ,"AGE": this.state.age
+                        ,"GENDER":this.state.gender
+                        ,"keyboard":this.state.keyboard
+                        ,"challenge_recordCnt" : this.state.challenge_recordCnt
+                        ,"challenge_grade" : this.state.challenge_grade
+                        ,"payment_start": timestamp
+                        ,"payment_end": timestemp2
+                        ,"grade": this.state.grade
+                        ,"recordCnt": this.state.recordCnt
+                    };
+
+                    this.setState({payment_start:timestamp, payment_end:timestemp2});
+
+
+                    AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject));
+
+
+
+
+                    InAppBilling.consumePurchase(productId);
+                    return InAppBilling.close();
+                })
+                .catch((error) => {
+                    this.setState({
+                        test: error
+                    });
+                });
+
+
+
+
+            //this.setState({test:"종료"});
 
 
 
@@ -510,7 +564,12 @@ npm i --save iap-receipt-validator
         }
     }
 
+
+
+
     render() {
+        const paymentCheck = InAppBilling.isPurchased(productId);
+
         return (
             <Container>
                 <Header style={commonStyle.headerLayout}>
@@ -541,7 +600,7 @@ npm i --save iap-receipt-validator
 
                     <View style={{padding:10}}>
                         <View>
-                            <Text style={pirecodeStyle.title}>π= 3.{this.state.test}</Text>
+                            <Text style={pirecodeStyle.title}>π= 3.</Text>
                         </View>
                         <View style={{flexDirection:'column', flex:1}}>
                             <View style={{flex:0.5}}>
@@ -942,6 +1001,7 @@ npm i --save iap-receipt-validator
                                                     {renderIf(this.state.key6 == "N")(
                                                         <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(6)}>
                                                             <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
                                                         </Button>
                                                     )}
 
@@ -1071,13 +1131,13 @@ npm i --save iap-receipt-validator
                             </View>
                             <View style={{width:"100%", justifyContent: 'center', alignItems: 'center', paddingLeft:20, paddingRight:20,marginTop:10}}>
                                 <Item regular>
-                                    <Input placeholder="시작 자리 수" />
+                                    <Input placeholder="시작 자리 수" keyboardType = 'numeric' onChangeText={(text) => this.setState({start_pi: text})} />
                                 </Item>
                             </View>
 
                             <View style={{width:"100%", justifyContent: 'center', alignItems: 'center', paddingLeft:20, paddingRight:20,marginTop:10}}>
                                 <Item regular>
-                                    <Input placeholder="끝 자리 수" />
+                                    <Input placeholder="끝 자리 수" keyboardType = 'numeric' onChangeText={(text) => this.setState({end_pi: text})} />
                                 </Item>
                             </View>
                             <View style={{width:"100%",flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingLeft:20, paddingRight:20,marginTop:10, paddingBottom:20}}>
@@ -1099,8 +1159,20 @@ npm i --save iap-receipt-validator
 
                 </Content>
 
+
                 {/*<TouchableOpacity onPress={() => this._sectionPopup()}>*/}
-                {renderIf(now_timestamp <= this.state.payment_start && next_timestemp >= this.state.payment_end)(
+                    {/*<Footer style={{backgroundColor:"#000"}}>*/}
+
+                        {/*/!*<TouchableOpacity onPress={() => this._pay()}>*!/*/}
+                        {/*<View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>*/}
+                            {/*<Text style={{fontSize:12,color:'#fff'}}>구간 설정</Text>*/}
+                        {/*</View>*/}
+
+
+                    {/*</Footer>*/}
+                {/*</TouchableOpacity>*/}
+
+                {renderIf(now_timestamp <= this.state.payment_start && now_timestamp >= this.state.payment_end)(
                 <TouchableOpacity onPress={() => this._sectionPopup()}>
                 <Footer style={{backgroundColor:"#000"}}>
 
@@ -1115,7 +1187,7 @@ npm i --save iap-receipt-validator
                 )}
 
 
-                {renderIf((now_timestamp >= this.state.payment_start && next_timestemp <= this.state.payment_end) || (this.state.payment_start == 0 || this.state.payment_end == 0))(
+                {renderIf((now_timestamp >= this.state.payment_start && now_timestamp <= this.state.payment_end) || (this.state.payment_start == 0 || this.state.payment_end == 0))(
                     <TouchableOpacity onPress={() => this._pay()}>
                         <Footer style={{backgroundColor:"#000"}}>
 
