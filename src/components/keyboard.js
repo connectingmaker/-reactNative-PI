@@ -339,7 +339,7 @@ export default class keyboard extends Component {
                                             <Image source={require('../../assets/img/icon/btn_icon_on.png')} resizeMode={'contain'} style={{width: 15, height: 15}}></Image>
                                         </View>
                                         <View style={{flex:0.9, paddingLeft:10}}>
-                                            <Text style={keyboardStyle.useBtnTextOn}>컴퓨터 키패드 설정</Text>
+                                            <Text style={keyboardStyle.useBtnTextOn}>컴퓨터 키패드</Text>
                                         </View>
                                     </Button>
                                 )}
@@ -350,7 +350,7 @@ export default class keyboard extends Component {
                                             <Image source={require('../../assets/img/icon/btn_icon_off.png')} resizeMode={'contain'} style={{width: 15, height: 15}}></Image>
                                         </View>
                                         <View style={{flex:0.9, paddingLeft:10}}>
-                                            <Text style={keyboardStyle.useBtnText}>컴퓨터 키패드 설정</Text>
+                                            <Text style={keyboardStyle.useBtnText}>컴퓨터 키패드</Text>
                                         </View>
                                     </Button>
                                 )}
@@ -420,7 +420,7 @@ export default class keyboard extends Component {
                                     <View style={keyboardStyle.keyboardButtonLayout}>
 
                                         <Button style={keyboardStyle.keyboardButton}>
-                                            <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
+                                            <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
                                         </Button>
                                     </View>
                                 </View>
@@ -438,7 +438,7 @@ export default class keyboard extends Component {
                                 <View style={{ flex:0.32}}>
                                     <View style={keyboardStyle.keyboardButtonLayout}>
                                         <Button style={keyboardStyle.keyboardButton}>
-                                            <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
+                                            <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
                                         </Button>
                                     </View>
                                 </View>
