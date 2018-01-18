@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform,AsyncStorage,BackAndroid } from 'react-native';
-import { Container, Header, Left,Body,Right, Content, Footer,Item, Icon, Input,Button } from 'native-base';
+import { Container, Header, Left,Body,Right, Content, Footer,Item, Icon, Input,Button,Title } from 'native-base';
 
 import {gradeFormStyle} from '../style/grade';
 import {commonStyle} from "../style/common";
@@ -95,13 +95,14 @@ export default class grade extends Component {
                     {/*</View>*/}
                     {/*<View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>*/}
                     {/*</View>*/}
-                    <Left>
+                    <Left style={{flex:1, justifyContent: 'center', alignItems: 'flex-start'}}>
                         <Button style={commonStyle.backBtn} onPress={Actions.pop} >
-                            <Text style={{fontSize:14,color:'#fff'}}> BACK </Text>
+                            <Title style={{fontSize:14,color:'#fff'}}> BACK </Title>
                         </Button>
                     </Left>
-                    <Body style={{alignItems:'center'}}>
-                        <Text style={{fontSize:16,color:'#fff'}}>등급 보기</Text>
+
+                    <Body style={{flex:1,  justifyContent: 'center', alignItems: 'center' }}>
+                     <Title style={{fontSize:16,color:'#fff'}}>등급 보기</Title>
                     </Body>
                     <Right>
 

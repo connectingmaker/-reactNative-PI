@@ -96,5 +96,6 @@ export const keyboardStyle = StyleSheet.create({
         backgroundColor:"#404040"
         ,width:"100%"
         ,justifyContent: 'center'
+        ,alignItems:'center'
     }
 })

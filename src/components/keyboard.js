@@ -188,13 +188,14 @@ export default class keyboard extends Component {
                     {/*</View>*/}
                     {/*<View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>*/}
                     {/*</View>*/}
-                    <Left>
+                    <Left style={{flex:1, justifyContent: 'center', alignItems: 'flex-start'}}>
                         <Button style={commonStyle.backBtn} onPress={Actions.pop} >
-                            <Text style={{fontSize:14,color:'#fff'}}> BACK </Text>
+                            <Title style={{fontSize:14,color:'#fff'}}> BACK </Title>
                         </Button>
                     </Left>
-                    <Body style={{alignItems:'center'}}>
-                        <Text style={{fontSize:16,color:'#fff'}}>키패드 설정</Text>
+
+                    <Body style={{flex:1,  justifyContent: 'center', alignItems: 'center' }}>
+                    <Title style={{fontSize:16,color:'#fff'}}>키패드 설정</Title>
                     </Body>
                     <Right>
 

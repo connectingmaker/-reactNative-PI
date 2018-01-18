@@ -7,7 +7,7 @@ import {
     View, Text, AppRegistry, Image, StyleSheet, TouchableOpacity, AlertIOS, Alert, Platform, TextInput,
     AsyncStorage, BackAndroid
 } from 'react-native';
-import {Container, Header, Left, Body, Right, Content, Footer,Item, Icon, Input,Button } from 'native-base';
+import {Container, Header, Left, Body, Right, Content, Footer,Item, Icon, Input,Button,Title } from 'native-base';
 import ModalSelector from 'react-native-modal-selector';
 
 
@@ -618,15 +618,13 @@ export default class Idsetting extends Component {
                     {/*</View>*/}
                     {/*<View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>*/}
                     {/*</View>*/}
-                    <Left>
+                    <Left style={{flex:1, justifyContent: 'center', alignItems: 'flex-start'}}>
                         <Button style={commonStyle.backBtn} onPress={Actions.pop} >
-                            <Text style={{fontSize:14,color:'#fff'}}> BACK </Text>
+                            <Title style={{fontSize:14,color:'#fff'}}> BACK </Title>
                         </Button>
                     </Left>
-                    <Body>
-                        <View style={{alignItems:'center',border:1,borderColor:'#000'}}>
-                            <Text style={{fontSize:16,color:'#fff'}}>아이디 설정</Text>
-                        </View>
+                    <Body style={{flex:1,  justifyContent: 'center', alignItems: 'center' }}>
+                        <Title style={{fontSize:16,color:'#fff'}}>아이디 설정</Title>
                     </Body>
                     <Right>
 
