@@ -164,17 +164,20 @@ export default class Main extends Component {
                 </Header>
                 <Content style={MainFormStyle.contentsLayout}>
                     <View style={MainFormStyle.contentsHeaderLayout}>
-                        <View style={{alignItems: 'center',justifyContent:'center',paddingTop:20}}>
-                            <Text style={MainFormStyle.boldFont}>{this.state.challenge_grade}</Text>
-                        </View>
+                        {/*<View style={{alignItems: 'center',justifyContent:'center',paddingTop:20}}>*/}
+                            {/*<Text style={MainFormStyle.boldFont}>{this.state.challenge_grade}</Text>*/}
+                        {/*</View>*/}
 
-                        <View style={{alignItems: 'center',justifyContent:'center',paddingTop:20,paddingBottom:20}}>
-                            <PercentageCircle radius={40} percent={this.state.challenge_per} borderWidth={5}>
-                            </PercentageCircle>
+                        {/*<View style={{alignItems: 'center',justifyContent:'center',paddingTop:20,paddingBottom:20}}>*/}
+                            {/*<PercentageCircle radius={40} percent={this.state.challenge_per} borderWidth={5}>*/}
+                            {/*</PercentageCircle>*/}
+                            {/*<View style={{alignItems: 'center',justifyContent:'center',paddingTop:20}}>*/}
+                                {/*<Text style={MainFormStyle.boldFont}>최고기록 : {this.state.challenge_recordCnt}</Text>*/}
+                            {/*</View>*/}
+                        {/*</View>*/}
                             <View style={{alignItems: 'center',justifyContent:'center',paddingTop:20}}>
-                                <Text style={MainFormStyle.boldFont}>최고기록 : {this.state.challenge_recordCnt}</Text>
+                            <Text style={MainFormStyle.boldFont}>파이킹</Text>
                             </View>
-                        </View>
 
                     </View>
                     <View style={{paddingTop:10}}>
