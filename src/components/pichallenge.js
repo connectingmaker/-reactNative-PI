@@ -461,19 +461,35 @@ export default class pichallenge extends Component {
         return (
             <Container>
                 <Header style={commonStyle.headerLayout}>
-                    <TouchableOpacity onPress={() => Actions.pop({ refresh: {refresh:true} })} style={{flex:.2, alignItems: 'flex-start'}}>
-                        <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={{fontSize:12,color:'#fff'}}> BACK </Text>
-                        </View>
-                    </TouchableOpacity>
-                    <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize:16,color:'#fff'}}>도 전</Text>
-                    </View>
-                    <TouchableOpacity onPress={() => this._defaultBtn()} style={{flex:.2, alignItems: 'flex-end'}}>
-                        <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={{fontSize:12,color:'#fff'}}> 초기화 </Text>
-                        </View>
-                    </TouchableOpacity>
+                    {/*<TouchableOpacity onPress={() => Actions.pop({ refresh: {refresh:true} })} style={{flex:.2, alignItems: 'flex-start'}}>*/}
+                        {/*<View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>*/}
+                            {/*<Text style={{fontSize:14,color:'#fff'}}> BACK </Text>*/}
+                        {/*</View>*/}
+                    {/*</TouchableOpacity>*/}
+                    {/*<View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>*/}
+                        {/*<Text style={{fontSize:16,color:'#fff'}}>도 전</Text>*/}
+                    {/*</View>*/}
+                    {/*<TouchableOpacity onPress={() => this._defaultBtn()} style={{flex:.2, alignItems: 'flex-end'}}>*/}
+                        {/*<View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>*/}
+                            {/*<Text style={{fontSize:14,color:'#fff'}}> 초기화 </Text>*/}
+                        {/*</View>*/}
+                    {/*</TouchableOpacity>*/}
+                    <Left>
+                        <Button style={commonStyle.backBtn} onPress={Actions.pop} >
+                            <Text style={{fontSize:14,color:'#fff'}}> BACK </Text>
+                        </Button>
+
+                    </Left>
+                    <Body>
+                    <Text style={{fontSize:16,color:'#fff'}}>도 전</Text>
+                    </Body>
+                    <Right>
+                        <Button style={commonStyle.defaultBtn} onPress={() => this._defaultBtn()} >
+                            <View style={{justifyContent: 'center', alignItems: 'flex-end'}}>
+                                <Text style={{fontSize:14,color:'#fff',paddingLeft:35}}> 초기화 </Text>
+                            </View>
+                        </Button>
+                    </Right>
                 </Header>
 
                 <Content>
