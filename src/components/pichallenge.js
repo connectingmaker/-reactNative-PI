@@ -483,7 +483,7 @@ export default class pichallenge extends Component {
                         </Button>
 
                     </Left>
-                    <Body>
+                    <Body style={{alignItems:'center'}}>
                     <Text style={{fontSize:16,color:'#fff'}}>도 전</Text>
                     </Body>
                     <Right>

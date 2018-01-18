@@ -237,7 +237,7 @@ export default class pivalue extends Component {
                                 <Text style={{fontSize:14,color:'#fff'}}> BACK </Text>
                             </Button>
                         </Left>
-                        <Body>
+                        <Body style={{alignItems:'center'}}>
                              <Text style={{fontSize:16,color:'#fff'}}>파이 값 보기</Text>
                         </Body>
                         <Right>

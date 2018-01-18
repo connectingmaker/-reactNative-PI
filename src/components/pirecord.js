@@ -384,7 +384,7 @@ export default class pirecord extends Component {
                         </Button>
 
                     </Left>
-                    <Body>
+                    <Body style={{alignItems:'center'}}>
                         <Text style={{fontSize:16,color:'#fff'}}>연 습</Text>
                     </Body>
                     <Right>

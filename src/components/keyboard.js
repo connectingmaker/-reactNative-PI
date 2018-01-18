@@ -193,7 +193,7 @@ export default class keyboard extends Component {
                             <Text style={{fontSize:14,color:'#fff'}}> BACK </Text>
                         </Button>
                     </Left>
-                    <Body>
+                    <Body style={{alignItems:'center'}}>
                         <Text style={{fontSize:16,color:'#fff'}}>키패드 설정</Text>
                     </Body>
                     <Right>
