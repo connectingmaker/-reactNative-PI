@@ -7,7 +7,7 @@ import { Actions } from 'react-native-router-flux';
 import {
     View, Text, Image, StyleSheet, TouchableOpacity, AlertIOS, Alert, Platform, ScrollView,AsyncStorage, BackAndroid, NativeModules
 } from 'react-native';
-import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button,Spinner,Left,Right } from 'native-base';
+import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button,Spinner,Left,Right,Title } from 'native-base';
 import HTML from 'react-native-render-html';
 import Modal from 'react-native-modal'
 
@@ -573,19 +573,23 @@ npm i --save iap-receipt-validator
         return (
             <Container>
                 <Header style={commonStyle.headerLayout}>
-                    <TouchableOpacity onPress={Actions.pop} style={{flex:.2, alignItems: 'flex-start'}}>
-                        <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={{fontSize:12,color:'#fff'}}> BACK </Text>
-                        </View>
-                    </TouchableOpacity>
-                    <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize:16,color:'#fff'}}>구간 연습</Text>
-                    </View>
-                    <TouchableOpacity onPress={() => this._defaultBtn()} style={{flex:.2, alignItems: 'flex-end'}}>
-                        <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={{fontSize:12,color:'#fff'}}> 초기화 </Text>
-                        </View>
-                    </TouchableOpacity>
+                    <Left style={{flex:1, justifyContent: 'center', alignItems: 'flex-start'}}>
+                        <Button style={commonStyle.backBtn} onPress={Actions.pop} >
+                            <Title style={{fontSize:14,color:'#fff'}}> BACK </Title>
+                        </Button>
+                    </Left>
+
+                    <Body style={{flex:1,  justifyContent: 'center', alignItems: 'center' }}>
+                    <Title style={{fontSize:16,color:'#fff'}}>구간 연습</Title>
+                    </Body>
+
+                    <Right style={{flex:1, justifyContent: 'center', alignItems: 'flex-end'}}>
+                        <Button style={commonStyle.defaultBtn} onPress={() => this._defaultBtn()} >
+                            <Title style={{fontSize:14,color:'#fff',paddingLeft:35}}> 초기화 </Title>
+                        </Button>
+                    </Right>
+
+
                 </Header>
 
                 <Content>

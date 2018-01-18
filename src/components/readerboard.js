@@ -8,7 +8,7 @@ import {
     View, Text, Image, StyleSheet, TouchableOpacity, AlertIOS, Alert, Platform, ScrollView, ListView, AsyncStorage,
     BackAndroid
 } from 'react-native';
-import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button,Spinner,Left,Right } from 'native-base';
+import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button,Spinner,Left,Right,Title } from 'native-base';
 import TimeFormatter from 'minutes-seconds-milliseconds';
 
 import HTML from 'react-native-render-html';
@@ -175,16 +175,15 @@ export default class readerboard extends Component {
         return (
             <Container>
                 <Header style={readerboardFormStyle.headerLayout}>
-                    <TouchableOpacity onPress={() => Actions.pop({ refresh: {refresh:true} })}style={{flex:.2, alignItems: 'flex-start'}}>
-                        <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={{fontSize:12,color:'#fff'}}> BACK </Text>
-                        </View>
-                    </TouchableOpacity>
-                    <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize:16,color:'#fff'}}>리더 보드</Text>
-                    </View>
-                    <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
-                    </View>
+                    <Left style={{flex:1, justifyContent: 'center', alignItems: 'flex-start'}}>
+                        <Button style={commonStyle.backBtn} onPress={Actions.pop} >
+                            <Title style={{fontSize:14,color:'#fff'}}> BACK </Title>
+                        </Button>
+                    </Left>
+
+                    <Body style={{flex:1,  justifyContent: 'center', alignItems: 'center' }}>
+                        <Title style={{fontSize:16,color:'#fff'}}>리더 보드</Title>
+                    </Body>
                 </Header>
 
                 <Content style={{padding:10,backgroundColor:"#fff"}}>

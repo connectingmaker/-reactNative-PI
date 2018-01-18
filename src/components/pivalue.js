@@ -8,7 +8,7 @@ import {
     View, Text, Image, StyleSheet, TouchableOpacity, AlertIOS, Alert, Platform, ScrollView, WebView,
     BackAndroid
 } from 'react-native';
-import { Container, Header, Left, Body, Right, Content, Footer,Item, Icon, Input,Button,Spinner } from 'native-base';
+import { Container, Header, Left, Body, Right, Content, Footer,Item, Icon, Input,Button,Spinner, Title} from 'native-base';
 import HTML from 'react-native-render-html';
 
 import {pivalueFormStyle} from '../style/pivalue';
@@ -236,13 +236,14 @@ export default class pivalue extends Component {
                         {/*</View>*/}
                         {/*<View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>*/}
                         {/*</View>*/}
-                        <Left>
+                        <Left style={{flex:1, justifyContent: 'center', alignItems: 'flex-start'}}>
                             <Button style={commonStyle.backBtn} onPress={Actions.pop} >
-                                <Text style={{fontSize:14,color:'#fff'}}> BACK </Text>
+                                <Title style={{fontSize:14,color:'#fff'}}> BACK </Title>
                             </Button>
                         </Left>
-                        <Body style={{alignItems:'center'}}>
-                             <Text style={{fontSize:16,color:'#fff'}}>파이 값 보기</Text>
+
+                        <Body style={{flex:1,  justifyContent: 'center', alignItems: 'center' }}>
+                        <Title style={{fontSize:16,color:'#fff'}}>파이 값 보기</Title>
                         </Body>
                         <Right>
 

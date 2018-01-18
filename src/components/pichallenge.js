@@ -477,22 +477,23 @@ export default class pichallenge extends Component {
                             {/*<Text style={{fontSize:14,color:'#fff'}}> 초기화 </Text>*/}
                         {/*</View>*/}
                     {/*</TouchableOpacity>*/}
-                    <Left>
+                    <Left style={{flex:1, justifyContent: 'center', alignItems: 'flex-start'}}>
                         <Button style={commonStyle.backBtn} onPress={Actions.pop} >
-                            <Text style={{fontSize:14,color:'#fff'}}> BACK </Text>
+                            <Title style={{fontSize:14,color:'#fff'}}> BACK </Title>
                         </Button>
-
                     </Left>
-                    <Body style={{alignItems:'center'}}>
-                    <Text style={{fontSize:16,color:'#fff'}}>도 전</Text>
+
+                    <Body style={{flex:1,  justifyContent: 'center', alignItems: 'center' }}>
+                    <Title style={{fontSize:16,color:'#fff'}}>도 전</Title>
                     </Body>
-                    <Right>
+
+                    <Right style={{flex:1, justifyContent: 'center', alignItems: 'flex-end'}}>
                         <Button style={commonStyle.defaultBtn} onPress={() => this._defaultBtn()} >
-                            <View style={{justifyContent: 'center', alignItems: 'flex-end'}}>
-                                <Text style={{fontSize:14,color:'#fff',paddingLeft:35}}> 초기화 </Text>
-                            </View>
+                            <Title style={{fontSize:14,color:'#fff',paddingLeft:35}}> 초기화 </Title>
                         </Button>
                     </Right>
+
+
                 </Header>
 
                 <Content>
