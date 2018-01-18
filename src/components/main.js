@@ -175,9 +175,12 @@ export default class Main extends Component {
                                 {/*<Text style={MainFormStyle.boldFont}>최고기록 : {this.state.challenge_recordCnt}</Text>*/}
                             {/*</View>*/}
                         {/*</View>*/}
-                            <View style={{alignItems: 'center',justifyContent:'center',paddingTop:20}}>
-                            <Text style={MainFormStyle.boldFont}>파이킹</Text>
-                            </View>
+                        <View style={{alignItems: 'center',justifyContent:'center',paddingTop:20}}>
+                        <Text style={MainFormStyle.boldFont}>파이킹</Text>
+                        </View>
+                        <View style={{alignItems: 'center',justifyContent:'center',paddingTop:20,paddingBottom:20}}>
+                            <Image source={require('../../assets/img/main/180x180.png')} resizeMode={'contain'} style={{width:100,height:100}}/>
+                        </View>
 
                     </View>
                     <View style={{paddingTop:10}}>

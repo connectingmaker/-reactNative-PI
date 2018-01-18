@@ -16,6 +16,7 @@ export const keyboardStyle = StyleSheet.create({
         ,paddingTop:100
 
     }
+
     ,useBtn: {
         backgroundColor:"#ffffff"
         ,shadowColor: "rgba(0,0,0,23)"

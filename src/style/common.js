@@ -11,6 +11,22 @@ export const commonStyle = StyleSheet.create({
         justifyContent: 'center', alignItems: 'center', backgroundColor: "#DA4211"
 
     }
+    ,backBtn: {
+        backgroundColor:"#222222"
+        ,shadowColor: "rgba(0,0,0,23)"
+        ,shadowOffset: { width: 0, height: 1 }
+        ,shadowOpacity: 0.3
+        ,width:"100%"
+        ,paddingLeft: 5
+    }
+    ,defaultBtn: {
+        backgroundColor:"#222222"
+        ,shadowColor: "rgba(0,0,0,23)"
+        ,shadowOffset: { width: 0, height: 1 }
+        ,shadowOpacity: 0.3
+        ,width:"100%"
+        ,paddingRight: 35
+    }
     ,contentheaderLayout: {
         justifyContent: 'center', alignItems: 'center', backgroundColor: "#f23611"
 

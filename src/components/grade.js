@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { View, Text, Image, StyleSheet, TouchableOpacity,AlertIOS,Alert,Platform,AsyncStorage,BackAndroid } from 'react-native';
-import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button } from 'native-base';
+import { Container, Header, Left,Body,Right, Content, Footer,Item, Icon, Input,Button } from 'native-base';
 
 import {gradeFormStyle} from '../style/grade';
 import {commonStyle} from "../style/common";
@@ -85,16 +85,27 @@ export default class grade extends Component {
         return (
             <Container>
                 <Header style={gradeFormStyle.headerLayout}>
-                    <TouchableOpacity onPress={Actions.pop} style={{flex:.2, alignItems: 'flex-start'}}>
-                        <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={{fontSize:12,color:'#fff'}}> BACK </Text>
-                        </View>
-                    </TouchableOpacity>
-                    <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
+                    {/*<TouchableOpacity onPress={Actions.pop} style={{flex:.2, alignItems: 'flex-start'}}>*/}
+                        {/*<View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>*/}
+                            {/*<Text style={{fontSize:12,color:'#fff'}}> BACK </Text>*/}
+                        {/*</View>*/}
+                    {/*</TouchableOpacity>*/}
+                    {/*<View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>*/}
+                        {/*<Text style={{fontSize:16,color:'#fff'}}>등급 보기</Text>*/}
+                    {/*</View>*/}
+                    {/*<View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>*/}
+                    {/*</View>*/}
+                    <Left>
+                        <Button style={commonStyle.backBtn} onPress={Actions.pop} >
+                            <Text style={{fontSize:14,color:'#fff'}}> BACK </Text>
+                        </Button>
+                    </Left>
+                    <Body>
                         <Text style={{fontSize:16,color:'#fff'}}>등급 보기</Text>
-                    </View>
-                    <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
-                    </View>
+                    </Body>
+                    <Right>
+
+                    </Right>
                 </Header>
 
                 <Content>

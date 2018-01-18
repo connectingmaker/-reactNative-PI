@@ -370,19 +370,33 @@ export default class pirecord extends Component {
         return (
             <Container>
                 <Header style={commonStyle.headerLayout}>
-                    <TouchableOpacity onPress={Actions.pop} style={{flex:.2, alignItems: 'flex-start', width:"100%"}}>
-                        <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={{fontSize:12,color:'#fff'}}> BACK </Text>
-                        </View>
-                    </TouchableOpacity>
-                    <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
+                    {/*<TouchableOpacity onPress={Actions.pop} style={{flex:.2, alignItems: 'flex-start', width:"100%"}}>*/}
+                        {/*<View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>*/}
+                            {/*<Text style={{fontSize:12,color:'#fff'}}> BACK </Text>*/}
+                        {/*</View>*/}
+                    {/*</TouchableOpacity>*/}
+                    {/*<View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>*/}
+                        {/*<Text style={{fontSize:16,color:'#fff'}}>연 습</Text>*/}
+                    {/*</View>*/}
+                    {/*<TouchableOpacity onPress={() => this._defaultBtn()} style={{flex:.2, alignItems: 'flex-end', width:"100%"}}>*/}
+                        {/*<View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>*/}
+                            {/*<Text style={{fontSize:12,color:'#fff'}}> 초기화 </Text>*/}
+                        {/*</View>*/}
+                    {/*</TouchableOpacity>*/}
+                    <Left>
+                        <Button style={commonStyle.backBtn} onPress={Actions.pop} >
+                            <Text style={{fontSize:14,color:'#fff'}}> BACK </Text>
+                        </Button>
+
+                    </Left>
+                    <Body>
                         <Text style={{fontSize:16,color:'#fff'}}>연 습</Text>
-                    </View>
-                    <TouchableOpacity onPress={() => this._defaultBtn()} style={{flex:.2, alignItems: 'flex-end', width:"100%"}}>
-                        <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={{fontSize:12,color:'#fff'}}> 초기화 </Text>
-                        </View>
-                    </TouchableOpacity>
+                    </Body>
+                    <Right style={{alignItems:'flex-end'}}>
+                        <Button style={commonStyle.defaultBtn} onPress={() => this._defaultBtn()} >
+                            <Text style={{fontSize:14,color:'#fff',paddingLeft:50}}> 초기화 </Text>
+                        </Button>
+                    </Right>
                 </Header>
 
                 <Content>
@@ -930,13 +944,17 @@ export default class pirecord extends Component {
 
 
                 </Content>
-                <TouchableOpacity onPress={Actions.Pivalue}>
-                    <Footer style={commonStyle.footerLayout}>
-                        <View>
-                            <Text style={commonStyle.footerColor}>파이값 보기</Text>
-                        </View>
-                    </Footer>
-                </TouchableOpacity>
+                <View style={{flex:0.6}}>
+                </View>
+                <View style={{flex:0.4}}>
+                    <TouchableOpacity onPress={Actions.Pivalue}>
+                        <Footer style={commonStyle.footerLayout}>
+                            <View>
+                                <Text style={commonStyle.footerColor}>파이값 보기</Text>
+                            </View>
+                        </Footer>
+                    </TouchableOpacity>
+                </View>
             </Container>
         );
 

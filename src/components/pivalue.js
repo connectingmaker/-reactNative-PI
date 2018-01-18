@@ -8,10 +8,11 @@ import {
     View, Text, Image, StyleSheet, TouchableOpacity, AlertIOS, Alert, Platform, ScrollView, WebView,
     BackAndroid
 } from 'react-native';
-import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button,Spinner } from 'native-base';
+import { Container, Header, Left, Body, Right, Content, Footer,Item, Icon, Input,Button,Spinner } from 'native-base';
 import HTML from 'react-native-render-html';
 
 import {pivalueFormStyle} from '../style/pivalue';
+import {commonStyle} from "../style/common";
 
 
 import pi from '../config/pi_config'
@@ -236,16 +237,27 @@ export default class pivalue extends Component {
             return (
                 <Container>
                     <Header style={pivalueFormStyle.headerLayout}>
-                        <TouchableOpacity onPress={Actions.pop} style={{flex:.2, alignItems: 'flex-start'}}>
-                            <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
-                                <Text style={{fontSize:12,color:'#fff'}}> Back </Text>
-                            </View>
-                        </TouchableOpacity>
-                        <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={{fontSize:16,color:'#fff'}}>파이값 보기</Text>
-                        </View>
-                        <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
-                        </View>
+                        {/*<TouchableOpacity onPress={Actions.pop} style={{flex:.2, alignItems: 'flex-start'}}>*/}
+                            {/*<View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>*/}
+                                {/*<Text style={{fontSize:12,color:'#fff'}}> Back </Text>*/}
+                            {/*</View>*/}
+                        {/*</TouchableOpacity>*/}
+                        {/*<View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>*/}
+                            {/*<Text style={{fontSize:16,color:'#fff'}}>파이값 보기</Text>*/}
+                        {/*</View>*/}
+                        {/*<View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>*/}
+                        {/*</View>*/}
+                        <Left>
+                            <Button style={commonStyle.backBtn} onPress={Actions.pop} >
+                                <Text style={{fontSize:14,color:'#fff'}}> BACK </Text>
+                            </Button>
+                        </Left>
+                        <Body>
+                             <Text style={{fontSize:16,color:'#fff'}}>파이 값 보기</Text>
+                        </Body>
+                        <Right>
+
+                        </Right>
                     </Header>
 
                     <Content style={{padding:10}}>

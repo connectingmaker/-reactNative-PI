@@ -7,7 +7,7 @@ import {
     View, Text, AppRegistry, Image, StyleSheet, TouchableOpacity, AlertIOS, Alert, Platform, TextInput,
     AsyncStorage, BackAndroid
 } from 'react-native';
-import {Container, Header, Body, Content, Footer,Item, Icon, Input,Button } from 'native-base';
+import {Container, Header, Left, Body, Right, Content, Footer,Item, Icon, Input,Button } from 'native-base';
 import ModalSelector from 'react-native-modal-selector';
 
 
@@ -609,16 +609,27 @@ export default class Idsetting extends Component {
 
                 <Header style={commonStyle.headerLayout}>
 
-                    <TouchableOpacity onPress={() => Actions.pop({ refresh: {refresh:true} })} style={{flex:.2, alignItems: 'flex-start'}}>
-                        <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={{fontSize:12,color:'#fff'}}> BACK </Text>
-                        </View>
-                    </TouchableOpacity>
-                    <View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>
+                    {/*<TouchableOpacity onPress={() => Actions.pop({ refresh: {refresh:true} })} style={{flex:.2, alignItems: 'flex-start'}}>*/}
+                        {/*<View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>*/}
+                            {/*<Text style={{fontSize:12,color:'#fff'}}> BACK </Text>*/}
+                        {/*</View>*/}
+                    {/*</TouchableOpacity>*/}
+                    {/*<View style={{flex:.6, justifyContent: 'center', alignItems: 'center'}}>*/}
+                        {/*<Text style={{fontSize:16,color:'#fff'}}>아이디 설정</Text>*/}
+                    {/*</View>*/}
+                    {/*<View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>*/}
+                    {/*</View>*/}
+                    <Left>
+                        <Button style={commonStyle.backBtn} onPress={Actions.pop} >
+                            <Text style={{fontSize:14,color:'#fff'}}> BACK </Text>
+                        </Button>
+                    </Left>
+                    <Body>
                         <Text style={{fontSize:16,color:'#fff'}}>아이디 설정</Text>
-                    </View>
-                    <View style={{flex:.2, justifyContent: 'center', alignItems: 'center'}}>
-                    </View>
+                    </Body>
+                    <Right>
+
+                    </Right>
                 </Header>
 
                 <Content style={{padding:10}}>
