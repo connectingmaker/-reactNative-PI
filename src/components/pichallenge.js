@@ -1052,33 +1052,33 @@ export default class pichallenge extends Component {
                         </TouchableOpacity>
                     )}
 
-                    {renderIf(this.state.challenge_start == true)(
-                    <View style={{flexDirection:"row", flex:1}}>
-                        <TouchableOpacity style={{flex:0.49, justifyContent: 'center', alignItems: 'center'}} onPress={() => this._challenge_stop()}>
-                            {renderIf(this.state.challenge_stop == false) (
-                            <View>
-                                <Text style={{fontSize:12,color:'#fff'}}>일시중지</Text>
-                            </View>
-                            )}
+                    {/*{renderIf(this.state.challenge_start == true)(*/}
+                    {/*<View style={{flexDirection:"row", flex:1}}>*/}
+                        {/*<TouchableOpacity style={{flex:0.49, justifyContent: 'center', alignItems: 'center'}} onPress={() => this._challenge_stop()}>*/}
+                            {/*{renderIf(this.state.challenge_stop == false) (*/}
+                            {/*<View>*/}
+                                {/*<Text style={{fontSize:12,color:'#fff'}}>일시중지</Text>*/}
+                            {/*</View>*/}
+                            {/*)}*/}
 
-                            {renderIf(this.state.challenge_stop == true) (
-                                <View>
-                                    <Text style={{fontSize:12,color:'#fff'}}>재개</Text>
-                                </View>
-                            )}
+                            {/*{renderIf(this.state.challenge_stop == true) (*/}
+                                {/*<View>*/}
+                                    {/*<Text style={{fontSize:12,color:'#fff'}}>재개</Text>*/}
+                                {/*</View>*/}
+                            {/*)}*/}
 
-                        </TouchableOpacity>
-                            <View style={{flex:0.02, justifyContent: 'center', alignItems: 'center'}}>
-                                <Text style={{fontSize:12,color:'#fff'}}>|</Text>
-                            </View>
+                        {/*</TouchableOpacity>*/}
+                            {/*<View style={{flex:0.02, justifyContent: 'center', alignItems: 'center'}}>*/}
+                                {/*<Text style={{fontSize:12,color:'#fff'}}>|</Text>*/}
+                            {/*</View>*/}
 
-                        <TouchableOpacity style={{flex:0.49, justifyContent: 'center', alignItems: 'center'}} onPress={() => this._challenge_end()}>
-                            <View>
-                                <Text style={{fontSize:12,color:'#fff'}}>도전완료</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
-                    )}
+                        {/*<TouchableOpacity style={{flex:0.49, justifyContent: 'center', alignItems: 'center'}} onPress={() => this._challenge_end()}>*/}
+                            {/*<View>*/}
+                                {/*<Text style={{fontSize:12,color:'#fff'}}>도전완료</Text>*/}
+                            {/*</View>*/}
+                        {/*</TouchableOpacity>*/}
+                    {/*</View>*/}
+                    {/*)}*/}
 
                 </Footer>
             </Container>
