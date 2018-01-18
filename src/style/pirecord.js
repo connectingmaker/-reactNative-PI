@@ -44,8 +44,7 @@ export const pirecodeStyle = StyleSheet.create({
         ,height: (height / 4)
         ,paddingTop:0
         ,paddingBottom:0
-        ,paddingLeft:20
-        ,paddingRight:20
+        ,padding:20
         ,backgroundColor:"#000"
         ,shadowColor: "rgba(0,0,0,23)"
         ,shadowOffset: { width: 0, height: 1 }
