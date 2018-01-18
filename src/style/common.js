@@ -35,11 +35,11 @@ export const commonStyle = StyleSheet.create({
         fontSize: 15 , color:"#fff",fontWeight:'bold'
     }
     ,footerLayout: {
-        justifyContent: 'center', alignItems: 'center', backgroundColor: "#000000"
+        justifyContent: 'center', alignItems: 'center', backgroundColor: "#ccc"
     }
 
     ,footerColor: {
-        color:"#fff"
+        color:"#000000"
     }
 
     ,headerTitleLayout: {

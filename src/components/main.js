@@ -228,7 +228,7 @@ export default class Main extends Component {
 
                                 <TouchableOpacity onPress={Actions.Pivalue}>
                                     <View style={MainFormStyle.contentsButtonLayout}>
-                                        <Text style={MainFormStyle.contentsButtonText}>파이값 보기</Text>
+                                        <Text style={MainFormStyle.contentsButtonText}>파이 값 보기</Text>
                                     </View>
                                 </TouchableOpacity>
                             </View>
