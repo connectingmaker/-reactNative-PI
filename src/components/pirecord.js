@@ -951,7 +951,7 @@ export default class pirecord extends Component {
                                 <View style={{flex:0.05}}>
                                     <TouchableOpacity onPress={Actions.Pivalue}>
                                         <View style={keyboardStyle.ButtonBg}>
-                                            <Text style={keyboardStyle.ButtonTxt}>π</Text>
+                                            <Text style={keyboardStyle.ButtonTxt}> π </Text>
                                         </View>
                                     </TouchableOpacity>
                                 </View>
