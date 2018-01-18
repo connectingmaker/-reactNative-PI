@@ -171,6 +171,7 @@ export default class keyboard extends Component {
 
         AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
             alert("저장되었습니다.");
+            Actions.pop();
         });
     }
 
