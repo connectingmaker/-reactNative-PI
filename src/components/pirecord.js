@@ -78,6 +78,9 @@ export default class pirecord extends Component {
         }
         */
         var piRealDataLength = piRealData.length;
+        console.log(piRealData);
+
+        console.log(piRealData.length);
         if(piData == "") {
             piData = "<span style='color:#fff;border:1px solid #fff;font-size:1.6em;'>"+value+"</span><span></span>";
             piRealData = value.toString();
@@ -85,7 +88,7 @@ export default class pirecord extends Component {
 
             if(piRealDataLength > 5) {
                 piRealDataLength = piRealData.length;
-                var tempLength = piRealDataLength - 1;
+                var tempLength = piRealDataLength + 1;
                 if (tempLength % 10 == 0) {
                     if(tempLength % 100 == 0) {
                         if(tempLength % 1000 == 0) {
@@ -116,7 +119,7 @@ export default class pirecord extends Component {
 
 
         if(pi.pi_config[piRealDataLength] != value) {
-            switch (value) {
+            switch (parseInt(pi.pi_config[piRealDataLength])) {
                 case 1:
                     this.setState({key1: "N", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "default"})
                     break;
@@ -148,6 +151,7 @@ export default class pirecord extends Component {
                     this.setState({key1: "default", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "N"})
                     break;
             }
+
             return;
         }
 
@@ -191,8 +195,6 @@ export default class pirecord extends Component {
                             this.setState({grade:pi.pi_grade[i],recordCnt:piRealDataLength+1});
                         });
 
-                        console.log(dataObject);
-
 
 
                         break;
@@ -235,7 +237,12 @@ export default class pirecord extends Component {
                     this.setState({key1: "default", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "Y"})
                     break;
             }
+
+            this.setState({key1: "default", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "default"})
+
         }
+
+
 
 
 
@@ -384,7 +391,7 @@ export default class pirecord extends Component {
                             <Text style={commonStyle.headerTitleTxt}> {this.state.grade}</Text>
                         </View>
                         <View style={commonStyle.headerTitleRight}>
-                            <Text style={commonStyle.headerTitleTxt}> 최고기록 : {this.state.recordCnt} </Text>
+                            <Text style={commonStyle.headerTitleTxt}> 기록 : {this.state.recordCnt} </Text>
                         </View>
                     </View>
 
