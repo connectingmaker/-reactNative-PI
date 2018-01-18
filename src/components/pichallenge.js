@@ -97,7 +97,7 @@ export default class pichallenge extends Component {
 
             if(piRealDataLength > 5) {
                 piRealDataLength = piRealData.length;
-                var tempLength = piRealDataLength - 1;
+                var tempLength = piRealDataLength + 1;
                 if (tempLength % 10 == 0) {
                     if(tempLength % 100 == 0) {
                         if(tempLength % 1000 == 0) {
@@ -129,7 +129,8 @@ export default class pichallenge extends Component {
 
         if(pi.pi_config[piRealDataLength] != value) {
             this._challenge_end();
-            switch (value) {
+            //switch (value) {
+            switch (parseInt(pi.pi_config[piRealDataLength])) {
                 case 1:
                     this.setState({key1: "N", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "default"})
                     break;
@@ -245,6 +246,8 @@ export default class pichallenge extends Component {
                     this.setState({key1: "default", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "Y"})
                     break;
             }
+
+            this.setState({key1: "default", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "default"})
         }
 
 

@@ -22,6 +22,8 @@ import {keyboardStyle} from "../style/keyboard";
 
 
 
+
+
 export default class pirecord extends Component {
 
     constructor(){
@@ -72,15 +74,10 @@ export default class pirecord extends Component {
         var piData = this.state.piData;
         var piRealData = this.state.piRealData;
 
-        /*
-        if(piRealDataLength != 0) {
-            piRealDataLength = piRealDataLength - 1;
-        }
-        */
-        var piRealDataLength = piRealData.length;
-        console.log(piRealData);
 
-        console.log(piRealData.length);
+
+
+        var piRealDataLength = piRealData.length;
         if(piData == "") {
             piData = "<span style='color:#fff;border:1px solid #fff;font-size:1.6em;'>"+value+"</span><span></span>";
             piRealData = value.toString();

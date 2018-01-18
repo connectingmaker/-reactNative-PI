@@ -87,19 +87,10 @@ export default class pivalue extends Component {
     minus()
     {
         if(this.state.view == 1) {
-            alert("최소 그룹입니다.");
         } else {
-            if(this.state.view == 3) {
-                this.setState({view:1});
-
-                this.sendPostMessage(1, this.state.max);
-            } else if(this.state.view == 5) {
-                this.setState({view:3});
-                this.sendPostMessage(3, this.state.max);
-            } else if(this.state.view == 10) {
-                this.setState({view:5});
-                this.sendPostMessage(5, this.state.max);
-            }
+            var view = this.state.view - 1;
+            this.setState({view:view});
+            this.sendPostMessage(view, this.state.max);
         }
 
 
@@ -110,18 +101,12 @@ export default class pivalue extends Component {
     plus()
     {
         if(this.state.view == 10) {
-            alert("최대 그룹입니다.");
+
         } else {
-            if(this.state.view == 1) {
-                this.setState({view:3});
-                this.sendPostMessage(3, this.state.max);
-            } else if(this.state.view == 3) {
-                this.setState({view:5});
-                this.sendPostMessage(5, this.state.max);
-            } else if(this.state.view == 5) {
-                this.setState({view:10});
-                this.sendPostMessage(10, this.state.max);
-            }
+            var view = this.state.view + 1;
+            this.setState({view:view});
+            this.sendPostMessage(view, this.state.max);
+
         }
     }
 
