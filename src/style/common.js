@@ -25,7 +25,8 @@ export const commonStyle = StyleSheet.create({
         ,shadowOffset: { width: 0, height: 1 }
         ,shadowOpacity: 0.3
         ,width:"100%"
-        ,paddingRight: 35
+        ,alignItems:'center'
+        ,justifyContent:'flex-end'
     }
     ,contentheaderLayout: {
         justifyContent: 'center', alignItems: 'center', backgroundColor: "#f23611"
