@@ -520,7 +520,7 @@ export default class pichallenge extends Component {
 
 
                                 {/*PC*/}
-                                {renderIf(this.state.keyboard == "pc")(
+                                {renderIf(this.state.keyboard == "mobile")(
                                     <View>
                                         <View style={keyboardStyle.keyboardView}>
                                             <View style={{ flex:0.32}}>
@@ -773,7 +773,7 @@ export default class pichallenge extends Component {
 
 
                                 {/*MOBILE*/}
-                                {renderIf(this.state.keyboard == "mobile")(
+                                {renderIf(this.state.keyboard == "pc")(
                                     <View>
                                         <View style={keyboardStyle.keyboardView}>
                                             <View style={{ flex:0.32}}>
@@ -923,6 +923,53 @@ export default class pichallenge extends Component {
                                         <View style={keyboardStyle.keyboardView}>
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
+                                                    {renderIf(this.state.key1 == "default")(
+                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(1)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
+                                                        </Button>
+                                                    )}
+
+                                                    {renderIf(this.state.key1 == "N")(
+                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(1)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
+                                                        </Button>
+                                                    )}
+
+                                                    {renderIf(this.state.key1 == "Y")(
+                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(1)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
+                                                        </Button>
+                                                    )}
+                                                </View>
+                                            </View>
+
+                                            <View style={{flex:0.02}}>
+                                            </View>
+                                            <View style={{ flex:0.32}}>
+                                                <View style={keyboardStyle.keyboardButtonLayout}>
+                                                    {renderIf(this.state.key2 == "default")(
+                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(2)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
+                                                        </Button>
+                                                    )}
+
+                                                    {renderIf(this.state.key2 == "N")(
+                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(2)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
+                                                        </Button>
+                                                    )}
+
+                                                    {renderIf(this.state.key2 == "Y")(
+                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(2)}>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
+                                                        </Button>
+                                                    )}
+                                                </View>
+                                            </View>
+                                            <View style={{flex:0.02}}>
+                                            </View>
+                                            <View style={{ flex:0.32}}>
+                                                <View style={keyboardStyle.keyboardButtonLayout}>
 
                                                     {renderIf(this.state.key3 == "default")(
                                                         <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(3)}>
@@ -939,52 +986,6 @@ export default class pichallenge extends Component {
                                                     {renderIf(this.state.key3 == "Y")(
                                                         <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(3)}>
                                                             <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
-                                                        </Button>
-                                                    )}
-                                                </View>
-                                            </View>
-                                            <View style={{flex:0.02}}>
-                                            </View>
-                                            <View style={{ flex:0.32}}>
-                                                <View style={keyboardStyle.keyboardButtonLayout}>
-                                                    {renderIf(this.state.key2 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(2)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
-                                                        </Button>
-                                                    )}
-
-                                                    {renderIf(this.state.key2 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(2)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
-                                                        </Button>
-                                                    )}
-
-                                                    {renderIf(this.state.key2 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(2)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
-                                                        </Button>
-                                                    )}
-                                                </View>
-                                            </View>
-                                            <View style={{flex:0.02}}>
-                                            </View>
-                                            <View style={{ flex:0.32}}>
-                                                <View style={keyboardStyle.keyboardButtonLayout}>
-                                                    {renderIf(this.state.key1 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(1)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
-                                                        </Button>
-                                                    )}
-
-                                                    {renderIf(this.state.key1 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(1)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
-                                                        </Button>
-                                                    )}
-
-                                                    {renderIf(this.state.key1 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(1)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
                                                         </Button>
                                                     )}
                                                 </View>

@@ -64,7 +64,7 @@ export default class keyboard extends Component {
                 var uid = json.UID;
                 var challenge_recordCnt = json.challenge_recordCnt;
                 var challenge_grade = json.challenge_grade;
-                var keyboard = json.KEYBOARD;
+                var keyboard = json.keyboard;
                 var payment_start = json.payment_start;
                 var payment_end = json.payment_end;
                 var timer = json.TIMER;
@@ -128,7 +128,7 @@ export default class keyboard extends Component {
                     this.setState({grade:grade});
                 }
 
-
+                console.log(json);
 
             }
         }).then(res => {
@@ -164,11 +164,10 @@ export default class keyboard extends Component {
             ,challenge_recordCnt:this.state.challenge_recordCnt
             ,payment_start:this.state.payment_start
             ,payment_end:this.state.payment_end
-            ,keyboard:this.state.keyboard
         }
 
-
-
+        console.log("ok");
+        console.log(dataObject);
         AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
             alert("저장되었습니다.");
             Actions.pop();
