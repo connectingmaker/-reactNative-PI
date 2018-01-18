@@ -178,8 +178,8 @@ export default class Main extends Component {
                         <View style={{alignItems: 'center',justifyContent:'center',paddingTop:20}}>
                         <Text style={MainFormStyle.boldFont}>파이킹</Text>
                         </View>
-                        <View style={{alignItems: 'center',justifyContent:'center',paddingTop:20,paddingBottom:20}}>
-                            <Image source={require('../../assets/img/main/180x180.png')} resizeMode={'contain'} style={{width:100,height:100}}/>
+                        <View style={{alignItems: 'center',justifyContent:'center',paddingBottom:20}}>
+                            <Image source={require('../../assets/img/main/180x180.png')} resizeMode={'contain'} style={{width:300,height:150}}/>
                         </View>
 
                     </View>
@@ -228,7 +228,7 @@ export default class Main extends Component {
 
                                 <TouchableOpacity onPress={Actions.Pivalue}>
                                     <View style={MainFormStyle.contentsButtonLayout}>
-                                        <Text style={MainFormStyle.contentsButtonText}>파이값 보기</Text>
+                                        <Text style={MainFormStyle.contentsButtonText}>파이 값 보기</Text>
                                     </View>
                                 </TouchableOpacity>
                             </View>

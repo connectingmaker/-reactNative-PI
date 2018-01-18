@@ -389,9 +389,11 @@ export default class pirecord extends Component {
                     <Body>
                         <Text style={{fontSize:16,color:'#fff'}}>연 습</Text>
                     </Body>
-                    <Right style={{alignItems:'flex-end'}}>
+                    <Right>
                         <Button style={commonStyle.defaultBtn} onPress={() => this._defaultBtn()} >
-                            <Text style={{fontSize:14,color:'#fff',paddingLeft:50}}> 초기화 </Text>
+                            <View style={{justifyContent: 'center', alignItems: 'flex-end'}}>
+                                <Text style={{fontSize:14,color:'#fff',paddingLeft:35}}> 초기화 </Text>
+                            </View>
                         </Button>
                     </Right>
                 </Header>
@@ -941,17 +943,24 @@ export default class pirecord extends Component {
 
 
                 </Content>
-                <View style={{flex:0.6}}>
-                </View>
-                <View style={{flex:0.4}}>
-                    <TouchableOpacity onPress={Actions.Pivalue}>
-                        <Footer style={commonStyle.footerLayout}>
-                            <View>
-                                <Text style={commonStyle.footerColor}>파이값 보기</Text>
-                            </View>
-                        </Footer>
-                    </TouchableOpacity>
-                </View>
+
+
+                            <Footer style={commonStyle.footerLayout}>
+                                <View style={{flex:0.9,alignItems:'flex-end'}}>
+                                    <Text style={commonStyle.footerColor}>파이값 보기</Text>
+                                </View>
+                                <View style={{flex:0.05}}>
+                                    <TouchableOpacity onPress={Actions.Pivalue}>
+                                        <View style={keyboardStyle.ButtonBg}>
+                                            <Text style={keyboardStyle.ButtonTxt}>π</Text>
+                                        </View>
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={{flex:0.05}}></View>
+                            </Footer>
+
+
+
             </Container>
         );
 

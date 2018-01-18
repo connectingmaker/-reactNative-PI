@@ -86,4 +86,15 @@ export const keyboardStyle = StyleSheet.create({
         ,fontWeight:"bold"
         ,fontSize:20
     }
+    ,ButtonTxt: {
+        color:"#fff"
+        ,fontWeight:"bold"
+        ,fontSize:20
+        ,alignItems:'center'
+    }
+    ,ButtonBg: {
+        backgroundColor:"#404040"
+        ,width:"100%"
+        ,justifyContent: 'center'
+    }
 })
