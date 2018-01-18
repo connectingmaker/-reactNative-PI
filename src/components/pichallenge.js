@@ -8,7 +8,7 @@ import {
     View, Text, Image, StyleSheet, TouchableOpacity, AlertIOS, Alert, Platform, ScrollView,
     AsyncStorage, BackAndroid
 } from 'react-native';
-import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button,Spinner,Left,Right } from 'native-base';
+import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button,Spinner,Left,Right,Title } from 'native-base';
 import HTML from 'react-native-render-html';
 
 import config from "../config/config";
@@ -484,7 +484,7 @@ export default class pichallenge extends Component {
                     </Left>
 
                     <Body style={{flex:1,  justifyContent: 'center', alignItems: 'center' }}>
-                    <Title style={{fontSize:16,color:'#fff'}}>도 전</Title>
+                        <Title style={{fontSize:16,color:'#fff'}}>도 전</Title>
                     </Body>
 
                     <Right style={{flex:1, justifyContent: 'center', alignItems: 'flex-end'}}>

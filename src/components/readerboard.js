@@ -184,6 +184,7 @@ export default class readerboard extends Component {
                     <Body style={{flex:1,  justifyContent: 'center', alignItems: 'center' }}>
                         <Title style={{fontSize:16,color:'#fff'}}>리더 보드</Title>
                     </Body>
+                    <Right style={{flex:1,  justifyContent: 'center', alignItems: 'center' }}></Right>
                 </Header>
 
                 <Content style={{padding:10,backgroundColor:"#fff"}}>
