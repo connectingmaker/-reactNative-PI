@@ -394,7 +394,7 @@ export default class pirecord extends Component {
                     </Body>
                     <Right>
                         <Button style={commonStyle.defaultBtn} onPress={() => this._defaultBtn()} >
-                            <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                            <View style={{justifyContent: 'center', alignItems: 'flex-end'}}>
                                 <Text style={{fontSize:14,color:'#fff',paddingLeft:35}}> 초기화 </Text>
                             </View>
                         </Button>
@@ -949,10 +949,17 @@ export default class pirecord extends Component {
 
 
                             <Footer style={commonStyle.footerLayout}>
-                                <View>
+                                <View style={{flex:0.9,alignItems:'flex-end'}}>
                                     <Text style={commonStyle.footerColor}>파이값 보기</Text>
-                                    <TouchableOpacity onPress={Actions.Pivalue}><Text>π</Text></TouchableOpacity>
                                 </View>
+                                <View style={{flex:0.05}}>
+                                    <TouchableOpacity onPress={Actions.Pivalue}>
+                                        <View style={keyboardStyle.ButtonBg}>
+                                            <Text style={keyboardStyle.ButtonTxt}>π</Text>
+                                        </View>
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={{flex:0.05}}></View>
                             </Footer>
 
 
