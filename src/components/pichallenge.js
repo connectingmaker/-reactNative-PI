@@ -58,6 +58,7 @@ export default class pichallenge extends Component {
             ,payment_end:""
             ,timer:""
             ,keyboard:""
+            ,piDataArr:[]
         };
 
     }
@@ -72,6 +73,9 @@ export default class pichallenge extends Component {
     _keyboardPress(value)
     {
         var uid = this.state.uid;
+
+
+
         if(this.state.challenge_start == false) {
             alert("도전시작을 눌러주세요.");
             return;
@@ -84,14 +88,20 @@ export default class pichallenge extends Component {
         var piData = this.state.piData;
         var piRealData = this.state.piRealData;
 
+        var piDataArr = this.state.piDataArr;
+        var piDataCode = {};
+
         /*
         if(piRealDataLength != 0) {
             piRealDataLength = piRealDataLength - 1;
         }
         */
         var piRealDataLength = piRealData.length;
-        if(piData == "") {
-            piData = "<span style='color:#fff;border:1px solid #fff; font-size: 1.6em;'>"+value+"</span><span></span>";
+        console.log(piRealData);
+
+        if(piDataArr.length == 0) {
+            //piData = "<span style='color:#fff;border:1px solid #fff;font-size:1.6em;'>"+value+"</span><span></span>";
+            piDataCode = {color:"#fff", value:value};
             piRealData = value.toString();
         } else {
 
@@ -102,26 +112,30 @@ export default class pichallenge extends Component {
                     if(tempLength % 100 == 0) {
                         if(tempLength % 1000 == 0) {
                             if(tempLength % 1000 == 0) {
-                                piData += "<b style='color:#f0ff00;font-size: 1.6em;'>"+value+"</b>";
+                                //piData += "<b style='color:#f0ff00;font-size:1.6em;'>"+value+"</b>";
+                                piDataCode = {color:"#f0ff00", value:value};
                             }
-                            piData += "<b style='color:#0066ff;font-size: 1.6em;'>"+value+"</b>";
+                            //piData += "<b style='color:#0066ff;font-size:1.6em;'>"+value+"</b>";
                         } else {
-                            piData += "<b style='color:#ff0000;font-size: 1.6em;'>" + value + "</b>";
+                            //piData += "<b style='color:#ff0000;font-size:1.6em;'>" + value + "</b>";
+                            piDataCode = {color:"#ff0000", value:value};
                         }
 
                     } else {
-                        piData += "<b style='color:#f0ff00;font-size: 1.6em;'>"+value+"</b>";
+                        //piData += "<b style='color:#f0ff00;font-size:1.6em;'>"+value+"</b>";
+                        piDataCode = {color:"#f0ff00", value:value};
                     }
 
                 } else {
-                    piData += "<span style='color:#fff;font-size: 1.6em;'>"+value+"</span>";
+                    //piData += "<span style='color:#fff;font-size:1.6em;'>"+value+"</span>";
+                    piDataCode = {color:"#fff", value:value};
                 }
             } else {
-                piData += "<span style='color:#fff;font-size: 1.6em;'>"+value+"</span>";
+                //piData += "<span style='color:#fff;font-size:1.6em;'>"+value+"</span>";
+                piDataCode = {color:"#fff", value:value};
             }
             piRealData += value.toString();
         }
-
 
 
 
@@ -248,6 +262,8 @@ export default class pichallenge extends Component {
             }
 
             this.setState({key1: "default", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "default"})
+            piDataArr.push(piDataCode);
+            this.setState({piDataArr:piDataArr});
         }
 
 
@@ -276,9 +292,8 @@ export default class pichallenge extends Component {
             ,"recordCnt": this.state.recordCnt
         };
 
-
         AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
-            this.setState({piData:"", piRealData: "", challenge_grade:pi.pi_grade[0],challenge_recordCnt:0, key1: "default", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "default"});
+            this.setState({piData:"", piRealData: "",piDataArr:[], challenge_grade:pi.pi_grade[0],challenge_recordCnt:0, key1: "default", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "default"});
 
         });
     }
@@ -513,7 +528,17 @@ export default class pichallenge extends Component {
                         <View style={{flexDirection:'column', flex:1}}>
                             <View style={{flex:0.3}}>
                                 <ScrollView style={pirecodeStyle.contentsLayout}>
-                                    <HTML html={this.state.piData} uri="" />
+                                    <Text>
+                                        {
+                                            this.state.piDataArr.map((data, index)=> {
+                                                return (
+                                                    <Text key={index} style={{color:data.color, fontSize:20}}>
+                                                        {data.value}
+                                                    </Text>
+                                                )
+                                            })
+                                        }
+                                    </Text>
                                 </ScrollView>
                             </View>
 

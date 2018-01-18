@@ -42,9 +42,7 @@ export const pirecodeStyle = StyleSheet.create({
     ,contentsLayout: {
         width: "100%"
         ,height: (height / 4)
-        ,paddingTop:0
-        ,paddingBottom:0
-        ,padding:20
+        ,padding:10
         ,backgroundColor:"#000"
         ,shadowColor: "rgba(0,0,0,23)"
         ,shadowOffset: { width: 0, height: 1 }

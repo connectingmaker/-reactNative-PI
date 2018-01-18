@@ -102,6 +102,7 @@ export default class pisection extends Component {
             ,start_pi:0
             ,end_pi:0
             ,startYN:"N"
+            ,piDataArr:[]
         };
 
 
@@ -150,7 +151,9 @@ export default class pisection extends Component {
         var piData = this.state.piData;
         var piRealData = this.state.piRealData;
 
-        console.log(this.state.start_pi + "///" + this.state.end_pi);
+        var piDataArr = this.state.piDataArr;
+        var piDataCode = {};
+
 
         /*
         if(piRealDataLength != 0) {
@@ -158,35 +161,41 @@ export default class pisection extends Component {
         }
         */
         var piRealDataLength = piRealData.length + (parseInt(this.state.start_pi) - 1);
-        console.log(piRealDataLength);
-        if(piData == "") {
-            piData = "<span style='color:#fff;border:1px solid #fff;font-size: 1.6em;'>"+value+"</span><span></span>";
+
+        if(piDataArr.length == 0) {
+            //piData = "<span style='color:#fff;border:1px solid #fff;font-size:1.6em;'>"+value+"</span><span></span>";
+            piDataCode = {color:"#fff", value:value};
             piRealData = value.toString();
         } else {
 
             if(piRealDataLength > 5) {
                 piRealDataLength = piRealData.length;
-                var tempLength = piRealDataLength - 1;
+                var tempLength = piRealDataLength + 1;
                 if (tempLength % 10 == 0) {
                     if(tempLength % 100 == 0) {
                         if(tempLength % 1000 == 0) {
                             if(tempLength % 1000 == 0) {
-                                piData += "<b style='color:#f0ff00;font-size: 1.6em;'>"+value+"</b>";
+                                //piData += "<b style='color:#f0ff00;font-size:1.6em;'>"+value+"</b>";
+                                piDataCode = {color:"#f0ff00", value:value};
                             }
-                            piData += "<b style='color:#0066ff;font-size: 1.6em;'>"+value+"</b>";
+                            //piData += "<b style='color:#0066ff;font-size:1.6em;'>"+value+"</b>";
                         } else {
-                            piData += "<b style='color:#ff0000;font-size: 1.6em;'>" + value + "</b>";
+                            //piData += "<b style='color:#ff0000;font-size:1.6em;'>" + value + "</b>";
+                            piDataCode = {color:"#ff0000", value:value};
                         }
 
                     } else {
-                        piData += "<b style='color:#f0ff00;font-size: 1.6em;'>"+value+"</b>";
+                        //piData += "<b style='color:#f0ff00;font-size:1.6em;'>"+value+"</b>";
+                        piDataCode = {color:"#f0ff00", value:value};
                     }
 
                 } else {
-                    piData += "<span style='color:#fff;font-size: 1.6em;'>"+value+"</span>";
+                    //piData += "<span style='color:#fff;font-size:1.6em;'>"+value+"</span>";
+                    piDataCode = {color:"#fff", value:value};
                 }
             } else {
-                piData += "<span style='color:#fff;font-size: 1.6em;'>"+value+"</span>";
+                //piData += "<span style='color:#fff;font-size:1.6em;'>"+value+"</span>";
+                piDataCode = {color:"#fff", value:value};
             }
             piRealData += value.toString();
         }
@@ -197,7 +206,7 @@ export default class pisection extends Component {
 
 
         if(pi.pi_config[piRealDataLength] != value) {
-            switch (value) {
+            switch (parseInt(pi.pi_config[piRealDataLength])) {
                 case 1:
                     this.setState({key1: "N", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "default"})
                     break;
@@ -268,6 +277,9 @@ export default class pisection extends Component {
                     this.setState({key1: "default", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "Y"})
                     break;
             }
+            this.setState({key1: "default", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "default"})
+            piDataArr.push(piDataCode);
+            this.setState({piDataArr:piDataArr});
         }
 
 
@@ -568,8 +580,9 @@ npm i --save iap-receipt-validator
 
 
     render() {
-        const paymentCheck = InAppBilling.isPurchased(productId);
-
+        if(Platform.OS == "android") {
+            const paymentCheck = InAppBilling.isPurchased(productId);
+        }
         return (
             <Container>
                 <Header style={commonStyle.headerLayout}>
@@ -609,7 +622,17 @@ npm i --save iap-receipt-validator
                         <View style={{flexDirection:'column', flex:1}}>
                             <View style={{flex:0.5}}>
                                 <ScrollView style={pirecodeStyle.contentsLayout}>
-                                    <HTML html={this.state.piData} uri="" />
+                                    <Text>
+                                        {
+                                            this.state.piDataArr.map((data, index)=> {
+                                                return (
+                                                    <Text key={index} style={{color:data.color, fontSize:20}}>
+                                                        {data.value}
+                                                    </Text>
+                                                )
+                                            })
+                                        }
+                                    </Text>
                                 </ScrollView>
                             </View>
 

@@ -268,8 +268,9 @@ export default class pirecord extends Component {
     {
 
             this.setState({
-                piData:"<span></span>"
+                piData:""
                 , piRealData: ""
+                , piDataArr:[]
                 , grade:pi.pi_grade[0]
                 , recordCnt:0
                 , key1: "default"
