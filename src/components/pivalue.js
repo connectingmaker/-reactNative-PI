@@ -38,6 +38,10 @@ export default class pivalue extends Component {
 
     }
 
+    onMessage( event ) {
+        console.log( "On Message", event.nativeEvent.data );
+    }
+
     sendPostMessage(view, max) {
         /*
         setTimeout(() => {
