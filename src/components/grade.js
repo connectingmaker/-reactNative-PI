@@ -9,17 +9,27 @@ import { Container, Header, Left,Body,Right, Content, Footer,Item, Icon, Input,B
 import {gradeFormStyle} from '../style/grade';
 import {commonStyle} from "../style/common";
 import config from "../config/config";
+import pi from "../config/pi_config";
 
 import renderIf from 'render-if'
 
 
 export default class grade extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
-            challenge_recordCnt:0
-            ,challenge_per:0
-            ,challenge_grade:"Halley's Comet"
+            challenge_recordCnt:0,
+            challenge_per:0,
+            challenge_grade:"Halley's Comet",
+            username:"",
+            country:"",
+            countryImg:"",
+            age:"",
+            gender:"",
+            keyboardUse:"",
+            payment_start:"",
+            payment_end:"",
+            timer:""
         };
 
     }
@@ -27,17 +37,44 @@ export default class grade extends Component {
     componentWillMount()
     {
         this.loadData();
-        BackAndroid.addEventListener('hardwareBackPress', () => Actions.pop());
     }
 
+    componentWillReceiveProps(nextProps)
+    {
+        this.loadData();
+    }
     loadData()
     {
+
+
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
+            //console.log("main");
+            console.log(json);
             if(json!=null) {
 
+
+
+
+                var username = json.USERNAME;
+                var country = json.COUNTRY;
+                var countryImg = json.COUNTRYIMG;
+                var age = json.AGE;
+                var gender = json.GENDER;
+                var uid = json.UID;
                 var challenge_recordCnt = json.challenge_recordCnt;
                 var challenge_grade = json.challenge_grade;
+                var keyboardUse = json.KEYBOARD;
+                var payment_start = json.payment_start;
+                var payment_end = json.payment_end;
+                var timer = json.TIMER;
+                var cnt = json.CNT;
+                var grade = json.grade;
+                var keyboard = "mobile";
+
+                if(json.keyboard != undefined) {
+                    keyboard = json.keyboard;
+                }
 
 
                 if(challenge_recordCnt != null) {
@@ -47,26 +84,57 @@ export default class grade extends Component {
                         var temp = pi.pi_grade_value[i].split("~");
                         if(parseInt(temp[0]) <= challenge_recordCnt && parseInt(temp[1]) >= challenge_recordCnt) {
                             var per = Math.round((challenge_recordCnt / parseInt(temp[1])) * 100);
+
                             var dataObject = {
-                                "challenge_grade": pi.pi_grade[i]
+                                "UID": uid
+                                ,"USERNAME": username
+                                ,"COUNTRY": country
+                                ,"COUNTRYIMG": countryImg
+                                ,"AGE": age
+                                ,"GENDER": gender
+                                ,"TIMER" : timer
+                                ,"CNT": cnt
+                                ,"keyboard":keyboardUse
+                                ,"grade":grade
+                                ,"challenge_grade": pi.pi_grade[i]
                                 ,"challenge_recordCnt": challenge_recordCnt
+                                ,"payment_start":payment_start
+                                ,"payment_end":payment_start
+                                ,"keyboard":keyboard
                             };
 
+                            console.log(dataObject);
                             AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
                                 this.setState({challenge_grade:pi.pi_grade[i],challenge_recordCnt:challenge_recordCnt, challenge_per: per});
                             });
 
+                            if(uid != null) {
+                                this.setState({uid:uid});
+                            }
 
+                            if(username != null) {
+                                this.setState({username:username});
+                            }
+                            if(country != null) {
+                                this.setState({country:country});
+                            }
+
+                            if(countryImg != null) {
+                                this.setState({countryImg:countryImg});
+                            }
+
+
+                            if(age != null) {
+                                this.setState({age:age});
+                            }
+
+                            if(gender != null) {
+                                this.setState({gender:gender});
+                            }
 
                             break;
                         }
                     }
-                } else {
-                    this.setState({challenge_recordCnt:0});
-                }
-
-                if(challenge_grade == null) {
-                    this.setState({challenge_grade:"Halley's Comet"});
                 }
 
             } else {
@@ -79,6 +147,7 @@ export default class grade extends Component {
 
         }).then(res => {
         });
+
     }
 
     render() {
