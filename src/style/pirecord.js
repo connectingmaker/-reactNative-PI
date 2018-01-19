@@ -47,6 +47,7 @@ export const pirecodeStyle = StyleSheet.create({
         ,shadowColor: "rgba(0,0,0,23)"
         ,shadowOffset: { width: 0, height: 1 }
         ,shadowOpacity: 0.3
+        ,borderRadius:5
     }
     ,contentsLayout2: {
         width: "100%"

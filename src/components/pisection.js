@@ -70,7 +70,7 @@ export default class pisection extends Component {
             */
 
         this.state = {
-            keyboard:"pc"
+            keyboard:"mobile"
             ,uid:""
             ,username:""
             ,country:""
@@ -96,6 +96,8 @@ export default class pisection extends Component {
             ,key9:"default"
             ,key0:"default"
             ,isModalVisible:false
+            ,isModalVisible2:false
+            ,isModalVisible3:false
             ,payment_start:0
             ,payment_end:0
             ,test:"상태"
@@ -103,6 +105,8 @@ export default class pisection extends Component {
             ,end_pi:0
             ,startYN:"N"
             ,piDataArr:[]
+            ,section_grade:"Halley's Comet"
+            ,section_Cnt:0
         };
 
 
@@ -145,7 +149,7 @@ export default class pisection extends Component {
     _keyboardPress(value)
     {
         if(this.state.startYN == "N") {
-            alert("구간설정을 해주세요.");
+            this.setState({isModalVisible3:true});
             return;
         }
         var piData = this.state.piData;
@@ -160,7 +164,7 @@ export default class pisection extends Component {
             piRealDataLength = piRealDataLength - 1;
         }
         */
-        var piRealDataLength = piRealData.length + (parseInt(this.state.start_pi) - 1);
+        var piRealDataLength = piRealData.length + (parseInt(this.state.start_pi));
 
         if(piDataArr.length == 0) {
             //piData = "<span style='color:#fff;border:1px solid #fff;font-size:1.6em;'>"+value+"</span><span></span>";
@@ -242,7 +246,34 @@ export default class pisection extends Component {
         }
 
         if(pi.pi_config[piRealDataLength] == value) {
+            var plus = piDataArr.length + (parseInt(this.state.start_pi)) + 1;
+            this.setState({section_Cnt: plus});
 
+
+            if(this.state.section_Cnt <= piRealDataLength) {
+                /*
+                pi.pi_grade_value.map((item) => {
+                    var temp = item.split("~");
+                    console.log(temp);
+                    console.log(piRealDataLength);
+                    if (parseInt(temp[0]) >= piRealDataLength && parseInt(temp[1] <= piRealDataLength)) {
+                        console.log("111");
+                        return;
+                    }
+                });
+                */
+
+
+                for (var i = 0; i < pi.pi_grade_value.length; i++) {
+                    var temp = pi.pi_grade_value[i].split("~");
+
+
+                    if (parseInt(temp[0]) <= piRealDataLength && parseInt(temp[1]) >= piRealDataLength) {
+                        this.setState({section_grade: pi.pi_grade[i], section_Cnt: plus});
+                        break;
+                    }
+                }
+            }
 
 
             switch (value) {
@@ -306,7 +337,11 @@ export default class pisection extends Component {
             , key8: "default"
             , key9: "default"
             , key0: "default"
-            , startYN:"Y"
+            , startYN:"N"
+            ,piDataArr:[]
+            ,section_grade:"Halley's Comet"
+            ,section_Cnt:0
+
         });
         console.log(this.state);
     }
@@ -424,9 +459,8 @@ export default class pisection extends Component {
 
     _sectionStart()
     {
-        //console.log(this.state.start_pi + "///" + this.state.end_pi);
-        if(this.state.start_pi >= this.state.end_pi) {
-            alert("범위가 잘못되었습니다.");
+        if(parseInt(this.state.start_pi) >= parseInt(this.state.end_pi)) {
+            this.setState({isModalVisible2:true});
             return;
         }
         this.setState({
@@ -576,12 +610,22 @@ npm i --save iap-receipt-validator
         }
     }
 
+    _close2()
+    {
+        this.setState({isModalVisible2:false});
+    }
+
+    _close3()
+    {
+        this.setState({isModalVisible3:false});
+    }
+
 
 
 
     render() {
         if(Platform.OS == "android") {
-            const paymentCheck = InAppBilling.isPurchased(productId);
+            //const paymentCheck = InAppBilling.isPurchased(productId);
         }
         return (
             <Container>
@@ -608,10 +652,10 @@ npm i --save iap-receipt-validator
                 <Content>
                     <View style={commonStyle.headerTitleLayout}>
                         <View style={commonStyle.headerTitleLeft}>
-                            <Text style={commonStyle.headerTitleTxt}> {this.state.challenge_grade}</Text>
+                            <Text style={commonStyle.headerTitleTxt}> {this.state.section_grade}</Text>
                         </View>
                         <View style={commonStyle.headerTitleRight}>
-                            <Text style={commonStyle.headerTitleTxt}> 최고기록 : {this.state.challenge_recordCnt} </Text>
+                            <Text style={commonStyle.headerTitleTxt}> 최고기록 : {this.state.section_Cnt} </Text>
                         </View>
                     </View>
 
@@ -621,8 +665,8 @@ npm i --save iap-receipt-validator
                         </View>
                         <View style={{flexDirection:'column', flex:1}}>
                             <View style={{flex:0.5}}>
-                                <ScrollView style={pirecodeStyle.contentsLayout}>
-                                    <Text style={{fontSize:20}}>
+                                <ScrollView style={pirecodeStyle.contentsLayout} style={pirecodeStyle.contentsLayout} ref="scrollView" onContentSizeChange={(width,height) => this.refs.scrollView.scrollTo({y:height})}>
+                                    <Text style={{fontSize:20, paddingBottom:20}}>
                                         {
                                             this.state.piDataArr.map((data, index)=> {
                                                 return (
@@ -1284,13 +1328,13 @@ npm i --save iap-receipt-validator
                             </View>
                             <View style={{width:"100%", justifyContent: 'center', alignItems: 'center', paddingLeft:20, paddingRight:20,marginTop:10}}>
                                 <Item regular>
-                                    <Input placeholder="시작 자리 수" keyboardType = 'numeric' onChangeText={(text) => this.setState({start_pi: text})} />
+                                    <Input placeholder="시작 자리 수" keyboardType = 'numeric' onChangeText={(text) => this.setState({start_pi: text})} value={this.state.start_pi} />
                                 </Item>
                             </View>
 
                             <View style={{width:"100%", justifyContent: 'center', alignItems: 'center', paddingLeft:20, paddingRight:20,marginTop:10}}>
                                 <Item regular>
-                                    <Input placeholder="끝 자리 수" keyboardType = 'numeric' onChangeText={(text) => this.setState({end_pi: text})} />
+                                    <Input placeholder="끝 자리 수" keyboardType = 'numeric' onChangeText={(text) => this.setState({end_pi: text})} value={this.state.end_pi} />
                                 </Item>
                             </View>
                             <View style={{width:"100%",flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingLeft:20, paddingRight:20,marginTop:10, paddingBottom:20}}>
@@ -1309,50 +1353,111 @@ npm i --save iap-receipt-validator
                     </Modal>
 
 
+                    <Modal isVisible={this.state.isModalVisible2}>
+
+                        <View style={{backgroundColor:"#fff", height:200, paddingTop:20}}>
+                            <View style={{width:"100%", justifyContent: 'center', alignItems: 'flex-start', paddingLeft:40, paddingRight:40,marginTop:10, paddingBottom:20}}>
+                                <View>
+                                    <Text style={{fontSize:16, fontWeight:'bold'}}>시작 자리 수보다 끝 자리 수가 작습니다.</Text>
+                                    <Text style={{fontSize:16, fontWeight:'bold' ,paddingTop:10}}>확인하시고 끝 자리 수를 시작 자리 수보다 크게 설정해 주세요.</Text>
+
+
+                                </View>
+                            </View>
+
+                            <View style={{width:"100%",flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingLeft:20, paddingRight:20,marginTop:10, paddingBottom:20}}>
+
+                                <View style={{width:"100%",paddingLeft:5}}>
+                                    <Button style={{width:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={() => this._close2()}>
+                                        <Text style={{color:"#fff"}}>확 인</Text>
+                                    </Button>
+                                </View>
+                            </View>
+                        </View>
+                    </Modal>
+
+                    <Modal isVisible={this.state.isModalVisible3}>
+
+                        <View style={{backgroundColor:"#fff", height:150, paddingTop:20}}>
+                            <View style={{width:"100%", justifyContent: 'center', alignItems: 'flex-start', paddingLeft:40, paddingRight:20,marginTop:10, paddingBottom:20}}>
+                                <View>
+                                    <Text style={{fontSize:20, fontWeight:'bold'}}>구간설정을 해주세요.</Text>
+                                </View>
+                            </View>
+
+                            <View style={{width:"100%",flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingLeft:20, paddingRight:20,marginTop:10, paddingBottom:20}}>
+
+                                <View style={{width:"100%",paddingLeft:5}}>
+                                    <Button style={{width:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={() => this._close3()}>
+                                        <Text style={{color:"#fff"}}>확 인</Text>
+                                    </Button>
+                                </View>
+                            </View>
+                        </View>
+                    </Modal>
+
+
 
                 </Content>
 
-
-                {/*<TouchableOpacity onPress={() => this._sectionPopup()}>*/}
-                    {/*<Footer style={{backgroundColor:"#000"}}>*/}
-
-                        {/*/!*<TouchableOpacity onPress={() => this._pay()}>*!/*/}
-                        {/*<View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>*/}
-                            {/*<Text style={{fontSize:12,color:'#fff'}}>구간 설정</Text>*/}
-                        {/*</View>*/}
-
-
-                    {/*</Footer>*/}
-                {/*</TouchableOpacity>*/}
-
-                {renderIf(now_timestamp <= this.state.payment_start && now_timestamp >= this.state.payment_end)(
+                {renderIf(this.state.startYN == "N")(
                 <TouchableOpacity onPress={() => this._sectionPopup()}>
-                <Footer style={{backgroundColor:"#000"}}>
+                    <Footer style={{backgroundColor:"#000"}}>
 
-                    {/*<TouchableOpacity onPress={() => this._pay()}>*/}
-                    <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize:12,color:'#fff'}}>구간 설정</Text>
-                    </View>
+                        {/*<TouchableOpacity onPress={() => this._pay()}>*/}
+
+                        <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
+                            <Text style={{fontSize:12,color:'#fff'}}>구간 설정</Text>
+                        </View>
 
 
-                </Footer>
+
+                    </Footer>
                 </TouchableOpacity>
                 )}
 
-
-                {renderIf((now_timestamp >= this.state.payment_start && now_timestamp <= this.state.payment_end) || (this.state.payment_start == 0 || this.state.payment_end == 0))(
-                    <TouchableOpacity onPress={() => this._pay()}>
+                {renderIf(this.state.startYN == "Y")(
                         <Footer style={{backgroundColor:"#000"}}>
 
                             {/*<TouchableOpacity onPress={() => this._pay()}>*/}
+
                             <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
-                                <Text style={{fontSize:12,color:'#fff'}}>구간 설정</Text>
+                                <Text style={{fontSize:16,color:'#fff'}}>구 간 : {this.state.start_pi} ~ {this.state.end_pi}</Text>
                             </View>
 
 
+
                         </Footer>
-                    </TouchableOpacity>
                 )}
+
+                {/*{renderIf(now_timestamp <= this.state.payment_start && now_timestamp >= this.state.payment_end)(*/}
+                {/*<TouchableOpacity onPress={() => this._sectionPopup()}>*/}
+                {/*<Footer style={{backgroundColor:"#000"}}>*/}
+
+                    {/*/!*<TouchableOpacity onPress={() => this._pay()}>*!/*/}
+                    {/*<View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>*/}
+                        {/*<Text style={{fontSize:12,color:'#fff'}}>구간 설정</Text>*/}
+                    {/*</View>*/}
+
+
+                {/*</Footer>*/}
+                {/*</TouchableOpacity>*/}
+                {/*)}*/}
+
+
+                {/*{renderIf((now_timestamp >= this.state.payment_start && now_timestamp <= this.state.payment_end) || (this.state.payment_start == 0 || this.state.payment_end == 0))(*/}
+                    {/*<TouchableOpacity onPress={() => this._pay()}>*/}
+                        {/*<Footer style={{backgroundColor:"#000"}}>*/}
+
+                            {/*/!*<TouchableOpacity onPress={() => this._pay()}>*!/*/}
+                            {/*<View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>*/}
+                                {/*<Text style={{fontSize:12,color:'#fff'}}>구간 설정</Text>*/}
+                            {/*</View>*/}
+
+
+                        {/*</Footer>*/}
+                    {/*</TouchableOpacity>*/}
+                {/*)}*/}
             </Container>
         );
 

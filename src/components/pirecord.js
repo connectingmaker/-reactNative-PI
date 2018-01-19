@@ -56,6 +56,7 @@ export default class pirecord extends Component {
             ,key9:"default"
             ,key0:"default"
             ,piDataArr:[]
+
         };
 
 
@@ -171,7 +172,7 @@ export default class pirecord extends Component {
         if(pi.pi_config[piRealDataLength] == value) {
 
             if(this.state.recordCnt <= piRealDataLength) {
-                /*
+
                 pi.pi_grade_value.map((item) => {
                     var temp = item.split("~");
                     console.log(temp);
@@ -181,10 +182,11 @@ export default class pirecord extends Component {
                         return;
                     }
                 });
-                */
+
                 for(var i = 0; i < pi.pi_grade_value.length; i++) {
                     var temp = pi.pi_grade_value[i].split("~");
                     if(parseInt(temp[0]) <= piRealDataLength && parseInt(temp[1]) >= piRealDataLength) {
+                        console.log(temp);
 
                         // var dataObject = {
                         //     "UID": this.state.uid
@@ -367,14 +369,20 @@ export default class pirecord extends Component {
                     this.setState({payment_start:payment_start});
                 }
 
+                if(grade != null) {
+                    if(grade == "") {
+                        this.setState({grade: "Halley's Comet"});
+                    } else {
+                        this.setState({grade: grade});
+                    }
+                }
+
 
             } else {
                 this.setState({keyboard: "pc"})
             }
 
-            if(grade != null) {
-                this.setState({grade:grade});
-            }
+
 
 
         }).then(res => {
@@ -435,8 +443,8 @@ export default class pirecord extends Component {
                         </View>
                         <View style={{flexDirection:'column', flex:1}}>
                             <View style={{flex:0.5}}>
-                                <ScrollView style={pirecodeStyle.contentsLayout}>
-                                    <Text style={{fontSize:20}}>
+                                <ScrollView style={pirecodeStyle.contentsLayout} ref="scrollView" onContentSizeChange={(width,height) => this.refs.scrollView.scrollTo({y:height})}>
+                                    <Text style={{fontSize:20, paddingBottom:20}}>
                                     {
                                         this.state.piDataArr.map((data, index)=> {
                                             return (

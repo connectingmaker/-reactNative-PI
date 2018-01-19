@@ -56,6 +56,7 @@ export const keyboardStyle = StyleSheet.create({
     }
     ,keyboardButtonLayout: {
         width:"100%"
+
     }
     ,keyboardButton: {
         backgroundColor:"#404040"
@@ -63,6 +64,7 @@ export const keyboardStyle = StyleSheet.create({
         ,height:(height / 11)
         ,justifyContent: 'center'
         ,alignItems: 'center'
+        ,borderRadius:5
     }
 
     ,keyboardButtonNot: {
@@ -72,6 +74,7 @@ export const keyboardStyle = StyleSheet.create({
         ,height:(height / 11)
         ,justifyContent: 'center'
         ,alignItems: 'center'
+        ,borderRadius:5
     }
 
     ,keyboardButtonOk: {
@@ -81,6 +84,7 @@ export const keyboardStyle = StyleSheet.create({
         ,height:(height / 11)
         ,justifyContent: 'center'
         ,alignItems: 'center'
+        ,borderRadius:5
     }
 
 

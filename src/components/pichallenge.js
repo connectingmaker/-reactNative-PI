@@ -61,7 +61,8 @@ export default class pichallenge extends Component {
             ,timer:""
             ,keyboard:""
             ,piDataArr:[]
-            ,isModalVisible:true
+            ,isModalVisible:false
+            ,isModalVisible2:false
             ,best:false
         };
 
@@ -81,14 +82,10 @@ export default class pichallenge extends Component {
 
 
         if(this.state.challenge_start == false) {
-            alert("도전시작을 눌러주세요.");
+            this.setState({isModalVisible2:true});
             return;
         }
 
-        if(this.state.challenge_stop == true) {
-            alert("일시중지 상태입니다. 재개를 눌러주세요.");
-            return;
-        }
         var piData = this.state.piData;
         var piRealData = this.state.piRealData;
 
@@ -487,6 +484,11 @@ export default class pichallenge extends Component {
 
     }
 
+    _close2()
+    {
+        this.setState({isModalVisible2:false});
+    }
+
 
     render() {
         return (
@@ -540,8 +542,8 @@ export default class pichallenge extends Component {
                         </View>
                         <View style={{flexDirection:'column', flex:1}}>
                             <View style={{flex:0.3}}>
-                                <ScrollView style={pirecodeStyle.contentsLayout}>
-                                    <Text style={{fontSize:20}}>
+                                <ScrollView style={pirecodeStyle.contentsLayout} style={pirecodeStyle.contentsLayout} ref="scrollView" onContentSizeChange={(width,height) => this.refs.scrollView.scrollTo({y:height})}>
+                                    <Text style={{fontSize:20 , paddingBottom:20}}>
                                         {
                                             this.state.piDataArr.map((data, index)=> {
                                                 return (
@@ -1204,12 +1206,12 @@ export default class pichallenge extends Component {
                                     <Text style={{fontSize:20, fontWeight:'bold', paddingTop:10}}>자 릿 수 : {this.state.piRealData.length}</Text>
                                 </View>
                                 <View>
-                                    <Text style={{fontSize:20, fontWeight:'bold', paddingTop:10}}>시 간 : {this.state.challenge_timer}</Text>
+                                    <Text style={{fontSize:20, fontWeight:'bold', paddingTop:10}}>시 간 : {this.state.challenge_timer} 초</Text>
                                 </View>
 
                                 {renderIf(this.state.best == true)(
                                 <View>
-                                    <Text style={{fontSize:20, fontWeight:'bold', color:"#f23611", paddingTop:10}}>[ 최고 기록 :  {this.state.challenge_recordCnt}]초</Text>
+                                    <Text style={{fontSize:20, fontWeight:'bold', color:"#f23611", paddingTop:10}}>[ 최고 기록 :  {this.state.challenge_recordCnt}]</Text>
                                 </View>
                                 )}
 
@@ -1224,6 +1226,26 @@ export default class pichallenge extends Component {
 
                                 <View style={{width:"100%",paddingLeft:5}}>
                                     <Button style={{width:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={() => this._close()}>
+                                        <Text style={{color:"#fff"}}>확 인</Text>
+                                    </Button>
+                                </View>
+                            </View>
+                        </View>
+                    </Modal>
+
+                    <Modal isVisible={this.state.isModalVisible2}>
+
+                        <View style={{backgroundColor:"#fff", height:150, paddingTop:20}}>
+                            <View style={{width:"100%", justifyContent: 'center', alignItems: 'flex-start', paddingLeft:40, paddingRight:20,marginTop:10, paddingBottom:20}}>
+                                <View>
+                                    <Text style={{fontSize:20, fontWeight:'bold'}}>도전시작을 눌러주세요.</Text>
+                                </View>
+                            </View>
+
+                            <View style={{width:"100%",flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingLeft:20, paddingRight:20,marginTop:10, paddingBottom:20}}>
+
+                                <View style={{width:"100%",paddingLeft:5}}>
+                                    <Button style={{width:"100%", justifyContent: 'center', alignItems: 'center'}} onPress={() => this._close2()}>
                                         <Text style={{color:"#fff"}}>확 인</Text>
                                     </Button>
                                 </View>
