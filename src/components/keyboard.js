@@ -97,7 +97,11 @@ export default class keyboard extends Component {
                 }
 
                 if(keyboard != null) {
-                    this.setState({keyboard:keyboard});
+                    if(keyboard == "") {
+                        this.setState({keyboard: "mobile"});
+                    } else {
+                        this.setState({keyboard: keyboard});
+                    }
                 }
 
                 if(challenge_recordCnt != null) {
@@ -157,7 +161,7 @@ export default class keyboard extends Component {
             ,AGE : this.state.age
             ,GENDER : this.state.gender
             ,TIMER : this.state.timer
-            ,CNT : this.state.CNT
+            ,CNT : this.state.cnt
             ,keyboard:this.state.keyboard
             ,grade:this.state.grade
             ,challenge_grade:this.state.challenge_grade
@@ -165,11 +169,10 @@ export default class keyboard extends Component {
             ,payment_start:this.state.payment_start
             ,payment_end:this.state.payment_end
         }
-
-        console.log("ok");
         console.log(dataObject);
+
         AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
-            alert("저장되었습니다.");
+            //alert("저장되었습니다.");
             Actions.pop();
         });
     }
@@ -212,7 +215,7 @@ export default class keyboard extends Component {
                                         <Image source={require('../../assets/img/icon/btn_icon_on.png')} resizeMode={'contain'} style={{width: 15, height: 15}}></Image>
                                     </View>
                                     <View style={{flex:0.9, paddingLeft:10}}>
-                                        <Text style={keyboardStyle.useBtnTextOn}>모바일 키패드 설정</Text>
+                                        <Text style={keyboardStyle.useBtnTextOn}>모바일 키패드</Text>
                                     </View>
                                 </Button>
                                 )}
@@ -223,7 +226,7 @@ export default class keyboard extends Component {
                                             <Image source={require('../../assets/img/icon/btn_icon_off.png')} resizeMode={'contain'} style={{width: 15, height: 15}}></Image>
                                         </View>
                                         <View style={{flex:0.9, paddingLeft:10}}>
-                                            <Text style={keyboardStyle.useBtnText}>모바일 키패드 설정</Text>
+                                            <Text style={keyboardStyle.useBtnText}>모바일 키패드</Text>
                                         </View>
                                     </Button>
                                 )}

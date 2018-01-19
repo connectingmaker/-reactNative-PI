@@ -280,7 +280,7 @@ export default class Main extends Component {
 
                                 <TouchableOpacity onPress={Actions.Readerboard}>
                                     <View style={MainFormStyle.contentsButtonLayout}>
-                                        <Text style={MainFormStyle.contentsButtonText}>리더 보드</Text>
+                                        <Text style={MainFormStyle.contentsButtonText}>랭 킹</Text>
                                     </View>
                                 </TouchableOpacity>
                             </View>

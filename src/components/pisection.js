@@ -5,7 +5,7 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import {
-    View, Text, Image, StyleSheet, TouchableOpacity, AlertIOS, Alert, Platform, ScrollView,AsyncStorage, BackAndroid, NativeModules
+    View, Text, Image, StyleSheet, TouchableOpacity, AlertIOS, Alert, Platform, ScrollView,AsyncStorage, BackAndroid, NativeModules, TouchableHighlight
 } from 'react-native';
 import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button,Spinner,Left,Right,Title } from 'native-base';
 import HTML from 'react-native-render-html';
@@ -622,7 +622,7 @@ npm i --save iap-receipt-validator
                         <View style={{flexDirection:'column', flex:1}}>
                             <View style={{flex:0.5}}>
                                 <ScrollView style={pirecodeStyle.contentsLayout}>
-                                    <Text>
+                                    <Text style={{fontSize:20}}>
                                         {
                                             this.state.piDataArr.map((data, index)=> {
                                                 return (
@@ -640,28 +640,37 @@ npm i --save iap-receipt-validator
 
 
                                 {/*PC*/}
-                                {renderIf(this.state.keyboard == "pc")(
+                                {renderIf(this.state.keyboard == "mobile")(
                                     <View>
                                         <View style={keyboardStyle.keyboardView}>
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
+
                                                     {renderIf(this.state.key1 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(1)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(1)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key1 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(1)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(1)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key1 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(1)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(1)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
+
+
                                                 </View>
                                             </View>
                                             <View style={{flex:0.02}}>
@@ -669,21 +678,27 @@ npm i --save iap-receipt-validator
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
                                                     {renderIf(this.state.key2 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(2)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(2)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key2 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(2)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(2)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key2 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(2)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(2)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
                                                 </View>
                                             </View>
@@ -692,21 +707,27 @@ npm i --save iap-receipt-validator
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
                                                     {renderIf(this.state.key3 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(3)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(3)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key3 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(3)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(3)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key3 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(3)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(3)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
                                                 </View>
                                             </View>
@@ -717,21 +738,27 @@ npm i --save iap-receipt-validator
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
 
                                                     {renderIf(this.state.key4 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(4)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(4)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key4 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(4)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(4)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key4 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(4)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(4)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
                                                 </View>
                                             </View>
@@ -740,21 +767,27 @@ npm i --save iap-receipt-validator
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
                                                     {renderIf(this.state.key5 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(5)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(5)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key5 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(5)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(5)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key5 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(5)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(5)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
                                                 </View>
                                             </View>
@@ -763,21 +796,27 @@ npm i --save iap-receipt-validator
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
                                                     {renderIf(this.state.key6 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(6)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(6)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key6 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(6)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(6)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key6 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(6)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(6)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
                                                 </View>
                                             </View>
@@ -786,23 +825,28 @@ npm i --save iap-receipt-validator
                                         <View style={keyboardStyle.keyboardView}>
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
-
                                                     {renderIf(this.state.key7 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(7)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(7)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key7 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(7)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(7)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key7 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(7)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(7)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
                                                 </View>
                                             </View>
@@ -811,21 +855,27 @@ npm i --save iap-receipt-validator
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
                                                     {renderIf(this.state.key8 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(8)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(8)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key8 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(8)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(8)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key8 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(8)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(8)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
                                                 </View>
                                             </View>
@@ -834,21 +884,27 @@ npm i --save iap-receipt-validator
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
                                                     {renderIf(this.state.key9 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(9)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(9)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key9 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(9)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(9)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key9 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(9)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(9)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
                                                 </View>
                                             </View>
@@ -864,21 +920,27 @@ npm i --save iap-receipt-validator
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
                                                     {renderIf(this.state.key0 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(0)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(0)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key0 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(0)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(0)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key0 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(0)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(0)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
                                                 </View>
                                             </View>
@@ -888,33 +950,41 @@ npm i --save iap-receipt-validator
                                             </View>
 
                                         </View>
+
                                     </View>
+
                                 )}
 
 
                                 {/*MOBILE*/}
-                                {renderIf(this.state.keyboard == "mobile")(
+                                {renderIf(this.state.keyboard == "pc")(
                                     <View>
                                         <View style={keyboardStyle.keyboardView}>
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
 
                                                     {renderIf(this.state.key7 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(7)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(7)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key7 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(7)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(7)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key7 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(7)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(7)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
 
@@ -926,21 +996,27 @@ npm i --save iap-receipt-validator
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
                                                     {renderIf(this.state.key8 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(8)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(8)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key8 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(8)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(8)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key8 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(8)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(8)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
                                                 </View>
                                             </View>
@@ -949,21 +1025,27 @@ npm i --save iap-receipt-validator
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
                                                     {renderIf(this.state.key9 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(9)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(9)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key9 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(9)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(9)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key9 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(9)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(9)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
                                                 </View>
                                             </View>
@@ -972,23 +1054,28 @@ npm i --save iap-receipt-validator
                                         <View style={keyboardStyle.keyboardView}>
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
-
                                                     {renderIf(this.state.key4 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(4)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(4)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key4 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(4)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(4)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key4 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(4)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(4)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
                                                 </View>
                                             </View>
@@ -997,21 +1084,27 @@ npm i --save iap-receipt-validator
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
                                                     {renderIf(this.state.key5 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(5)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(5)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key5 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(5)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(5)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key5 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(5)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(5)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
                                                 </View>
                                             </View>
@@ -1020,70 +1113,88 @@ npm i --save iap-receipt-validator
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
                                                     {renderIf(this.state.key6 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(6)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(6)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key6 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(6)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(6)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key6 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(6)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(6)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
                                                 </View>
                                             </View>
 
                                         </View>
                                         <View style={keyboardStyle.keyboardView}>
+
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
-
-                                                    {renderIf(this.state.key3 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(3)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
-                                                        </Button>
+                                                    {renderIf(this.state.key1 == "default")(
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(1)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
-                                                    {renderIf(this.state.key3 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(3)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
-                                                        </Button>
+                                                    {renderIf(this.state.key1 == "N")(
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(1)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
-                                                    {renderIf(this.state.key3 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(3)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
-                                                        </Button>
+                                                    {renderIf(this.state.key1 == "Y")(
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(1)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
                                                 </View>
                                             </View>
+
                                             <View style={{flex:0.02}}>
                                             </View>
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
                                                     {renderIf(this.state.key2 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(2)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(2)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key2 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(2)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(2)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key2 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(2)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(2)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
                                                 </View>
                                             </View>
@@ -1091,25 +1202,33 @@ npm i --save iap-receipt-validator
                                             </View>
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
-                                                    {renderIf(this.state.key1 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(1)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
-                                                        </Button>
+
+                                                    {renderIf(this.state.key3 == "default")(
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(3)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
-                                                    {renderIf(this.state.key1 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(1)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
-                                                        </Button>
+                                                    {renderIf(this.state.key3 == "N")(
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(3)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
-                                                    {renderIf(this.state.key1 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(1)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
-                                                        </Button>
+                                                    {renderIf(this.state.key3 == "Y")(
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(3)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
                                                 </View>
                                             </View>
+
 
                                         </View>
 
@@ -1117,22 +1236,28 @@ npm i --save iap-receipt-validator
                                             <View style={{ flex:0.66}}>
 
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
-                                                    {renderIf(this.state.key1 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(0)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
-                                                        </Button>
+                                                    {renderIf(this.state.key0 == "default")(
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(0)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
-                                                    {renderIf(this.state.key1 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(0)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
-                                                        </Button>
+                                                    {renderIf(this.state.key0 == "N")(
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(0)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
-                                                    {renderIf(this.state.key1 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(0)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
-                                                        </Button>
+                                                    {renderIf(this.state.key0 == "Y")(
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(0)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
                                                 </View>
 
@@ -1143,6 +1268,7 @@ npm i --save iap-receipt-validator
                                             </View>
 
                                         </View>
+
                                     </View>
                                 )}
                             </View>

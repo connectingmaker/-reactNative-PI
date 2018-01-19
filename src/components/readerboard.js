@@ -182,7 +182,7 @@ export default class readerboard extends Component {
                     </Left>
 
                     <Body style={{flex:1,  justifyContent: 'center', alignItems: 'center' }}>
-                        <Title style={{fontSize:16,color:'#fff'}}>리더 보드</Title>
+                        <Title style={{fontSize:16,color:'#fff'}}>랭 킹</Title>
                     </Body>
                     <Right style={{flex:1,  justifyContent: 'center', alignItems: 'center' }}></Right>
                 </Header>

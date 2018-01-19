@@ -39,7 +39,7 @@ export default class Idsetting extends Component {
             ,gender:''
             ,challenge_recordCnt:0
             ,challenge_grade:''
-            ,keyboard:''
+            ,keyboard:'mobile'
             ,payment_start:0
             ,payment_end:0
             ,timer:""
@@ -73,7 +73,7 @@ export default class Idsetting extends Component {
                 var uid = json.UID;
                 var challenge_recordCnt = json.challenge_recordCnt;
                 var challenge_grade = json.challenge_grade;
-                var keyboard = json.KEYBOARD;
+                var keyboard = json.keybard;
                 var payment_start = json.payment_start;
                 var payment_end = json.payment_end;
                 var timer = json.TIMER;
@@ -243,8 +243,6 @@ export default class Idsetting extends Component {
                         ,payment_end:this.state.payment_end
                     }
 
-                    console.log("아이디저장");
-                    console.log(object);
 
 
                     AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(object), () => {

@@ -62,6 +62,7 @@ export const keyboardStyle = StyleSheet.create({
         ,width:"100%"
         ,height:(height / 11)
         ,justifyContent: 'center'
+        ,alignItems: 'center'
     }
 
     ,keyboardButtonNot: {
@@ -70,6 +71,7 @@ export const keyboardStyle = StyleSheet.create({
         ,width:"100%"
         ,height:(height / 11)
         ,justifyContent: 'center'
+        ,alignItems: 'center'
     }
 
     ,keyboardButtonOk: {
@@ -78,6 +80,7 @@ export const keyboardStyle = StyleSheet.create({
         ,width:"100%"
         ,height:(height / 11)
         ,justifyContent: 'center'
+        ,alignItems: 'center'
     }
 
 

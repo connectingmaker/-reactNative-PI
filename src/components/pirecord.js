@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import {
     View, Text, Image, StyleSheet, TouchableOpacity, AlertIOS, Alert, Platform, ScrollView,
-    AsyncStorage, BackAndroid
+    AsyncStorage, BackAndroid, TouchableHighlight
 } from 'react-native';
 import { Container, Header, Body, Content, Footer,Item, Icon, Input,Button,Spinner,Left,Right,Title } from 'native-base';
 import HTML from 'react-native-render-html';
@@ -30,7 +30,7 @@ export default class pirecord extends Component {
         super();
 
         this.state = {
-            keyboard:"pc"
+            keyboard:"mobile"
             ,uid:""
             ,username:""
             ,country:""
@@ -186,27 +186,29 @@ export default class pirecord extends Component {
                     var temp = pi.pi_grade_value[i].split("~");
                     if(parseInt(temp[0]) <= piRealDataLength && parseInt(temp[1]) >= piRealDataLength) {
 
-                        var dataObject = {
-                            "UID": this.state.uid
-                            ,"USERNAME": this.state.username
-                            ,"COUNTRY": this.state.country
-                            ,"COUNTRYIMG": this.state.countryImg
-                            ,"AGE": this.state.age
-                            ,"GENDER":this.state.gender
-                            ,"TIMER":this.state.TIMER
-                            ,"CNT":this.state.CNT
-                            ,"challenge_recordCnt" : this.state.challenge_recordCnt
-                            ,"challenge_grade" : this.state.challenge_grade
-                            ,"payment_start": this.state.payment_start
-                            ,"payment_end": this.state.payment_end
-                            ,"grade": pi.pi_grade[i]
-                            ,"recordCnt": piRealDataLength+1
-                            ,"keyboard":this.state.keyboard
-                        };
+                        // var dataObject = {
+                        //     "UID": this.state.uid
+                        //     ,"USERNAME": this.state.username
+                        //     ,"COUNTRY": this.state.country
+                        //     ,"COUNTRYIMG": this.state.countryImg
+                        //     ,"AGE": this.state.age
+                        //     ,"GENDER":this.state.gender
+                        //     ,"TIMER":this.state.TIMER
+                        //     ,"CNT":this.state.CNT
+                        //     ,"challenge_recordCnt" : this.state.challenge_recordCnt
+                        //     ,"challenge_grade" : this.state.challenge_grade
+                        //     ,"payment_start": this.state.payment_start
+                        //     ,"payment_end": this.state.payment_end
+                        //     ,"grade": pi.pi_grade[i]
+                        //     ,"recordCnt": piRealDataLength+1
+                        //     ,"keyboard":this.state.keyboard
+                        // };
+                        //
+                        // AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
+                        //     this.setState({grade:pi.pi_grade[i],recordCnt:piRealDataLength+1});
+                        // });
 
-                        AsyncStorage.setItem(config.STORE_KEY, JSON.stringify(dataObject), () => {
-                            this.setState({grade:pi.pi_grade[i],recordCnt:piRealDataLength+1});
-                        });
+                        this.setState({grade:pi.pi_grade[i],recordCnt:piRealDataLength+1});
 
 
 
@@ -217,7 +219,7 @@ export default class pirecord extends Component {
 
             }
 
-
+            /*
             switch (value) {
                 case 1:
                     this.setState({key1: "Y", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "default"})
@@ -250,6 +252,7 @@ export default class pirecord extends Component {
                     this.setState({key1: "default", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "Y"})
                     break;
             }
+            */
 
             this.setState({key1: "default", key2: "default", key3: "default", key4: "default", key5: "default", key6: "default", key7: "default", key8: "default", key9: "default", key0: "default"})
             piDataArr.push(piDataCode);
@@ -291,6 +294,7 @@ export default class pirecord extends Component {
     {
         AsyncStorage.getItem(config.STORE_KEY).then((value) => {
             var json = eval("("+value+")");
+            console.log(json);
             if(json!=null) {
 
 
@@ -432,7 +436,7 @@ export default class pirecord extends Component {
                         <View style={{flexDirection:'column', flex:1}}>
                             <View style={{flex:0.5}}>
                                 <ScrollView style={pirecodeStyle.contentsLayout}>
-                                    <Text>
+                                    <Text style={{fontSize:20}}>
                                     {
                                         this.state.piDataArr.map((data, index)=> {
                                             return (
@@ -455,23 +459,32 @@ export default class pirecord extends Component {
                                         <View style={keyboardStyle.keyboardView}>
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
+
                                                     {renderIf(this.state.key1 == "default")(
-                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(1)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
-                                                    </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(1)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key1 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(1)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(1)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key1 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(1)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(1)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
+
+
                                                 </View>
                                             </View>
                                             <View style={{flex:0.02}}>
@@ -479,21 +492,27 @@ export default class pirecord extends Component {
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
                                                     {renderIf(this.state.key2 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(2)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(2)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key2 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(2)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(2)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key2 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(2)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(2)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
                                                 </View>
                                             </View>
@@ -502,21 +521,27 @@ export default class pirecord extends Component {
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
                                                     {renderIf(this.state.key3 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(3)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(3)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key3 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(3)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(3)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key3 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(3)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(3)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
                                                 </View>
                                             </View>
@@ -527,21 +552,27 @@ export default class pirecord extends Component {
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
 
                                                     {renderIf(this.state.key4 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(4)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(4)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key4 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(4)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(4)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key4 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(4)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(4)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
                                                 </View>
                                             </View>
@@ -550,21 +581,27 @@ export default class pirecord extends Component {
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
                                                     {renderIf(this.state.key5 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(5)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(5)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key5 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(5)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(5)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key5 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(5)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(5)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
                                                 </View>
                                             </View>
@@ -573,21 +610,27 @@ export default class pirecord extends Component {
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
                                                     {renderIf(this.state.key6 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(6)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(6)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key6 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(6)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(6)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key6 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(6)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(6)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
                                                 </View>
                                             </View>
@@ -596,23 +639,28 @@ export default class pirecord extends Component {
                                         <View style={keyboardStyle.keyboardView}>
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
-
                                                     {renderIf(this.state.key7 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(7)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(7)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key7 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(7)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(7)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key7 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(7)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(7)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
                                                 </View>
                                             </View>
@@ -621,21 +669,27 @@ export default class pirecord extends Component {
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
                                                     {renderIf(this.state.key8 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(8)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(8)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key8 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(8)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(8)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key8 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(8)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(8)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
                                                 </View>
                                             </View>
@@ -644,21 +698,27 @@ export default class pirecord extends Component {
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
                                                     {renderIf(this.state.key9 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(9)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(9)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key9 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(9)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(9)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key9 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(9)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(9)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
                                                 </View>
                                             </View>
@@ -674,21 +734,27 @@ export default class pirecord extends Component {
                                             <View style={{ flex:0.32}}>
                                                 <View style={keyboardStyle.keyboardButtonLayout}>
                                                     {renderIf(this.state.key0 == "default")(
-                                                        <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(0)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(0)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key0 == "N")(
-                                                        <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(0)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(0)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
 
                                                     {renderIf(this.state.key0 == "Y")(
-                                                        <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(0)}>
-                                                            <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
-                                                        </Button>
+                                                        <TouchableHighlight onPress={() => this._keyboardPress(0)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                            <View>
+                                                                <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
+                                                            </View>
+                                                        </TouchableHighlight>
                                                     )}
                                                 </View>
                                             </View>
@@ -712,21 +778,27 @@ export default class pirecord extends Component {
                                             <View style={keyboardStyle.keyboardButtonLayout}>
 
                                                 {renderIf(this.state.key7 == "default")(
-                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(7)}>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(7)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                    <View>
                                                         <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
-                                                    </Button>
+                                                    </View>
+                                                    </TouchableHighlight>
                                                 )}
 
                                                 {renderIf(this.state.key7 == "N")(
-                                                    <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(7)}>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(7)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                    <View>
                                                         <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
-                                                    </Button>
+                                                    </View>
+                                                    </TouchableHighlight>
                                                 )}
 
                                                 {renderIf(this.state.key7 == "Y")(
-                                                    <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(7)}>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(7)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                    <View>
                                                         <Text style={keyboardStyle.keyboardButtonTxt}>7</Text>
-                                                    </Button>
+                                                    </View>
+                                                    </TouchableHighlight>
                                                 )}
 
 
@@ -738,21 +810,27 @@ export default class pirecord extends Component {
                                         <View style={{ flex:0.32}}>
                                             <View style={keyboardStyle.keyboardButtonLayout}>
                                                 {renderIf(this.state.key8 == "default")(
-                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(8)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
-                                                    </Button>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(8)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                        <View>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
+                                                        </View>
+                                                    </TouchableHighlight>
                                                 )}
 
                                                 {renderIf(this.state.key8 == "N")(
-                                                    <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(8)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
-                                                    </Button>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(8)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                        <View>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
+                                                        </View>
+                                                    </TouchableHighlight>
                                                 )}
 
                                                 {renderIf(this.state.key8 == "Y")(
-                                                    <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(8)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
-                                                    </Button>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(8)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                        <View>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>8</Text>
+                                                        </View>
+                                                    </TouchableHighlight>
                                                 )}
                                             </View>
                                         </View>
@@ -761,21 +839,27 @@ export default class pirecord extends Component {
                                         <View style={{ flex:0.32}}>
                                             <View style={keyboardStyle.keyboardButtonLayout}>
                                                 {renderIf(this.state.key9 == "default")(
-                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(9)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
-                                                    </Button>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(9)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                        <View>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
+                                                        </View>
+                                                    </TouchableHighlight>
                                                 )}
 
                                                 {renderIf(this.state.key9 == "N")(
-                                                    <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(9)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
-                                                    </Button>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(9)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                        <View>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
+                                                        </View>
+                                                    </TouchableHighlight>
                                                 )}
 
                                                 {renderIf(this.state.key9 == "Y")(
-                                                    <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(9)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
-                                                    </Button>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(9)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                        <View>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>9</Text>
+                                                        </View>
+                                                    </TouchableHighlight>
                                                 )}
                                             </View>
                                         </View>
@@ -784,23 +868,28 @@ export default class pirecord extends Component {
                                     <View style={keyboardStyle.keyboardView}>
                                         <View style={{ flex:0.32}}>
                                             <View style={keyboardStyle.keyboardButtonLayout}>
-
                                                 {renderIf(this.state.key4 == "default")(
-                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(4)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
-                                                    </Button>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(4)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                        <View>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
+                                                        </View>
+                                                    </TouchableHighlight>
                                                 )}
 
                                                 {renderIf(this.state.key4 == "N")(
-                                                    <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(4)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
-                                                    </Button>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(4)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                        <View>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
+                                                        </View>
+                                                    </TouchableHighlight>
                                                 )}
 
                                                 {renderIf(this.state.key4 == "Y")(
-                                                    <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(4)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
-                                                    </Button>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(4)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                        <View>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>4</Text>
+                                                        </View>
+                                                    </TouchableHighlight>
                                                 )}
                                             </View>
                                         </View>
@@ -809,21 +898,27 @@ export default class pirecord extends Component {
                                         <View style={{ flex:0.32}}>
                                             <View style={keyboardStyle.keyboardButtonLayout}>
                                                 {renderIf(this.state.key5 == "default")(
-                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(5)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
-                                                    </Button>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(5)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                        <View>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
+                                                        </View>
+                                                    </TouchableHighlight>
                                                 )}
 
                                                 {renderIf(this.state.key5 == "N")(
-                                                    <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(5)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
-                                                    </Button>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(5)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                        <View>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
+                                                        </View>
+                                                    </TouchableHighlight>
                                                 )}
 
                                                 {renderIf(this.state.key5 == "Y")(
-                                                    <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(5)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
-                                                    </Button>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(5)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                        <View>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>5</Text>
+                                                        </View>
+                                                    </TouchableHighlight>
                                                 )}
                                             </View>
                                         </View>
@@ -832,21 +927,27 @@ export default class pirecord extends Component {
                                         <View style={{ flex:0.32}}>
                                             <View style={keyboardStyle.keyboardButtonLayout}>
                                                 {renderIf(this.state.key6 == "default")(
-                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(6)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
-                                                    </Button>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(6)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                        <View>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
+                                                        </View>
+                                                    </TouchableHighlight>
                                                 )}
 
                                                 {renderIf(this.state.key6 == "N")(
-                                                    <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(6)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
-                                                    </Button>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(6)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                        <View>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
+                                                        </View>
+                                                    </TouchableHighlight>
                                                 )}
 
                                                 {renderIf(this.state.key6 == "Y")(
-                                                    <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(6)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
-                                                    </Button>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(6)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                        <View>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>6</Text>
+                                                        </View>
+                                                    </TouchableHighlight>
                                                 )}
                                             </View>
                                         </View>
@@ -857,21 +958,27 @@ export default class pirecord extends Component {
                                         <View style={{ flex:0.32}}>
                                             <View style={keyboardStyle.keyboardButtonLayout}>
                                                 {renderIf(this.state.key1 == "default")(
-                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(1)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
-                                                    </Button>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(1)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                        <View>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
+                                                        </View>
+                                                    </TouchableHighlight>
                                                 )}
 
                                                 {renderIf(this.state.key1 == "N")(
-                                                    <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(1)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
-                                                    </Button>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(1)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                        <View>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
+                                                        </View>
+                                                    </TouchableHighlight>
                                                 )}
 
                                                 {renderIf(this.state.key1 == "Y")(
-                                                    <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(1)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
-                                                    </Button>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(1)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                        <View>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>1</Text>
+                                                        </View>
+                                                    </TouchableHighlight>
                                                 )}
                                             </View>
                                         </View>
@@ -881,21 +988,27 @@ export default class pirecord extends Component {
                                         <View style={{ flex:0.32}}>
                                             <View style={keyboardStyle.keyboardButtonLayout}>
                                                 {renderIf(this.state.key2 == "default")(
-                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(2)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
-                                                    </Button>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(2)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                        <View>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
+                                                        </View>
+                                                    </TouchableHighlight>
                                                 )}
 
                                                 {renderIf(this.state.key2 == "N")(
-                                                    <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(2)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
-                                                    </Button>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(2)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                        <View>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
+                                                        </View>
+                                                    </TouchableHighlight>
                                                 )}
 
                                                 {renderIf(this.state.key2 == "Y")(
-                                                    <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(2)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
-                                                    </Button>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(2)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                        <View>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>2</Text>
+                                                        </View>
+                                                    </TouchableHighlight>
                                                 )}
                                             </View>
                                         </View>
@@ -905,21 +1018,27 @@ export default class pirecord extends Component {
                                             <View style={keyboardStyle.keyboardButtonLayout}>
 
                                                 {renderIf(this.state.key3 == "default")(
-                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(3)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
-                                                    </Button>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(3)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                        <View>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
+                                                        </View>
+                                                    </TouchableHighlight>
                                                 )}
 
                                                 {renderIf(this.state.key3 == "N")(
-                                                    <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(3)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
-                                                    </Button>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(3)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                        <View>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
+                                                        </View>
+                                                    </TouchableHighlight>
                                                 )}
 
                                                 {renderIf(this.state.key3 == "Y")(
-                                                    <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(3)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
-                                                    </Button>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(3)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                        <View>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>3</Text>
+                                                        </View>
+                                                    </TouchableHighlight>
                                                 )}
                                             </View>
                                         </View>
@@ -932,21 +1051,27 @@ export default class pirecord extends Component {
 
                                             <View style={keyboardStyle.keyboardButtonLayout}>
                                                 {renderIf(this.state.key0 == "default")(
-                                                    <Button style={keyboardStyle.keyboardButton} onPress={() => this._keyboardPress(0)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
-                                                    </Button>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(0)} style={keyboardStyle.keyboardButton} underlayColor="#afabab">
+                                                        <View>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
+                                                        </View>
+                                                    </TouchableHighlight>
                                                 )}
 
                                                 {renderIf(this.state.key0 == "N")(
-                                                    <Button style={keyboardStyle.keyboardButtonNot} onPress={() => this._keyboardPress(0)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
-                                                    </Button>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(0)} style={keyboardStyle.keyboardButtonNot} underlayColor="#afabab">
+                                                        <View>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
+                                                        </View>
+                                                    </TouchableHighlight>
                                                 )}
 
                                                 {renderIf(this.state.key0 == "Y")(
-                                                    <Button style={keyboardStyle.keyboardButtonOk} onPress={() => this._keyboardPress(0)}>
-                                                        <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
-                                                    </Button>
+                                                    <TouchableHighlight onPress={() => this._keyboardPress(0)} style={keyboardStyle.keyboardButtonOk} underlayColor="#afabab">
+                                                        <View>
+                                                            <Text style={keyboardStyle.keyboardButtonTxt}>0</Text>
+                                                        </View>
+                                                    </TouchableHighlight>
                                                 )}
                                             </View>
 
